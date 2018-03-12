@@ -8,10 +8,10 @@
     ],
     "require": {
         "phpoffice/phpspreadsheet": "^1.1"
-    },
-    "scripts": {
-        "compile": [
-          "chmod -R 777 uploads-voc-files/"
-        ]
     }
+    // ,"scripts": {
+    //     "compile": [
+    //       "chmod -R 777 uploads-voc-files/"
+    //     ]
+    // }
 }
