@@ -10,6 +10,7 @@
 </head> 
 <body> 
 <?php
+require('./libs/database/connect-db.php');
 function DateThai($strDate)
 	{
 		$strYear = date("Y",strtotime($strDate))+543;
@@ -28,15 +29,8 @@ function DateDiff($strDate1)
 	 }
 
 $NUMBER = $_GET['REQ'];
-$serverName = "localhost";
-         $serverName = "localhost";
-          $userName = "raiingph_psq";
-         $userPassword = "12345678";
-         $dbName = "raiingph_psq";
-         $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
-         mysqli_set_charset($conn,"utf8");
-		 $sql = "SELECT * FROM request WHERE REQ_NO LIKE '%".$NUMBER."%' ";
-         $query = mysqli_query($conn,$sql);
+$sql = "SELECT * FROM tbl_complaint WHERE complaint_id LIKE '%".$NUMBER."%' ";
+$query = mysqli_query($conn,$sql);
 ?>
 <div data-role="page" id="page">
 	<div data-role="header" data-theme="b">
@@ -46,23 +40,23 @@ $serverName = "localhost";
 		<?php
 while($result=mysqli_fetch_array($query))
       		 {   
-			 $strDate = $result["PEA_DATE_RECIVE"];
+			 $strDate = $result["sent_date"];
 			 echo "เลขที่คำร้อง :"."<br>";
-		     echo $result["REQ_NO"]."<br><br>";
+		     echo $result["complaint_id"]."<br><br>";
 			 echo "วันที่รับคำร้อง :"."<br>";
 			 echo DateThai($strDate)."<br><br>";
 			 echo "จำนวนวัน :"."<br>";
-			 echo DateDiff($strDate)."<br><br>";
+			 echo $result["number_of_day"]."<br><br>";
 			 echo "หน่วยงาน :"."<br>";
-			 echo $result["OFFICE"]."<br><br>";
+			 echo $result["office_name"]."<br><br>";
 			 echo "ชื่อผู้ร้องเรียน :"."<br>";
-		     echo $result["REQ_NAME"]."<br><br>";
+		     echo $result["complaint_name"]."<br><br>";
 			 echo "เบอร์โทรศัพท์ :"."<br>";
-			 echo $result["PHONE_NUM"]."<br><br>";
+			 echo $result["tel_contact"]."<br><br>";
 			 echo "ประเภทข้อร้องเรียน :"."<br>";
-			 echo $result["TYPE"]."<br><br>";
+			 echo $result["complaint_type"]."<br><br>";
 			 echo "หัวข้อย่อย :"."<br>";
-			 echo $result["SUB_TYPE"]."<br><br>";
+			 echo $result["sub_complaint_type"]."<br><br>";
 			 }
 ?>	
 <h2><a href="#" class="ui-btn" data-rel="back" > BACK</a></h2>
