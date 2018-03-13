@@ -20,7 +20,6 @@ echo $NUMBER;
 		
 	     if($addpos == 0){
 			 $datenum = substr($NUMBER,$addpos+1,$lengh1);
-			 $datenum1 = -$datenum;
 			 $sql = "SELECT * , COUNT(main_office) AS NUM FROM tbl_complaint  WHERE number_of_day<".$datenum." GROUP BY main_office HAVING(COUNT(office_name)>0)";;
 			
 			             }
@@ -55,7 +54,7 @@ echo $NUMBER;
 		while($result=mysqli_fetch_array($query))
 		 {
 			 
-			 echo "<li><a href ='req_office.php?REQ=".$result["main_office"]."&REQ2=$datenum1'>".$a.".".$result["main_office"]."  จำนวน  ".$result["NUM"]." เรื่อง</a></li>";
+			 echo "<li><a href ='req_office.php?REQ=".$result["main_office"]."&REQ2=$datenum'>".$a.".".$result["main_office"]."  จำนวน  ".$result["NUM"]." เรื่อง</a></li>";
 			 $a =$a +1;
 		 		 }
 				 $a = 0;
