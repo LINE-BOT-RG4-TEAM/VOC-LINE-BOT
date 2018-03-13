@@ -24,7 +24,7 @@ document.randgen.password.value = "#" + password;
         
 				<div align="center">
                 
-					<table width="600" border="1"><form action="authorize-success.php" name="randgen">
+					<table width="600" border="1"><form action="authorize-success.php" name="randgen" method="post">
  						 <tr>
     							<td width="300"><div align="right">ชื่อ</div></td>
     							<td width="300"><input type="text" name="textfield3" id="textfield3" /></td>
