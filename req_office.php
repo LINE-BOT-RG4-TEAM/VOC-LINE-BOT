@@ -15,7 +15,7 @@ $NUMBER = $_GET['REQ'];
 $NUMBER2 = $_GET['REQ2'];
 $sql = "SELECT * , COUNT(office_name) AS NUM FROM tbl_authorize  WHERE (main_office LIKE '%".$NUMBER."%' OR office_name LIKE '%".$NUMBER."%')  AND number_of_day<".$NUMBER2." GROUP BY office_name HAVING(COUNT(office_name)>0)";
 $query = mysqli_query($conn,$sql);
-$mode1 = mysqli_num_rows($query);
+//$mode1 = mysqli_num_rows($query);
 while($ofname = mysqli_fetch_array($query)){ $ofname1 = $ofname["main_office"];}
 
 ?>
