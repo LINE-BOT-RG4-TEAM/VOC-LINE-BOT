@@ -14,6 +14,12 @@ $username = $url["user"];
 $password = $url["pass"];
 $db = substr($url["path"], 1);
 $conn = new mysqli($server, $username, $password, $db);
+if($conn){
+echo "connected";
+}
+else{
+echo "fail toconnect";
+}
 mysqli_set_charset($conn,"utf8");
 $sql_insert ="INSERT INTO tbl_authorize (name, lastname, position, code)VALUES ('$name', '$lastname', '$position', '$code')";
 mysqli_query($conn,$sql_insert);
