@@ -10,18 +10,13 @@
 </head> 
 <body> 
 <?php
+require('./libs/database/connect-db.php');
 $NUMBER = $_GET['REQ'];
 $NUMBER2 = $_GET['REQ2'];
-$serverName = "localhost";
-$userName = "raiingph_psq";
-$userPassword = "12345678";
-$dbName = "raiingph_psq";
-$conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
-mysqli_set_charset($conn,"utf8");
-$sql = "SELECT * , COUNT(OFFICE) AS NUM FROM request WHERE (MAIN_OFFICE LIKE '%".$NUMBER."%' OR OFFICE LIKE '%".$NUMBER."%')  AND DATEDIFF(PEA_DATE_RECIVE,NOW())<=".$NUMBER2." GROUP BY OFFICE HAVING(COUNT(OFFICE)>0)";
+$sql = "SELECT * , COUNT(office_name) AS NUM FROM tbl_authorize  WHERE (main_office LIKE '%".$NUMBER."%' OR office_name LIKE '%".$NUMBER."%')  AND DATEDIFF(PEA_DATE_RECIVE,NOW())<=".$NUMBER2." GROUP BY OFFICE HAVING(COUNT(OFFICE)>0)";
 $query = mysqli_query($conn,$sql);
 $mode1 = mysqli_num_rows($query);
-while($ofname = mysqli_fetch_array($query)){ $ofname1 = $ofname["MAIN_OFFICE"];}
+while($ofname = mysqli_fetch_array($query)){ $ofname1 = $ofname["main_office"];}
 
 ?>
 <div data-role="page" id="page">
@@ -42,7 +37,7 @@ while($ofname = mysqli_fetch_array($query)){ $ofname1 = $ofname["MAIN_OFFICE"];}
 		while($result=mysqli_fetch_array($query))
 		 {
 			 
-			 echo "<li><a href ='req_office1.php?REQ=".$result["OFFICE"]."&REQ2=$NUMBER2'>".$a.".".$result["OFFICE"]."  จำนวน  ".$result["NUM"]." เรื่อง</a></li>";;
+			 echo "<li><a href ='req_office1.php?REQ=".$result["office_name"]."&REQ2=$NUMBER2'>".$a.".".$result["office_name"]."  จำนวน  ".$result["NUM"]." เรื่อง</a></li>";;
 			 $a =$a +1;
 		 		 }
 				 $a = 0;
