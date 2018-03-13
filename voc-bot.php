@@ -29,7 +29,7 @@ if($regis_code == "#"){
 					$sql_regis = "UPDATE tbl_authorize SET line ='$lineid' WHERE code ='$text'";
 					mysqli_query($conn,$sql_regis);
 					mysqli_close($conn);
-					$sql_ans = "SELECT * FROM tbl_authorize WHERE code='$lineid'";
+					$sql_ans = "SELECT * FROM tbl_authorize WHERE line='$lineid'";
 					$queryans = mysqli_query($conn,$sql_ans);
 				        $reans =mysqli_fetch_array($queryans);
 					mysqli_close($conn);
