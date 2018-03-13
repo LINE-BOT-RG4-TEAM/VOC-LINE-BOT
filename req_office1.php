@@ -10,20 +10,16 @@
 </head> 
 <body> 
 <?php
+require('./libs/database/connect-db.php');
 $NUMBER = $_GET['REQ'];
 $NUMBER2 = $_GET['REQ2'];
-$serverName = "localhost";
-$userName = "raiingph_psq";
-$userPassword = "12345678";
-$dbName = "raiingph_psq";
-$conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
-mysqli_set_charset($conn,"utf8");
-$sql = "SELECT * FROM request WHERE OFFICE LIKE '%".$NUMBER."%' AND DATEDIFF(PEA_DATE_RECIVE,NOW())<=".$NUMBER2;
-$sql_type = "SELECT * FROM request WHERE OFFICE LIKE '%".$NUMBER."%' AND DATEDIFF(PEA_DATE_RECIVE,NOW())<=".$NUMBER2." GROUP BY TYPE";
+
+$sql = "SELECT * FROM tbl_complaint WHERE office_name LIKE '%".$NUMBER."%' AND number_of_day<".$NUMBER2;
+$sql_type = "SELECT * FROM tbl_complaint WHERE office_name LIKE '%".$NUMBER."%' AND number_of_day<".$NUMBER2." GROUP BY complaint_type";
 $query = mysqli_query($conn,$sql);
 $query_type = mysqli_query($conn,$sql_type);
 $mode1 = mysqli_num_rows($query);
-while($ofname = mysqli_fetch_array($query)){ $ofname1 = $ofname["OFFICE"];}
+while($ofname = mysqli_fetch_array($query)){ $ofname1 = $ofname["office_name"];}
 
 ?>
 <div data-role="page" id="page">
@@ -43,11 +39,11 @@ while($ofname = mysqli_fetch_array($query)){ $ofname1 = $ofname["OFFICE"];}
     <?php
 	while($result_type = mysqli_fetch_array($query_type)){
 	echo '<div data-role="content">';
-	echo '<u><b>ด้าน'.$result_type["TYPE"].'</b></u>';
+	echo '<u><b>ด้าน'.$result_type["complaint_type"].'</b></u>';
 	echo '</div>';
 	       
 		   while($result = mysqli_fetch_array($query)){
-			   if($result["TYPE"] == $result_type["TYPE"]){
+			   if($result["complaint_type"] == $result_type["complaint_type"]){
 			  echo '<div data-role="content">'; 
 			  echo '<ul data-role="listview">';
 			  echo "<li><a href ='req_display_det.php?REQ=".$result["REQ_NO"]."'>"." -คำร้องเลขที่ ".$result["REQ_NO"]."</a></li>";
