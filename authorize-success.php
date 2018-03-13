@@ -10,7 +10,7 @@ $name = $_POST["textfield3"];
 $lastname = $_POST["textfield2"];
 $position = $_POST["textfield"];
 $code = $_POST["password"];
-  echo $name.$lastname.$position.$code;
+  echo "ลงทะเบียนเรียนร้อย รหัสยืนยันตัวของท่านคือ     ".$code;
 
 
 
