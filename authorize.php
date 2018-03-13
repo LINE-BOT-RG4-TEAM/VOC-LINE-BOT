@@ -47,7 +47,7 @@ document.randgen.password.value = "#" + password;
    								<td><form name="randgen"><input name="password" id=”"password" type="text" onfocus="randomStringp()" value="" />
          							<input name="" type="button" onClick="randomStringp()" value="GEN">
     							</td>
-                                				    </form>
+                                </form>
     					<tr>
     							<td ></td>
         						<td><div align="center"><input type="submit" value="ตกลง" /></div></td>
