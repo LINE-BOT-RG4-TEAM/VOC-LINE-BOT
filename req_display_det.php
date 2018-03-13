@@ -40,7 +40,7 @@ $query = mysqli_query($conn,$sql);
 		<?php
 while($result=mysqli_fetch_array($query))
       		 {   
-			 $strDate = $result["sent_date"];
+			 $strDate = $result["recived_date"];
 			 echo "เลขที่คำร้อง :"."<br>";
 		     echo $result["complaint_id"]."<br><br>";
 			 echo "วันที่รับคำร้อง :"."<br>";
@@ -50,7 +50,7 @@ while($result=mysqli_fetch_array($query))
 			 echo "หน่วยงาน :"."<br>";
 			 echo $result["office_name"]."<br><br>";
 			 echo "ชื่อผู้ร้องเรียน :"."<br>";
-		     echo $result["complaint_name"]."<br><br>";
+		         echo $result["complainant_name"]."<br><br>";
 			 echo "เบอร์โทรศัพท์ :"."<br>";
 			 echo $result["tel_contact"]."<br><br>";
 			 echo "ประเภทข้อร้องเรียน :"."<br>";
