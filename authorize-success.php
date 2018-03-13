@@ -12,12 +12,7 @@ $position = $_POST["textfield"];
 $code = $_POST["password"];
   echo $name.$lastname.$position.$code;
 
-if($conn){
-echo "connected";
-}
-else{
-echo "fail toconnect";
-}
+
 
 $sql_insert ="INSERT INTO tbl_authorize(name,lastname,position,code) VALUES('$name','$lastname','$position','$code')";
 mysqli_query($conn,$sql_insert);
