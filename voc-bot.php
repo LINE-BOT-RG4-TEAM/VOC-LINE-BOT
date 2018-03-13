@@ -25,7 +25,11 @@ if (!is_null($events['events'])) {
             $regis_code = substr($text,0,1); // เก็บตัวอักษรแรก
 //---------------------------------เก็บ UID ลง DATABASE-----------------------------------------------------//		 
 if($regis_code == "#"){
-		
+		$sqi_chk = "SELECT * FROM tbl_authorize WHERE line='$lineid'";
+	        $query_chk = mysqli_query($conn,$sqi_chk);
+		$query_chk1 = mysqli_num_rows($query_chk);
+	       	mysqli_close($conn);
+	             if($query_chk1 == 0){
 					$sql_regis = "UPDATE tbl_authorize SET line ='$lineid' WHERE code ='$text'";
 					mysqli_query($conn,$sql_regis);
 					mysqli_close($conn);
@@ -34,7 +38,7 @@ if($regis_code == "#"){
 				        $reans =mysqli_fetch_array($queryans);
 					mysqli_close($conn);
 				        $txtans = "ลงทะเบียนเรียบร้อย".$reans["name"];
-				     
+		     }
 			$messages = [ 'type' => 'text',
 			 		'text' => $txtans    
                                     ];
