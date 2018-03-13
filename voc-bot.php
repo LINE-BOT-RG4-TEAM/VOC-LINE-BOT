@@ -51,7 +51,7 @@ if (!is_null($events['events'])) {
 			 if($addpos == $lengh1){ 
 			       $main_office = substr($text,0,$addpos); 
 			       $sql = "SELECT * FROM tbl_complaint WHERE office_name LIKE '%".$main_office."%' OR main_office LIKE '%".$main_office."%' ";
-				   $datenum1 = 0;
+				   $datenum1 = 99999;
 				   $mode4 = "https://voc-bot.herokuapp.com/req_office.php?REQ=".$main_office."&REQ2=".$datenum1;
 				                   }
 			 if($addpos < $lengh1){
