@@ -35,9 +35,10 @@ if($regis_code == "#"){
 					mysqli_close($conn);
 					$sql_ans = "SELECT * FROM tbl_authorize WHERE line='$lineid'";
 					$queryans = mysqli_query($conn,$sql_ans);
-				        $reans =mysqli_fetch_array($queryans);
+				        while($reans =mysqli_fetch_array($queryans))
+					{     $reans1 = $reans["name"];}
 					mysqli_close($conn);
-				        $txtans = "ลงทะเบียนเรียบร้อย".$reans["name"];
+				        $txtans = "ลงทะเบียนเรียบร้อย".$reans1;
 		     }
 			$messages = [ 'type' => 'text',
 			 		'text' => $txtans    
