@@ -4,6 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Untitled Document</title>
 <?php
+  require('./libs/database/connect-db.php');
+    
 $name = $_POST["textfield3"];
 $lastname = $_POST["textfield2"];
 $position = $_POST["textfield"];
@@ -21,8 +23,8 @@ echo "connected";
 else{
 echo "fail toconnect";
 }
-mysqli_set_charset($conn,"utf8");
-$sql_insert ="INSERT INTO tbl_authorize(name,lastname,position,code)VALUES('$name','$lastname','$position','$code')";
+
+$sql_insert ="INSERT INTO tbl_authorize(name,lastname,position,code) VALUES('$name','$lastname','$position','$code')";
 mysqli_query($conn,$sql_insert);
 mysqli_close($conn);
   
