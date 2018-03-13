@@ -40,7 +40,7 @@ $query = mysqli_query($conn,$sql);
 		<?php
 while($result=mysqli_fetch_array($query))
       		 {   
-			 $strDate = $result["recived_date"];
+			 $strDate = $result["received_date"];
 			 echo "เลขที่คำร้อง :"."<br>";
 		     echo $result["complaint_id"]."<br><br>";
 			 echo "วันที่รับคำร้อง :"."<br>";
