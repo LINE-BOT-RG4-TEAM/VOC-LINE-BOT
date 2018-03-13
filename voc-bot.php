@@ -39,7 +39,8 @@ if($regis_code == "#"){
 					{     $reans1 = $reans["name"];}
 					mysqli_close($conn);
 				        $txtans = "ลงทะเบียนเรียบร้อย".$reans1;
-		     }
+		                         }
+		      }
 			$messages = [ 'type' => 'text',
 			 		'text' => $txtans    
                                     ];
