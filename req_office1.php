@@ -46,7 +46,7 @@ while($ofname = mysqli_fetch_array($query)){ $ofname1 = $ofname["office_name"];}
 			   if($result["complaint_type"] == $result_type["complaint_type"]){
 			  echo '<div data-role="content">'; 
 			  echo '<ul data-role="listview">';
-			  echo "<li><a href ='req_display_det.php?REQ=".$result["REQ_NO"]."'>"." -คำร้องเลขที่ ".$result["REQ_NO"]."</a></li>";
+			  echo "<li><a href ='req_display_det.php?REQ=".$result["complaint_id"]."'>"." -คำร้องเลขที่ ".$result["complaint_id"]."</a></li>";
 			  echo '</ul>';
 			  echo '</div>';
 			   }
