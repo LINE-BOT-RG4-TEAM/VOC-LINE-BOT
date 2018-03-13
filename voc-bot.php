@@ -32,7 +32,7 @@ if($regis_code == "#"){
 		      $query_check_line = $query_check_f["line"];
 		}
 	         mysqli_close($conn);
-	             if($query_check_nums_row <> 0) and ($query_check_line == ""){
+	             if($query_check_nums_row <> 0 and $query_check_line == ""){
 	
 					$sql_regis = "UPDATE tbl_authorize SET line ='$lineid' WHERE code ='$text'";
 					mysqli_query($conn,$sql_regis);
