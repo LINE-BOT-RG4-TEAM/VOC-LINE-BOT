@@ -1,4 +1,5 @@
 <?php
+require('./libs/database/connect-db.php');
 $access_token = 'QPUPUnMzGhO//A8J2Qi1nmBXgEW89hciaaxNExeLVgxa8cjYtvnF9TZQF3TEjEOVA5HhS6dTRT2Tp4F0I3JhC0QWrQdmlBiL/6bhuazJI/juOxmvFx31NX7RWv9z19gbUZAdPIEuAURaHPy7TnDNkQdB04t89/1O/w1cDnyilFU=';
  
 // Get POST body content
@@ -21,24 +22,13 @@ if (!is_null($events['events'])) {
 			// Get replyToken
             $replyToken = $event['replyToken'];
          
-		 $serverName = "localhost";
-         $userName = "raiingph_psq";
-         $userPassword = "12345678";
-         $dbName = "raiingph_psq";
-         $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
-         mysqli_set_charset($conn,"utf8");
-		 $regis_code = substr($text,0,1); // เก็บตัวอักษรแรก
+            $regis_code = substr($text,0,1); // เก็บตัวอักษรแรก
 //---------------------------------เก็บ UID ลง DATABASE-----------------------------------------------------//		 
 		 if($regis_code == "#"){
-			$col_position = strpos($text,":");
-			$lenght_text = strlen($text);
-			$u_ser = substr($text,1,$col_position-1);
-			$p_ass = substr($text,$col_position+1,$lengh);
-			$sql_regis = "UPDATE author SET line ='$lineid' WHERE user ='$u_ser'";
-			mysqli_query($conn,$sql_regis);
-			mysqli_close($conn);
-					 
-			 }
+						$sql_regis = "UPDATE tbl_authorize SET line ='$lineid' WHERE code ='$text'";
+						mysqli_query($conn,$sql_regis);
+						mysqli_close($conn);
+		        	        }
 //******************************************************************************************************//
 		 $sql_line = "SELECT * FROM author WHERE line LIKE '%".$lineid."%'";
 		 $query_line = mysqli_query($conn,$sql_line);
