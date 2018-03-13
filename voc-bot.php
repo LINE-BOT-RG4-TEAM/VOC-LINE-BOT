@@ -24,13 +24,25 @@ if (!is_null($events['events'])) {
          
             $regis_code = substr($text,0,1); // เก็บตัวอักษรแรก
 //---------------------------------เก็บ UID ลง DATABASE-----------------------------------------------------//		 
-		 if($regis_code == "#"){
-						$sql_regis = "UPDATE tbl_authorize SET line ='$lineid' WHERE code ='$text'";
-						mysqli_query($conn,$sql_regis);
-						mysqli_close($conn);
-			                        $messages = [ 'type' => 'text',
-			                        	      'text' => "กรุณาตรวจสอบการใช้คำค้นหา"    
-                                                            ];
+if($regis_code == "#"){
+			$sql_check = "SELECT * FROM tbl_authorize WHERE code='$text'";
+			$querychk = mysqli_query($conn,$sql_check);
+			$chk = mysqli_num_rows($querychk);
+			if($chk <> 0){ $txtans = "รหัสยืนยันนี้ถูกใช้งานแล้ว";}
+			mysqli_close($conn);			 
+			if($chk == 0){ 
+					$sql_regis = "UPDATE tbl_authorize SET line ='$lineid' WHERE code ='$text'";
+					mysqli_query($conn,$sql_regis);
+					mysqli_close($conn);
+					$sql_ans = "SELECT * FROM tbl_authorize WHERE code='$text'";
+					$queryans = mysqli_query($conn,$sql_ans);
+				        $reans =mysqli_fetch_array($queryans)
+					mysqli_close($conn);
+				        $txtans = "ลงทะเบียนเรียบร้อย".$reans['name'];
+				     }
+			$messages = [ 'type' => 'text',
+			 		'text' => $txtans    
+                                    ];
 			 			$url = 'https://api.line.me/v2/bot/message/reply';
             					$data = [
                 					  'replyToken' => $replyToken,
@@ -47,7 +59,7 @@ if (!is_null($events['events'])) {
             					$result = curl_exec($ch);
             					curl_close($ch);
  						echo $result . "\r\n";
-		        	        }
+		      }
 //******************************************************************************************************//
 //----------------------------------------เอา UID ค้นหาในฐานข้อมูล-----------------------------------------//
 		 $sql_line = "SELECT * FROM tbl_authorize WHERE line LIKE '%".$lineid."%'";
