@@ -21,7 +21,7 @@ else{
 echo "fail toconnect";
 }
 mysqli_set_charset($conn,"utf8");
-$sql_insert ="INSERT INTO tbl_authorize(name, lastname, position, code) VALUES($name,$lastname,$position,$code)";
+$sql_insert ="INSERT INTO tbl_authorize(name, lastname, position, code) VALUES('$name','$lastname','$position','$code')";
 mysqli_query($conn,$sql_insert);
 mysqli_close($conn);
   echo $name.$lastname.$position.$code;
