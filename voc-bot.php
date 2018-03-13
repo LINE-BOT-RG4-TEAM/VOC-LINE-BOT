@@ -30,9 +30,11 @@ if (!is_null($events['events'])) {
 						mysqli_close($conn);
 		        	        }
 //******************************************************************************************************//
-		 $sql_line = "SELECT * FROM author WHERE line LIKE '%".$lineid."%'";
+//----------------------------------------เอา UID ค้นหาในฐานข้อมูล-----------------------------------------//
+		 $sql_line = "SELECT * FROM tbl_authorize WHERE line LIKE '%".$lineid."%'";
 		 $query_line = mysqli_query($conn,$sql_line);
-		 $re = mysqli_num_rows($query_line);
+		 $re = mysqli_num_rows($query_line); //<<<<<ใส่ผลลัพธ์ที่ได้ลงในตัวแปร $re
+//*******************************************************************************************************//
 		 if($re <> 0){
 		
 		 
@@ -40,8 +42,7 @@ if (!is_null($events['events'])) {
 		 // ตำแหน่ง@อยู่ตัวแรก เช่น @15
 	     if($addpos == 0){
 			 $datenum = substr($text,$addpos+1,$lengh1);
-			 $datenum1 = -$datenum;
-			 $sql = "SELECT * FROM request WHERE DATEDIFF(PEA_DATE_RECIVE,NOW())<=".$datenum1;
+			 $sql = "SELECT * FROM tbl_complaint WHERE number_of_day<".$datenum;
 			 $mode4 = "https://raiingphu.com/psq/req_display.php?NUMBER=".$text; //เรียกหนาภาค
 			              }
 			
