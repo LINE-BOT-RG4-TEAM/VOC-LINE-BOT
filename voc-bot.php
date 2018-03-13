@@ -36,9 +36,9 @@ if($regis_code == "#"){
 					mysqli_close($conn);
 					$sql_ans = "SELECT * FROM tbl_authorize WHERE code='$text'";
 					$queryans = mysqli_query($conn,$sql_ans);
-				        $reans =mysqli_fetch_array($queryans)
+				        $reans =mysqli_fetch_array($queryans);
 					mysqli_close($conn);
-				        $txtans = "ลงทะเบียนเรียบร้อย".$reans['name'];
+				        $txtans = "ลงทะเบียนเรียบร้อย".$reans["name"];
 				     }
 			$messages = [ 'type' => 'text',
 			 		'text' => $txtans    
