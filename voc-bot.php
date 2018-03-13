@@ -43,7 +43,7 @@ if (!is_null($events['events'])) {
 	     if($addpos == 0){
 			 $datenum = substr($text,$addpos+1,$lengh1);
 			 $sql = "SELECT * FROM tbl_complaint WHERE number_of_day<".$datenum;
-			 $mode4 = "https://raiingphu.com/psq/req_display.php?NUMBER=".$text; //เรียกหนาภาค
+			 $mode4 = "https://voc-bot.herokuapp.com/south.php?NUMBER=".$text; //เรียกหน้าภาค
 			              }
 			
 						 
