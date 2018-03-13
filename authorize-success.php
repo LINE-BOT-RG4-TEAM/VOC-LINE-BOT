@@ -11,12 +11,7 @@ $lastname = $_POST["textfield2"];
 $position = $_POST["textfield"];
 $code = $_POST["password"];
   echo $name.$lastname.$position.$code;
-$url = parse_url(getenv("mysql://b9effd8882e09d:95317074@us-cdbr-iron-east-05.cleardb.net/heroku_c9af4d376fc017f?reconnect=true"));
-$server = $url["host"];
-$username = $url["user"];
-$password = $url["pass"];
-$db = substr($url["path"], 1);
-$conn = new mysqli($server, $username, $password, $db);
+
 if($conn){
 echo "connected";
 }
@@ -26,7 +21,7 @@ echo "fail toconnect";
 
 $sql_insert ="INSERT INTO tbl_authorize(name,lastname,position,code) VALUES('$name','$lastname','$position','$code')";
 mysqli_query($conn,$sql_insert);
-mysqli_close($conn);
+
   
 ?>
 </head>
