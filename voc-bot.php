@@ -58,7 +58,7 @@ if (!is_null($events['events'])) {
 				 $main_office = substr($text,0,$addpos); 
 				 $datenum = substr($text,$addpos+1,$lengh1); 
 				 
-			     $sql = "SELECT * FROM tbl_complaint WHERE number_of_day<".$datenum." AND (office_name LIKE '%".$main_office."%' OR main_office LIKE '%".$main_office."%')";
+			     $sql = "SELECT * FROM tbl_complaint WHERE number_of_day<".$datenum." AND office_name LIKE '%".$main_office."%' OR main_office LIKE '%".$main_office."%'";
 			     $mode4 = "https://voc-bot.herokuapp.com/req_office.php?REQ=".$main_office."&REQ2=".$datenum;	 			
 				 	
 					 			 } 
