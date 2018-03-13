@@ -24,7 +24,7 @@ document.randgen.password.value = "#" + password;
         
 				<div align="center">
                 
-					<table width="600" border="1">
+					<table width="600" border="1"><form action="authorize-success.php" name="randgen">
  						 <tr>
     							<td width="300"><div align="right">ชื่อ</div></td>
     							<td width="300"><input type="text" name="textfield3" id="textfield3" /></td>
@@ -44,18 +44,19 @@ document.randgen.password.value = "#" + password;
                         
   						<tr>
     							<td><div align="right">รหัสยืนยัน</div></td>
-   								<td><form name="randgen"><input name="password" id=”"password" type="text" onfocus="randomStringp()" value="" />
+   								<td><input name="password" id=”"password" type="text" onfocus="randomStringp()" value="" />
          							<input name="" type="button" onClick="randomStringp()" value="GEN">
     							</td>
-                                </form>
+                                
     					<tr>
     							<td ></td>
         						<td><div align="center"><input type="submit" value="ตกลง" /></div></td>
       					</tr>
-
+                         </form>
 				</table>
                 
 			</div>
-	</body>
+            
+	</body> 
 
 </html>
