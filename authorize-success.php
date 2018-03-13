@@ -4,10 +4,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Untitled Document</title>
 <?php
-$name = $_POST['textfield3'];
-$lastname = $_POST['textfield2'];
-$position = $_POST['textfield'];
-$code = $_POST['password'];
+$name = $_POST["textfield3"];
+$lastname = $_POST["textfield2"];
+$position = $_POST["textfield"];
+$code = $_POST["password"];
 $url = parse_url(getenv("mysql://b9effd8882e09d:95317074@us-cdbr-iron-east-05.cleardb.net/heroku_c9af4d376fc017f?reconnect=true"));
 $server = $url["host"];
 $username = $url["user"];
