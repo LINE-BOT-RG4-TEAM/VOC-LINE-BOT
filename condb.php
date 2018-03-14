@@ -7,8 +7,20 @@ $mode1 = mysqli_num_rows($query);
  while($result = mysqli_fetch_array($query))
 		 {
 	 $t = $result['name'];
+	 $t1 = $result['line'];
 		 	 }
 mysqli_close($conn);
+if($mode1 == 1) AND ($t1 <> "") {
+          echo "รหัสยืนยันนี้ถูใช้งานแล้วโดย ".$t;
+
+
+
+
+}
+
+
+
+
 echo $t."   ".$mode1;
 
 ?>
