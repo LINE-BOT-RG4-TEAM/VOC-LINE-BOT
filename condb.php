@@ -6,7 +6,7 @@ $query = mysqli_query($conn,$sql);
  while($result=mysqli_fetch_array($query))
 		 {$t = $result["name"]);
 		 	 }
-mysqli_close($conn);
+//mysqli_close($conn);
 echo $t;
 
 ?>
