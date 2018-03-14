@@ -34,7 +34,7 @@ if($regis_code == "#"){
 			        $t2 = $result['lastname'];
 	 			$t1 = $result['line'];
 		 	 	}
-		mysqli_close($conn);
+		//mysqli_close($conn);
 		if($nums == 1 AND $t1 <> "") {
           					$txtans = "รหัสยืนยันนี้ถูใช้งานแล้วโดย ".$t." ".$t2;
 						}
