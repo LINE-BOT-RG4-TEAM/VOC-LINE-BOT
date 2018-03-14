@@ -39,7 +39,7 @@ if($regis_code == "#"){
           					$txtans = "รหัสยืนยันนี้ถูใช้งานแล้วโดย ".$t." ".$t2;
 						}
                 if($nums == 1 AND $t1 ==""){
-						$sql_regis = "UPDATE tbl_authorize SET line ='$lineid' WHERE code ='$text'";
+						$sql_regis = "UPDATE tbl_authorize SET line ='$lineid' code LIKE '%".$text."%'";
 						mysqli_query($conn,$sql_regis);
 						mysqli_close($conn);
 						$txtans = "ลงทะเบียนเรียบร้อย";
