@@ -1,6 +1,6 @@
 <?php
 require('./libs/database/connect-db.php');
-$access_token = 'FuAKF3ts4w0mtRwFuVSmTmKy3Qnvru2iWrDFhrkfLiy+eoDhyJsIXusrccWzx5JlBRy2NFGnvS+UV3y9jrqG4TdomrK6cn2goKJ6NocFCBS9fPaNEOar75EsM6CherpQT/iRv8Q40gDVQQUGb9Sy6wdB04t89/1O/w1cDnyilFU=';
+$access_token = 'QPUPUnMzGhO//A8J2Qi1nmBXgEW89hciaaxNExeLVgxa8cjYtvnF9TZQF3TEjEOVA5HhS6dTRT2Tp4F0I3JhC0QWrQdmlBiL/6bhuazJI/juOxmvFx31NX7RWv9z19gbUZAdPIEuAURaHPy7TnDNkQdB04t89/1O/w1cDnyilFU=';
  
 // Get POST body content
 $content = file_get_contents('php://input');
