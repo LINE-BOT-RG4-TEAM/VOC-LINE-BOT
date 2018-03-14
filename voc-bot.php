@@ -45,7 +45,7 @@ if($regis_code == "#"){
 						$txtans = "ลงทะเบียนเรียบร้อย";
 		                           }
 		if($nums == 0) {
-          					$txtans = "รหัสยืนยันไม่ถูกต้อง"
+          					$txtans = "รหัสยืนยันไม่ถูกต้อง";
 						}
 		      
 			$messages = [ 'type' => 'text',
