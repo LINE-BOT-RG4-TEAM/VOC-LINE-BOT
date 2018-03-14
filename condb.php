@@ -5,9 +5,9 @@ $sql = "SELECT * FROM tbl_authorize WHERE code LIKE '%".$codee."%'";
 $query = mysqli_query($conn,$sql);
  while($result = mysqli_fetch_array($query))
 		 {
-	 echo $result['name'];
+	 $t = $result['name'];
 		 	 }
 mysqli_close($conn);
-echo $codee;
+echo $t;
 
 ?>
