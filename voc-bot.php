@@ -25,20 +25,28 @@ if (!is_null($events['events'])) {
             $regis_code = substr($text,0,1); // เก็บตัวอักษรแรก
 //---------------------------------เก็บ UID ลง DATABASE-----------------------------------------------------//		 
 if($regis_code == "#"){
-		//$sql_check = "SELECT * FROM tbl_authorize WHERE code='$text'";
-	      //  $query_check = mysqli_query($conn,$sql_regis);
-	     //   $query_check_nums_row = mysqli_num_rows($query_check);
-	     //   while($query_check_f =mysqli_fetch_array($query_check)){ 
-		//      $query_check_line = $query_check_f["line"];
-		//}
-	     //    mysqli_close($conn);
-	         //    if($query_check_nums_row <> 0 and $query_check_line == ""){
-	
-					$sql_regis = "UPDATE tbl_authorize SET line ='$lineid' WHERE code ='$text'";
-					mysqli_query($conn,$sql_regis);
-					mysqli_close($conn);
-					$txtans = "ลงทะเบียนเรียบร้อย";
-		  //   }
+		$sql = "SELECT * FROM tbl_authorize WHERE code LIKE '%".$text."%'";
+		$query = mysqli_query($conn,$sql);
+		$nums = mysqli_num_rows($query);
+ 		while($result = mysqli_fetch_array($query))
+		 		{
+	 			$t = $result['name'];
+			        $t2 = $result['lastname'];
+	 			$t1 = $result['line'];
+		 	 	}
+		mysqli_close($conn);
+		if($nums == 1 AND $t1 <> "") {
+          					$txtans = "รหัสยืนยันนี้ถูใช้งานแล้วโดย ".$t." ".$t2;
+						}
+                if($nums == 1 AND $t1 ==""){
+						$sql_regis = "UPDATE tbl_authorize SET line ='$lineid' WHERE code ='$text'";
+						mysqli_query($conn,$sql_regis);
+						mysqli_close($conn);
+						$txtans = "ลงทะเบียนเรียบร้อย";
+		                           }
+		if($nums == 0) {
+          					$txtans = "รหัสยืนยันไม่ถูกต้อง"
+						}
 		      
 			$messages = [ 'type' => 'text',
 			 		'text' => $txtans    
