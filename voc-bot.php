@@ -81,7 +81,7 @@ if($regis_code == "#"){
 		 // ตำแหน่ง@อยู่ตัวแรก เช่น @15
 	     if($addpos == 0){
 			 $datenum = substr($text,$addpos+1,$lengh1);
-			 $sql = "SELECT * FROM tbl_complaint WHERE number_of_day<".$datenum;
+			 $sql = "SELECT * FROM tbl_complaint WHERE number_of_day>".$datenum;
 			 $mode4 = "https://voc-bot.herokuapp.com/south.php?NUMBER=".$text; //เรียกหน้าภาค
 			              }
 			
@@ -97,7 +97,7 @@ if($regis_code == "#"){
 				 $main_office = substr($text,0,$addpos); 
 				 $datenum = substr($text,$addpos+1,$lengh1); 
 				 
-			     $sql = "SELECT * FROM tbl_complaint WHERE number_of_day<".$datenum." AND office_name LIKE '%".$main_office."%' OR main_office LIKE '%".$main_office."%'";
+			     $sql = "SELECT * FROM tbl_complaint WHERE number_of_day>".$datenum." AND office_name LIKE '%".$main_office."%' OR main_office LIKE '%".$main_office."%'";
 			     $mode4 = "https://voc-bot.herokuapp.com/req_office.php?REQ=".$main_office."&REQ2=".$datenum;	 			
 				 	
 					 			 } 
@@ -106,7 +106,7 @@ if($regis_code == "#"){
 		 if($addpos == 1){
 			 if($addpos == $lengh1){ $main_office = substr($text,0,1); $sql = "SELECT * FROM request WHERE MAIN_OFFICE LIKE '%".$main_office."%' ";}
 			 if($addpos < $lengh1){$main_office = substr($text,0,1); $datenum = substr($text,$addpos+1,$lengh1); $datenum1 = -$datenum;
-			 $sql = "SELECT * FROM request WHERE MAIN_OFFICE LIKE '%".$main_office."%' AND DATEDIFF(PEA_DATE_RECIVE,NOW())<=".$datenum1;
+			 $sql = "SELECT * FROM request WHERE MAIN_OFFICE LIKE '%".$main_office."%' AND DATEDIFF(PEA_DATE_RECIVE,NOW())>=".$datenum1;
 			 
 			 }
 			 $mode4 = "https://raiingphu.com/psq/req_display.php?NUMBER=".$text;
