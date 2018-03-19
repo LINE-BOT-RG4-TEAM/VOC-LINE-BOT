@@ -35,12 +35,12 @@
             </div>
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
-                    <?php 
+                    <!-- <?php 
                         $fetch_lasted_timestamp = "SELECT MAX(file_upload_timestamp) AS lasted_time FROM tbl_log_file_upload";
                         $result = mysqli_query($conn, $fetch_lasted_timestamp);
                         $row = $result->fetch_assoc();
-                    ?>
-                    <h4>รายการข้อร้องเรียน<div style="float:right">สถานะข้อมูลข้อร้องเรียน: <?php echo DateThai($row['lasted_time']); ?></div></h4>
+                    ?> -->
+                    <!-- <h4>รายการข้อร้องเรียน<div style="float:right">สถานะข้อมูลข้อร้องเรียน: <?php echo DateThai($row['lasted_time']); ?></div></h4> -->
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead class="thead-light">
