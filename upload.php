@@ -1,6 +1,17 @@
 <?php 
     require('./libs/database/connect-db.php');
-    require('./libs/utils/utils.php');
+    
+    function DateThai($strDate){
+        $strYear = date("Y",strtotime($strDate))+543;
+        $strMonth= date("n",strtotime($strDate));
+        $strDay= date("j",strtotime($strDate));
+        //$strHour= date("H",strtotime($strDate));
+        //$strMinute= date("i",strtotime($strDate));
+        //$strSeconds= date("s",strtotime($strDate));
+        $strMonthCut = Array("","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
+        $strMonthThai=$strMonthCut[$strMonth];
+        return "$strDay $strMonthThai $strYear";
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -40,7 +51,7 @@
                         $result = mysqli_query($conn, $fetch_lasted_timestamp);
                         $row = $result->fetch_assoc();
                     ?>
-                    <h4>รายการข้อร้องเรียน<div style="float:right">สถานะข้อมูลข้อร้องเรียน: <?php echo DateThai($row['lasted_time']); ?></div></h4>
+                    <h4>รายการข้อร้องเรียน<div style="float:right;padding-right:20px;">สถานะข้อมูลข้อร้องเรียน: <?php echo DateThai($row['lasted_time']); ?></div></h4>
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead class="thead-light">
