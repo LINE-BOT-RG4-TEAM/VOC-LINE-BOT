@@ -3,60 +3,50 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Authorize</title>
-
-<SCRIPT language="javascript">
-function randomStringp() {
-var chars = "ABCDEFGHIJKLMNOPQRSTUVWXTZ0123456789";
-var string_length = 8;
-var password = "";
-for (var i=0; i<string_length; i++) {
-var rnum = Math.floor(Math.random() * chars.length);
-password += chars.substring(rnum,rnum+1);
-}
-document.randgen.password.value = "#" + password;
-}
-</SCRIPT>
+<script>
+	function randomStringp() {
+		var chars = "ABCDEFGHIJKLMNOPQRSTUVWXTZ0123456789";
+		var string_length = 8;
+		var password = "";
+		for (var i=0; i<string_length; i++) {
+			var rnum = Math.floor(Math.random() * chars.length);
+			password += chars.substring(rnum,rnum+1);
+		}
+		document.randgen.password.value = "#" + password;
+	}
+</script>
 </head>
-		<body>
-        		<div align="center">
-        			<h1>ลงทะเบียน VOC-BOT</h1>
-     			</div>
-        
-				<div align="center">
-                
-					<table width="600" border="1"><form action="authorize-success.php" name="randgen" method="post">
- 						 <tr>
-    							<td width="300"><div align="right">ชื่อ</div></td>
-    							<td width="300"><input type="text" name="textfield3" id="textfield3" /></td>
-						 </tr>
-                         
-						 <tr>
-    							<td><div align="right">นามสกุล</div></td>
-    							<td><input type="text" name="textfield2" id="textfield2" /></td>
-   
-  						 </tr>
-                         
- 						 <tr>
-    							<td><div align="right">ตำแหน่ง</div></td>
-    							<td><input type="text" name="textfield" id="textfield" /></td>
-    
-  						</tr>
-                        
-  						<tr>
-    							<td><div align="right">รหัสยืนยัน</div></td>
-   								<td><input name="password" id=”"password" type="text" onfocus="randomStringp()" value="" />
-         							<input name="" type="button" onClick="randomStringp()" value="GEN">
-    							</td>
-                                
-    					<tr>
-    							<td ></td>
-        						<td><div align="center"><input type="submit" value="ตกลง" /></div></td>
-      					</tr>
-                         </form>
-				</table>
-                
-			</div>
-            
+	<body>
+		<div align="center">
+			<h1>ลงทะเบียน VOC-BOT</h1>
+		</div>
+		<div align="center">
+			<table width="600" border="1">
+				<form action="authorize-success.php" name="randgen" method="post">
+					<tr>
+						<td width="300"><div align="right">ชื่อ</div></td>
+						<td width="300"><input type="text" name="name" id="name" /></td>
+					</tr>
+					<tr>
+						<td><div align="right">นามสกุล</div></td>
+						<td><input type="text" name="lastname" id="lastname" /></td>
+					</tr>
+					<tr>
+						<td><div align="right">ตำแหน่ง</div></td>
+						<td><input type="text" name="position" id="position" /></td>
+					</tr>
+					<tr>
+						<td><div align="right">รหัสยืนยัน</div></td>
+						<td>
+							<input name="password" id="password" type="text" onfocus="randomStringp()" value="" />
+							<input name="" type="button" onClick="randomStringp()" value="GEN">
+						</td>
+					<tr>
+						<td ></td>
+						<td><div align="center"><input type="submit" value="ตกลง" /></div></td>
+					</tr>
+				</form>
+			</table>
+		</div>
 	</body> 
-
 </html>

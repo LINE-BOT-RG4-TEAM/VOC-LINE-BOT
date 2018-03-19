@@ -4,20 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Untitled Document</title>
 <?php
-  require('./libs/database/connect-db.php');
+    require('./libs/database/connect-db.php');
     
-$name = $_POST["textfield3"];
-$lastname = $_POST["textfield2"];
-$position = $_POST["textfield"];
-$code = $_POST["password"];
-  echo "ลงทะเบียนเรียนร้อย รหัสยืนยันตัวของท่านคือ     ".$code;
-
-
-
-$sql_insert ="INSERT INTO tbl_authorize(name,lastname,position,code) VALUES('$name','$lastname','$position','$code')";
-mysqli_query($conn,$sql_insert);
-
-  
+    $name = $_POST["name"];
+    $lastname = $_POST["lastname"];
+    $position = $_POST["position"];
+    $code = $_POST["password"];
+    echo "ลงทะเบียนเรียนร้อย รหัสยืนยันตัวของท่านคือ     ".$code;
+    
+    $sql_insert ="INSERT INTO tbl_authorize(name,lastname,position,code) VALUES('$name','$lastname','$position','$code')";
+    mysqli_query($conn,$sql_insert);
 ?>
 </head>
 
