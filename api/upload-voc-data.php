@@ -2,7 +2,7 @@
     require('../libs/database/connect-db.php');
     require('../libs/utils/utils.php');
 
-    $target_path = uploadXLSXFile($_FILES['vocfile']);
+    $target_path = uploadXLSXFile($conn, $_FILES['vocfile']);
     $namedDataArray = getDataFromXLSXPath($target_path);
     clearComplaintData($conn);
     insertComplaintData($conn, $namedDataArray);

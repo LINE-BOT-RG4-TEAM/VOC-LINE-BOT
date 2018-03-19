@@ -69,13 +69,15 @@
         return $namedDataArray;
     }
 
-    function uploadXLSXFile($file){
+    function uploadXLSXFile($conn, $file){
         $filename = $file['name'];
         $ext = pathinfo($filename, PATHINFO_EXTENSION);
         $target_path = "../uploads-voc-files/".basename(date('d-m-').(date("Y")+543)).".".$ext;
         if(!move_uploaded_file($file['tmp_name'], $target_path)) {
             die(error_get_last());
         }
+        $insert_log_file = "INSERT INTO tbl_log_voc_file(voc_file_path, file_upload_timestamp) VALUES('$target_path', NOW())";
+        mysqli_query($conn, $insert_log_file) or trigger_error($conn->error."[$sql]");    
         return $target_path;
     }
 
@@ -130,4 +132,16 @@
         $results = mysqli_query($conn, $sql) or trigger_error($conn->error."[$sql]");    
         $row = $results->fetch_assoc();
         return $row['count_complaint'];
+    }
+
+    function DateThai($strDate){
+        $strYear = date("Y",strtotime($strDate))+543;
+        $strMonth= date("n",strtotime($strDate));
+        $strDay= date("j",strtotime($strDate));
+        //$strHour= date("H",strtotime($strDate));
+        //$strMinute= date("i",strtotime($strDate));
+        //$strSeconds= date("s",strtotime($strDate));
+        $strMonthCut = Array("","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
+        $strMonthThai=$strMonthCut[$strMonth];
+        return "$strDay $strMonthThai $strYear";
     }
