@@ -44,7 +44,7 @@
 			<?php       
 				echo '<ul data-role="listview">';
 				echo "<li><a href ='south.php?NUMBER=@15'>"."เกิน 15 วัน จำนวน ".$num_of_find." รายการ</a></li>";
-				echo "<li><a href ='south.php?NUMBER=@15'>"."10-15 วัน จำนวน ".$num_of_find_near." รายการ</a></li>";
+				echo "<li><a href ='south1.php'>"."10-15 วัน จำนวน ".$num_of_find_near." รายการ</a></li>";
 				echo '</ul>';
 			?>
 			</div>
