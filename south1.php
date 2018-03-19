@@ -11,15 +11,11 @@
 	<body> 
 		<?php
 			require('./libs/database/connect-db.php');
-			$NUMBER = $_GET['NUMBER'];
-			$addpos = strpos($NUMBER,"@");
-			$lengh = strlen($NUMBER);
-			$lengh1 =$lengh-1;
-			echo $NUMBER;
-			if($addpos == 0){
-				$datenum = substr($NUMBER,$addpos+1,$lengh1);
-				$sql = "SELECT * , COUNT(main_office) AS NUM FROM tbl_complaint  WHERE number_of_day>=".$datenum." GROUP BY main_office HAVING(COUNT(office_name)>0)";;
-			}
+			
+			
+				
+				$sql = "SELECT * , COUNT(main_office) AS NUM FROM tbl_complaint  WHERE (number_of_day>=10 AND number_of_day<=15) GROUP BY main_office HAVING(COUNT(office_name)>0)";;
+			
 			//$sql = "SELECT * FROM request WHERE DATEDIFF(PEA_DATE_RECIVE,NOW())<=".$NUMBER;
 			$query = mysqli_query($conn,$sql);
 		?>
