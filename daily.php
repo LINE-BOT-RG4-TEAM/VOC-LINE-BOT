@@ -41,17 +41,17 @@ $num_of_find_near = mysqli_num_rows($query_near);
 	                       </div>
 	                             <div data-role="content">	
                                        <?php       
-					    echo '<div data-role="content">'; 
+					    
 			  		    echo '<ul data-role="listview">';
 			 	            echo "<li><a href ='south.php?NUMBER=@15'>"."เกิน 15 วัน จำนวน ".$num_of_find." รายการ</a></li>";
 			 	            echo '</ul>';
-			 		    echo '</div>';
+			 		    
 					    
-					    echo '<div data-role="content">'; 
+					    
 			  		    echo '<ul data-role="listview">';
 			 	            echo "<li><a href ='south.php?NUMBER=@15'>"."10-15 วัน จำนวน ".$num_of_find_near." รายการ</a></li>";
 			 	            echo '</ul>';
-			 		    echo '</div>';
+			 		   
 					     ?>
 	                             </div>
     
