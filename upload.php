@@ -36,7 +36,7 @@
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
                     <?php 
-                        $fetch_lasted_timestamp = "SELECT MAX(file_upload_timestamp) AS lasted_time FROM tbl_log_voc_upload";
+                        $fetch_lasted_timestamp = "SELECT MAX(file_upload_timestamp) AS lasted_time FROM tbl_log_voc_file";
                         $result = mysqli_query($conn, $fetch_lasted_timestamp);
                         $row = $result->fetch_assoc();
                     ?>
