@@ -38,7 +38,11 @@ $num_of_find = mysqli_num_rows($query);
 	                       </div>
 	                             <div data-role="content">	
                                        <?php       
-					     echo "ข้อร้องเรียนเกิน 15 วันจำนวน".$num_of_find."   รายการ";
+					    echo '<div data-role="content">'; 
+			  		    echo '<ul data-role="listview">';
+			 	            echo "<li><a href ='south.php?NUMBER=".$num_of_find."'>"."เรื่องร้องเรียนเกิน 15 วัน จำนวน".$num_of_find."รายการ</a></li>";
+			 	            echo '</ul>';
+			 		    echo '</div>';
 					     ?>
 	                             </div>
     
