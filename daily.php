@@ -30,8 +30,10 @@ function DateDiff($strDate1)
 $NUMBER = $_GET['REQ'];
 $sql = "SELECT * FROM tbl_complaint WHERE number_of_day>=15";
 $query = mysqli_query($conn,$sql);
-$sql_near = "SELECT * FROM tbl_complaint WHERE number_of_day>=10 AND number_of_day<=15";
 $num_of_find = mysqli_num_rows($query);
+$sql_near = "SELECT * FROM tbl_complaint WHERE number_of_day>=10 AND number_of_day<=15";
+$query_near = mysqli_query($conn,$sql_near);
+$num_of_find_near = mysqli_num_rows($query_near);
 ?>
 <div data-role="page" id="page">
 	                       <div data-role="header" data-theme="b">
@@ -47,7 +49,7 @@ $num_of_find = mysqli_num_rows($query);
 					    
 					    echo '<div data-role="content">'; 
 			  		    echo '<ul data-role="listview">';
-			 	            echo "<li><a href ='south.php?NUMBER=@15'>"."เรื่องร้องเรียนเกิน 15 วัน จำนวน".$num_of_find."รายการ</a></li>";
+			 	            echo "<li><a href ='south.php?NUMBER=@15'>"."เรื่องร้องเรียนเกิน 10-15 วัน จำนวน".$num_of_find_near."รายการ</a></li>";
 			 	            echo '</ul>';
 			 		    echo '</div>';
 					     ?>
