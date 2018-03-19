@@ -44,6 +44,12 @@ $num_of_find = mysqli_num_rows($query);
 			 	            echo "<li><a href ='south.php?NUMBER=@15'>"."เรื่องร้องเรียนเกิน 15 วัน จำนวน".$num_of_find."รายการ</a></li>";
 			 	            echo '</ul>';
 			 		    echo '</div>';
+					    
+					    echo '<div data-role="content">'; 
+			  		    echo '<ul data-role="listview">';
+			 	            echo "<li><a href ='south.php?NUMBER=@15'>"."เรื่องร้องเรียนเกิน 15 วัน จำนวน".$num_of_find."รายการ</a></li>";
+			 	            echo '</ul>';
+			 		    echo '</div>';
 					     ?>
 	                             </div>
     
