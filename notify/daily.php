@@ -28,42 +28,23 @@ function DateDiff($strDate1)
 				return (strtotime(date("Y/m/d")) - strtotime($strDate1) )/  ( 60 * 60 * 24 );  // 1 day = 60*60*24
 	 }
 $NUMBER = $_GET['REQ'];
-$sql = "SELECT * FROM tbl_complaint WHERE complaint_id LIKE '%".$NUMBER."%' ";
+$sql = "SELECT * FROM tbl_complaint WHERE number_of_day>=15";
 $query = mysqli_query($conn,$sql);
+$num_of_find = mysqli_num_rows($query);
 ?>
 <div data-role="page" id="page">
-	<div data-role="header" data-theme="b">
-		<h1>ข้อมูลข้อร้องเรียน</h1>
-	</div>
-	<div data-role="content">	
-		<?php
-while($result=mysqli_fetch_array($query))
-      		 {   
-			 $strDate = $result["received_date"];
-			 echo "เลขที่คำร้อง :"."<br>";
-		     echo $result["complaint_id"]."<br><br>";
-			 echo "วันที่รับคำร้อง :"."<br>";
-			 echo DateThai($strDate)."<br><br>";
-			 echo "จำนวนวัน :"."<br>";
-			 echo $result["number_of_day"]."<br><br>";
-			 echo "หน่วยงาน :"."<br>";
-			 echo $result["office_name"]."<br><br>";
-			 echo "ชื่อผู้ร้องเรียน :"."<br>";
-		         echo $result["complainant_name"]."<br><br>";
-			 echo "เบอร์โทรศัพท์ :"."<br>";
-			 echo $result["tel_contact"]."<br><br>";
-			 echo "ประเภทข้อร้องเรียน :"."<br>";
-			 echo $result["complaint_type"]."<br><br>";
-			 echo "หัวข้อย่อย :"."<br>";
-			 echo $result["sub_complaint_type"]."<br><br>";
-			 }
-?>	
-<h2><a href="#" class="ui-btn" data-rel="back" > BACK</a></h2>
-	</div>
+	                       <div data-role="header" data-theme="b">
+		                    <h1>ข้อมูลข้อร้องเรียน</h1>
+	                       </div>
+	                             <div data-role="content">	
+                                       <?php       
+					     echo "ข้อร้องเรียนเกิน 15 วันจำนวน".$num_of_find."   รายการ";
+					     ?>
+	                             </div>
     
-	<div data-role="footer" data-theme="b">
-		<h4>PEA</h4>
+	                       <div data-role="footer" data-theme="b">
+		                <h4>PEA</h4>
         
-</div>
+                                </div>
 </body>
 </html>
