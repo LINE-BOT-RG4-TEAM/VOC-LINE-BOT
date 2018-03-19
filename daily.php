@@ -30,6 +30,7 @@ function DateDiff($strDate1)
 $NUMBER = $_GET['REQ'];
 $sql = "SELECT * FROM tbl_complaint WHERE number_of_day>=15";
 $query = mysqli_query($conn,$sql);
+$sql_near = "SELECT * FROM tbl_complaint WHERE number_of_day>=10 AND number_of_day<=15";
 $num_of_find = mysqli_num_rows($query);
 ?>
 <div data-role="page" id="page">
