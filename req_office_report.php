@@ -34,7 +34,7 @@
 					mysqli_data_seek($query,0);
 					$a = 1;
 					while($result=mysqli_fetch_array($query)){
-						echo "<li><a href ='req_office1.php?REQ=".$result["office_name"]."&REQ2=$NUMBER2'>".$a.".".$result["office_name"]."  จำนวน  ".$result["NUM"]." เรื่อง</a></li>";;
+						echo "<li><a href ='req_office_report1.php?REQ=".$result["office_name"]."'>".$a.".".$result["office_name"]."  จำนวน  ".$result["NUM"]." เรื่อง</a></li>";;
 						$a =$a +1;
 					}
 					$a = 0;
