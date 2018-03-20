@@ -12,7 +12,7 @@
 	<?php
 		require('./libs/database/connect-db.php');
 		$NUMBER = $_GET['REQ'];
-		$sql = "SELECT * FROM tbl_complaint WHERE office_name LIKE '%".$NUMBER."%' AND (number_of_day>=10 AND number_of_day<=15);
+		$sql = "SELECT * FROM tbl_complaint WHERE office_name LIKE '%".$NUMBER."%' AND (number_of_day>=10 AND number_of_day<=15)";
 		$sql_type = "SELECT * FROM tbl_complaint WHERE office_name LIKE '%".$NUMBER."%' AND (number_of_day>=10 AND number_of_day<=15) GROUP BY complaint_type";
 		$query = mysqli_query($conn,$sql);
 		$query_type = mysqli_query($conn,$sql_type);
