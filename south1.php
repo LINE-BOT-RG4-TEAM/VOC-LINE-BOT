@@ -33,7 +33,7 @@
 					<?php
 						$a = 1;
 						while($result=mysqli_fetch_array($query)){
-							echo "<li><a href ='req_office.php?REQ=".$result["main_office"]'>".$a.".".$result["main_office"]."  จำนวน  ".$result["NUM"]." เรื่อง</a></li>";
+							echo "<li><a href ='req_office_report.php?REQ=".$result["main_office"]'>".$a.".".$result["main_office"]."  จำนวน  ".$result["NUM"]." เรื่อง</a></li>";
 							$a =$a +1;
 						}
 						$a = 0;
