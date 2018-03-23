@@ -38,11 +38,11 @@
 			<div data-role="content">	
 			<?php
 				while($result=mysqli_fetch_array($query)){   
-					if($result["received_date"]== Null)
-					{$strDate1 = "รอดำเนินการ";}
-					else{
-					$strDate = $result["received_date"];
-					$strDate1 = DateThai($strDate);
+					if($result["received_date"]== Null){
+						$strDate1 = "รอดำเนินการ";
+					}else{
+						$strDate = $result["received_date"];
+						$strDate1 = DateThai($strDate);
 					}
 					echo "เลขที่คำร้อง :"."<br>";
 					echo $result["complaint_id"]."<br><br>";
