@@ -120,12 +120,12 @@ if (!is_null($events['events'])) {
 				} else {
 					$messages = array(
 						'type'=> 'template',
-						'altText'=> "ค้นพบข้อร้องเรียน: ".$mode1." รายการ \nด้วยคำสั่ง '$text'",
+						'altText'=> "ค้นพบข้อร้องเรียน: ".$mode1." รายการ \nจากคำสั่ง: '$text'",
 						'template'=>array(
 							'type'=>'buttons',
-							'text'=> "ค้นพบข้อร้องเรียน: ".$mode1." รายการ \n\nด้วยคำสั่ง '$text'",
+							'text'=> "ค้นพบข้อร้องเรียน: ".$mode1." รายการ \n\nจากคำสั่ง: '$text'",
 							'actions'=>array(
-								array('type'=> 'uri','label'=> 'รายละเอียด','uri'=> $mode4)
+								array('type'=> 'uri','label'=> 'ดูรายการข้อร้องเรียน','uri'=> $mode4)
 							)
 					));
 				}
