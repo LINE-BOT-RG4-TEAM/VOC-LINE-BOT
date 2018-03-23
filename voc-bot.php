@@ -118,13 +118,12 @@ if (!is_null($events['events'])) {
 				//    ];
 					break; 
 				} else {
-					$new_line = "\n";
 					$messages = array(
 						'type'=> 'template',
-						'altText'=> "ค้นพบข้อร้องเรียนจำนวน ".$mode1." รายการ $new_line ด้วยคำสั่ง '$text'",
+						'altText'=> "ค้นพบข้อร้องเรียน: ".$mode1." รายการ \nด้วยคำสั่ง '$text'",
 						'template'=>array(
 							'type'=>'buttons',
-							'text'=> "ค้นพบข้อร้องเรียนจำนวน ".$mode1." รายการ $new_line ด้วยคำสั่ง '$text'",
+							'text'=> "ค้นพบข้อร้องเรียน: ".$mode1." รายการ \n\nด้วยคำสั่ง '$text'",
 							'actions'=>array(
 								array('type'=> 'uri','label'=> 'รายละเอียด','uri'=> $mode4)
 							)
