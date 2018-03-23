@@ -120,10 +120,10 @@ if (!is_null($events['events'])) {
 				} else {
 					$messages = array(
 						'type'=> 'template',
-						'altText'=> "ค้นพบ  ".$mode1." รายการ",
+						'altText'=> "ค้นพบข้อร้องเรียนจำนวน ".$mode1." รายการจาก $text",
 						'template'=>array(
 							'type'=>'buttons',
-							'text'=> "ค้นพบ  ".$mode1." รายการ",
+							'text'=> "ค้นพบข้อร้องเรียนจำนวน ".$mode1." รายการจาก $text",
 							'actions'=>array(
 								array('type'=> 'uri','label'=> 'รายละเอียด','uri'=> $mode4)
 							)
