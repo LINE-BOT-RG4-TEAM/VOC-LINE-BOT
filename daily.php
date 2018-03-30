@@ -46,15 +46,27 @@
 			<div data-role="header" data-theme="c"><h4>กฟต.1</h4></div>
 			<div data-role="content">	
 				<?php       
+				echo "<b>ข้อร้องเรียนที่<u>ยังไม่ปิด :</b><br>";
+				echo "จำนวน ".$num_of_find_near." รายการ<br><br>";
 				
-				echo "<b><u>ข้อร้องเรียนที่ยังไม่ปิด :</u></b><br>";
-				echo "จำนวน ".$num_of_find_near." รายการ<br>";
-				echo "<a href ='south1.php'>"."รอดำเนินการเกิน 1 วัน  ".$num_of_find_near." รายการ</a><br><br>";
-				echo "<a href ='south1.php'>"."ต้องปิดภายใน 20 วัน  ".$num_of_find_near." รายการ</a><br><br>";
-				echo "<a href ='south1.php'>"."ต้องเร่งรัดปิด 10 วัน  ".$num_of_find_near." รายการ</a><br><br>";
-				echo "<a href ='south1.php'>"."ปิดแล้ว  ".$num_of_find_near." รายการ</a><br><br>";
-				echo "<a href ='south1.php'>"."ปิดภายใน 15 วัน  ".$num_of_find_near." รายการ</a><br><br>";
-				echo "<a href ='south1.php'>"."% ปิดภายใน15 วัน/ปิดแล้ว  ".$num_of_find_near." รายการ</a><br><br>";
+				echo "<b><u>ข้อร้องเรียนที่รอดำเนินการ<u>เกิน 1 วัน</u> :</u></b><br>";
+				echo "จำนวน ".$num_of_find_near." รายการ<br><br>";
+				
+				echo "<b><u>ข้อร้องเรียนที่ต้อง<u>ปิดภายใน 20 วัน</u> :</u></b><br>";
+				echo "จำนวน ".$num_of_find_near." รายการ<br><br>";
+				
+				echo "<b><u>ข้อร้องเรียนที่ต้อง<u>เร่งรัดปิดภายใน 10 วัน</u> :</u></b><br>";
+				echo "จำนวน ".$num_of_find_near." รายการ<br><br>";
+				
+				echo "<b><u>ข้อร้องเรียนที่ปิดแล้วทั้งหมด :</u></b><br>";
+				echo "จำนวน ".$num_of_find_near." รายการ<br><br>";
+				
+				echo "<b><u>ข้อร้องเรียนที่ปิดภายใน 15 วัน :</u></b><br>";
+				echo "จำนวน ".$num_of_find_near." รายการ<br><br>";
+				
+				echo "<b><u>สัดส่วนการปิดข้อร้องเรียนภายใน 15 วัน เทียบกับข้อร้องเรียนที่ปิดแล้วทั้งหมด :</u></b><br>";
+				echo "จำนวน ".$num_of_find_near." รายการ<br><br>";
+				
 				
 				?>
 			</div>
