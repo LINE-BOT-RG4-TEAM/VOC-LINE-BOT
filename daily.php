@@ -48,7 +48,7 @@
 				<ul data-role="listview">
 				<?php       
 				echo "<li><b>ข้อร้องเรียนที่<u>ยังไม่ปิด</u> :</b><br>";
-				echo "จำนวน ".$num_of_find_near." รายการ<br><br></li>";
+				echo "<a href = 'req_office.php'>จำนวน ".$num_of_find_near." รายการ<a/><br><br></li>";
 				
 				echo "<b>ข้อร้องเรียนที่รอดำเนินการ<u>เกิน 1 วัน</u> :</b><br>";
 				echo "จำนวน ".$num_of_find_near." รายการ<br><br>";
