@@ -47,13 +47,13 @@
 			<div data-role="content">	
 				<?php       
 				echo '<ul data-role="listview">';
-				echo "<li><a href ='south.php?NUMBER=@15'>"."ข้อร้องเรียนที่ยังไม่ปิด ".$num_of_find." รายการ</a></li>";
-				echo "<li><a href ='south1.php'>"."ข้อร้องเรียนที่รอดำเนินการเกิน 1 วัน  ".$num_of_find_near." รายการ</a></li>";
-				echo "<li><a href ='south1.php'>"."ข้อร้องเรียนที่ต้องปิดภายใน 20 วัน  ".$num_of_find_near." รายการ</a></li>";
-				echo "<li><a href ='south1.php'>"."ข้อร้องเรียนที่ต้องเร่งรัดปิด 10 วัน  ".$num_of_find_near." รายการ</a></li>";
-				echo "<li><a href ='south1.php'>"."ข้อร้องเรียนที่ปิดแล้ว  ".$num_of_find_near." รายการ</a></li>";
-				echo "<li><a href ='south1.php'>"."ข้อร้องเรียนที่ปิดภายใน 15 วัน  ".$num_of_find_near." รายการ</a></li>";
-				echo "<li><a href ='south1.php'>"."สัดส่วนการปิดข้อร้องเรียนภายใน15 วัน/ข้อร้องเรียนที่ปิดแล้วทั้งหมด  ".$num_of_find_near." รายการ</a></li>";
+				echo "<li><a href ='south.php?NUMBER=@15'>"."ยังไม่ปิด ".$num_of_find." รายการ</a></li>";
+				echo "<li><a href ='south1.php'>"."รอดำเนินการเกิน 1 วัน  ".$num_of_find_near." รายการ</a></li>";
+				echo "<li><a href ='south1.php'>"."ต้องปิดภายใน 20 วัน  ".$num_of_find_near." รายการ</a></li>";
+				echo "<li><a href ='south1.php'>"."ต้องเร่งรัดปิด 10 วัน  ".$num_of_find_near." รายการ</a></li>";
+				echo "<li><a href ='south1.php'>"."ปิดแล้ว  ".$num_of_find_near." รายการ</a></li>";
+				echo "<li><a href ='south1.php'>"."ปิดภายใน 15 วัน  ".$num_of_find_near." รายการ</a></li>";
+				echo "<li><a href ='south1.php'>"."% ปิดภายใน15 วัน/ปิดแล้ว  ".$num_of_find_near." รายการ</a></li>";
 				echo '</ul>';
 				?>
 			</div>
