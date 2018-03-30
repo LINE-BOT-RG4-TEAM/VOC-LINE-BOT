@@ -89,44 +89,40 @@
     function insertComplaintData($conn, $namedDataArray){
         $count_complaint = 0;
         foreach($namedDataArray as $row){
-            if($row['กลุ่ม'] != "ร้องเรียน"){
-                continue;
+            if($row['กลุ่ม'] == "ร้องเรียน" && $row['ผลการดำเนินการ'] <> "ยกเลิก"){
+                $count_complaint++;
+                $main_office = getMainOfficeByOfficeCode($row['รหัสการไฟฟ้า']);
+                $office_code = $row['รหัสการไฟฟ้า'];
+                $office_name = $row['การไฟฟ้า'];
+                $complaint_id = $row['เลขที่คำร้องส่งถึง กฟภ.'];
+
+                $sent_date = convertToStandardDate($row['วันที่คำร้องส่งถึง กฟภ.']);
+                $received_date = convertToStandardDate($row['วันที่รับข้อร้องเรียน']);
+                $settlement_date = convertToStandardDate($row['วันที่ปิดข้อร้องเรียน']);
+
+                $complainant_name = $row['ชื่อผู้ร้องเรียน'];
+                $complaint_type = $row['ประเภทข้อร้องเรียน'];
+                $sub_complaint_type = $row['หัวข้อย่อย'];
+                $complaint_location = $row['สถานที่เกิดข้อร้องเรียน'];
+                $tel_contact = $row['เบอร์โทรศัพท์'];
+                $complaint_status = $row['ผลการดำเนินการ'];
+                $number_of_day = getDiffDate($sent_date, $received_date, $settlement_date);
+
+                // check null
+                $sent_date = isset($sent_date) ? $sent_date->format("Y-m-d"):NULL;
+                $received_date = isset($received_date) ? $received_date->format("Y-m-d"):NULL;
+                $settlement_date = isset($settlement_date) ? $received_date->format("Y-m-d"):NULL;
+
+                $sql = "INSERT INTO tbl_complaint(main_office, office_code, office_name, complaint_id, sent_date, received_date, settlement_date, complainant_name, complaint_type, sub_complaint_type, complaint_location, tel_contact, complaint_status, number_of_day) ".
+                        "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("sssssssssssssi",$main_office,
+                        $office_code,$office_name,$complaint_id,
+                        $sent_date,$received_date,$settlement_date,
+                        $complainant_name,$complaint_type,$sub_complaint_type,
+                        $complaint_location,$tel_contact,$complaint_status,$number_of_day);
+                $stmt->execute();
             }
-            if($row['ผลการดำเนินการ'] == "ยกเลิก"){
-                continue;
-            }
-            $count_complaint++;
-            $main_office = getMainOfficeByOfficeCode($row['รหัสการไฟฟ้า']);
-            $office_code = $row['รหัสการไฟฟ้า'];
-            $office_name = $row['การไฟฟ้า'];
-            $complaint_id = $row['เลขที่คำร้องส่งถึง กฟภ.'];
-
-            $sent_date = convertToStandardDate($row['วันที่คำร้องส่งถึง กฟภ.']);
-            $received_date = convertToStandardDate($row['วันที่รับข้อร้องเรียน']);
-            $settlement_date = convertToStandardDate($row['วันที่ปิดข้อร้องเรียน']);
-
-            $complainant_name = $row['ชื่อผู้ร้องเรียน'];
-            $complaint_type = $row['ประเภทข้อร้องเรียน'];
-            $sub_complaint_type = $row['หัวข้อย่อย'];
-            $complaint_location = $row['สถานที่เกิดข้อร้องเรียน'];
-            $tel_contact = $row['เบอร์โทรศัพท์'];
-            $complaint_status = $row['ผลการดำเนินการ'];
-            $number_of_day = getDiffDate($sent_date, $received_date, $settlement_date);
-
-            // check null
-            $sent_date = isset($sent_date) ? $sent_date->format("Y-m-d"):NULL;
-            $received_date = isset($received_date) ? $received_date->format("Y-m-d"):NULL;
-            $settlement_date = isset($settlement_date) ? $received_date->format("Y-m-d"):NULL;
-
-            $sql = "INSERT INTO tbl_complaint(main_office, office_code, office_name, complaint_id, sent_date, received_date, settlement_date, complainant_name, complaint_type, sub_complaint_type, complaint_location, tel_contact, complaint_status, number_of_day) ".
-                    "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("sssssssssssssi",$main_office,
-                    $office_code,$office_name,$complaint_id,
-                    $sent_date,$received_date,$settlement_date,
-                    $complainant_name,$complaint_type,$sub_complaint_type,
-                    $complaint_location,$tel_contact,$complaint_status,$number_of_day);
-            $stmt->execute();
         }
     }
 
