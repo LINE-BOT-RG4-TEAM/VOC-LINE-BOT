@@ -44,7 +44,7 @@
 				?>	
 			</div>
 			<div data-role="header" data-theme="d"><h4>กฟต.1</h4></div>
-			<div data-role="content" data-theme="b">
+			<div data-role="content" >
 				<ul data-role="listview">
 				<?php       
 				echo "<li><b>ข้อร้องเรียนที่<u>ยังไม่ปิด</u> :</b><br>";
