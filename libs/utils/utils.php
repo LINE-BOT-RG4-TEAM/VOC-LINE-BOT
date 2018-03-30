@@ -89,7 +89,10 @@
     function insertComplaintData($conn, $namedDataArray){
         $count_complaint = 0;
         foreach($namedDataArray as $row){
-            if($row['ผลการดำเนินการ'] == "Closed" || $row['ผลการดำเนินการ'] == "ยกเลิก"){
+            if($row['กลุ่ม'] != "ข้อร้องเรียน"){
+                continue;
+            }
+            if($row['ผลการดำเนินการ'] == "ยกเลิก"){
                 continue;
             }
             $count_complaint++;
