@@ -39,7 +39,7 @@
 		<div data-role="page" id="page">
 			<div data-role="header" data-theme="b">
 				<?php
-				$date_n = date(Y-m-d);
+				$date_n = date("Y-m-d");
 				echo "<h1>ข้อมูลข้อร้องเรียน".Datethai($date_n)."</h1>"
 					
 				?>	
