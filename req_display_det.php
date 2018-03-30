@@ -61,7 +61,7 @@
 					echo "หัวข้อย่อย :"."<br>";
 					echo $result["sub_complaint_type"]."<br><br>";
 					echo "สถานะข้อร้องเรียน :"."<br>";
-					echo $result["complaint_stauts"]."<br><br>";
+					echo $result["complaint_status"]."<br><br>";
 				}
 			?>	
 				<h2><a href="#" class="ui-btn" data-rel="back">BACK</a></h2>
