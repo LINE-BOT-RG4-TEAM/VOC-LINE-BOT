@@ -43,16 +43,14 @@
 				echo "<h1>ข้อมูลข้อร้องเรียน ".Datethai($date_n)."</h1>"
 				?>	
 			</div>
-			<div data-role="header" data-theme="b">
-					"<h4>กฟต.1</h4>"
-			</div>
+			<div data-role="header" data-theme="b"><h4>กฟต.1</h4></div>
 			<div data-role="content">	
-			<?php       
+				<?php       
 				echo '<ul data-role="listview">';
 				echo "<li><a href ='south.php?NUMBER=@15'>"."ตั้งแต่ 15 วันขึ้นไป จำนวน ".$num_of_find." รายการ</a></li>";
 				echo "<li><a href ='south1.php'>"."10-15 วัน จำนวน ".$num_of_find_near." รายการ</a></li>";
 				echo '</ul>';
-			?>
+				?>
 			</div>
 			<div data-role="footer" data-theme="b">
 				<h4>PEA</h4>
