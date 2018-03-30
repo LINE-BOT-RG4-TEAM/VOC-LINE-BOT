@@ -47,8 +47,8 @@
 			<div data-role="content">	
 				<?php       
 				
-				echo "<b>ข้อร้องเรียนที่ยังไม่ปิด :</b><br><br>";
-				echo "จำนวน ".$num_of_find_near." รายการ";
+				echo "<b><u>ข้อร้องเรียนที่ยังไม่ปิด :</u></b><br>";
+				echo "จำนวน ".$num_of_find_near." รายการ<br>";
 				echo "<a href ='south1.php'>"."รอดำเนินการเกิน 1 วัน  ".$num_of_find_near." รายการ</a><br><br>";
 				echo "<a href ='south1.php'>"."ต้องปิดภายใน 20 วัน  ".$num_of_find_near." รายการ</a><br><br>";
 				echo "<a href ='south1.php'>"."ต้องเร่งรัดปิด 10 วัน  ".$num_of_find_near." รายการ</a><br><br>";
