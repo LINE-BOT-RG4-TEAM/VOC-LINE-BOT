@@ -85,14 +85,15 @@ if (!is_null($events['events'])) {
 				if($addpos > 1){ 
 					if($addpos == $lengh1){ 
 						$main_office = substr($text,0,$addpos); 
-						$sql = "SELECT * FROM tbl_complaint WHERE office_name LIKE '%".$main_office."%' OR main_office LIKE '%".$main_office."%' ";
+			$sql = "SELECT * FROM tbl_complaint WHERE (office_name LIKE '%".$main_office."%' OR main_office LIKE '%".$main_office."%') AND complaint_status <> 'closed'";
 						$datenum1 = 0;
 						$mode4 = "https://voc-bot.herokuapp.com/req_office.php?REQ=".$main_office."&REQ2=".$datenum1;
 					}
 					if($addpos < $lengh1){
 						$main_office = substr($text,0,$addpos); 
 						$datenum = substr($text,$addpos+1,$lengh1); 
-						$sql = "SELECT * FROM tbl_complaint WHERE number_of_day>=".$datenum." AND (office_name LIKE '%".$main_office."%' OR main_office LIKE '%".$main_office."%')";
+		$sql = "SELECT * FROM tbl_complaint WHERE number_of_day>=".$datenum." AND 
+		(office_name LIKE '%".$main_office."%' OR main_office LIKE '%".$main_office."%') AND complaint_status <> 'closed'";
 						$mode4 = "https://voc-bot.herokuapp.com/req_office.php?REQ=".$main_office."&REQ2=".$datenum;	 			
 					} 
 				}
