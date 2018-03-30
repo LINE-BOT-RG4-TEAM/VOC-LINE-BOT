@@ -18,7 +18,7 @@
 			echo $NUMBER;
 			if($addpos == 0){
 				$datenum = substr($NUMBER,$addpos+1,$lengh1);
-				$sql = "SELECT * , COUNT(main_office) AS NUM FROM tbl_complaint  WHERE number_of_day>=".$datenum." GROUP BY main_office HAVING(COUNT(office_name)>0)";;
+				$sql = "SELECT * , COUNT(main_office) AS NUM FROM tbl_complaint  WHERE number_of_day>=".$datenum." AND complaint_status <> 'closed' GROUP BY main_office HAVING(COUNT(office_name)>0)";;
 			}
 			//$sql = "SELECT * FROM request WHERE DATEDIFF(PEA_DATE_RECIVE,NOW())<=".$NUMBER;
 			$query = mysqli_query($conn,$sql);
