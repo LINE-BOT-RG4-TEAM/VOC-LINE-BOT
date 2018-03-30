@@ -43,11 +43,11 @@
 				echo "<h1>ข้อมูลข้อร้องเรียน ".Datethai($date_n)."</h1>"
 				?>	
 			</div>
-			<div data-role="header" data-theme="c"><h4>กฟต.1</h4></div>
+			<div data-role="header" data-theme="a"><h4>กฟต.1</h4></div>
 			<div data-role="content">	
 				<?php       
-				echo "<b>ข้อร้องเรียนที่<u>ยังไม่ปิด</u> :</b><br>";
-				echo "จำนวน ".$num_of_find_near." รายการ<br><br>";
+				echo "<li><b>ข้อร้องเรียนที่<u>ยังไม่ปิด</u> :</b><br>";
+				echo "จำนวน ".$num_of_find_near." รายการ<br><br></li>";
 				
 				echo "<b>ข้อร้องเรียนที่รอดำเนินการ<u>เกิน 1 วัน</u> :</b><br>";
 				echo "จำนวน ".$num_of_find_near." รายการ<br><br>";
