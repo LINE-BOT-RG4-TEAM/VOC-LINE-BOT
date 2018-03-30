@@ -14,8 +14,8 @@
 		$NUMBER = $_GET['REQ'];
 		$NUMBER2 = $_GET['REQ2'];
 
-		$sql = "SELECT * FROM tbl_complaint WHERE office_name LIKE '%".$NUMBER."%' AND number_of_day>=".$NUMBER2;
-		$sql_type = "SELECT * FROM tbl_complaint WHERE office_name LIKE '%".$NUMBER."%' AND number_of_day>=".$NUMBER2." GROUP BY complaint_type";
+		$sql = "SELECT * FROM tbl_complaint WHERE office_name LIKE '%".$NUMBER."%' AND number_of_day>=".$NUMBER2." AND complaint_ststus <> 'closed'";
+		$sql_type = "SELECT * FROM tbl_complaint WHERE office_name LIKE '%".$NUMBER."%' AND number_of_day>=".$NUMBER2." AND complaint_status <> 'closed' GROUP BY complaint_type";
 		$query = mysqli_query($conn,$sql);
 		$query_type = mysqli_query($conn,$sql_type);
 		$mode1 = mysqli_num_rows($query);
