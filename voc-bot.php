@@ -78,7 +78,7 @@ if (!is_null($events['events'])) {
 				// ตำแหน่ง@อยู่ตัวแรก เช่น @15
 				if($addpos == 0){
 					$datenum = substr($text,$addpos+1,$lengh1);
-					$sql = "SELECT * FROM tbl_complaint WHERE number_of_day>=".$datenum;
+					$sql = "SELECT * FROM tbl_complaint WHERE number_of_day>=".$datenum." AND complaint_status <> 'closed'";
 					$mode4 = "https://voc-bot.herokuapp.com/south.php?NUMBER=".$text; //เรียกหน้าภาค
 				}
 							
