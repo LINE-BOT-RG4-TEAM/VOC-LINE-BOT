@@ -43,8 +43,9 @@
 				echo "<h1>ข้อมูลข้อร้องเรียน ".Datethai($date_n)."</h1>"
 				?>	
 			</div>
-			<div data-role="header" data-theme="a"><h4>กฟต.1</h4></div>
-			<div data-role="content">	
+			<div data-role="header" data-theme="d"><h4>กฟต.1</h4></div>
+			<div data-role="content">
+				<ul data-role="listview">
 				<?php       
 				echo "<li><b>ข้อร้องเรียนที่<u>ยังไม่ปิด</u> :</b><br>";
 				echo "จำนวน ".$num_of_find_near." รายการ<br><br></li>";
@@ -66,9 +67,8 @@
 				
 				echo "<b>สัดส่วนการปิดข้อร้องเรียนภายใน 15 วัน เทียบกับข้อร้องเรียนที่ปิดแล้วทั้งหมด :</b><br>";
 				echo "จำนวน ".$num_of_find_near." รายการ<br><br>";
-				
-				
 				?>
+				</ul>
 			</div>
 			<div data-role="footer" data-theme="b">
 				<h4>PEA</h4>
