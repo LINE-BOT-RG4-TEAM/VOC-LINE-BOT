@@ -47,13 +47,13 @@
 			<div data-role="content">	
 				<?php       
 				
-				echo "<a href ='south.php?NUMBER=@15'>"."ยังไม่ปิด ".$num_of_find." รายการ</a>";
-				echo "<a href ='south1.php'>"."รอดำเนินการเกิน 1 วัน  ".$num_of_find_near." รายการ</a>";
-				echo "<a href ='south1.php'>"."ต้องปิดภายใน 20 วัน  ".$num_of_find_near." รายการ</a>>";
-				echo "<a href ='south1.php'>"."ต้องเร่งรัดปิด 10 วัน  ".$num_of_find_near." รายการ</a>";
-				echo "<a href ='south1.php'>"."ปิดแล้ว  ".$num_of_find_near." รายการ</a>";
-				echo "<a href ='south1.php'>"."ปิดภายใน 15 วัน  ".$num_of_find_near." รายการ</a>";
-				echo "<a href ='south1.php'>"."% ปิดภายใน15 วัน/ปิดแล้ว  ".$num_of_find_near." รายการ</a>";
+				echo "<a href ='south.php?NUMBER=@15'>"."ยังไม่ปิด ".$num_of_find." รายการ</a><br><br>";
+				echo "<a href ='south1.php'>"."รอดำเนินการเกิน 1 วัน  ".$num_of_find_near." รายการ</a><br><br>";
+				echo "<a href ='south1.php'>"."ต้องปิดภายใน 20 วัน  ".$num_of_find_near." รายการ</a><br><br>";
+				echo "<a href ='south1.php'>"."ต้องเร่งรัดปิด 10 วัน  ".$num_of_find_near." รายการ</a><br><br>";
+				echo "<a href ='south1.php'>"."ปิดแล้ว  ".$num_of_find_near." รายการ</a><br><br>";
+				echo "<a href ='south1.php'>"."ปิดภายใน 15 วัน  ".$num_of_find_near." รายการ</a><br><br>";
+				echo "<a href ='south1.php'>"."% ปิดภายใน15 วัน/ปิดแล้ว  ".$num_of_find_near." รายการ</a><br><br>";
 				
 				?>
 			</div>
