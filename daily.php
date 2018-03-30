@@ -43,7 +43,7 @@
 				echo "<h1>ข้อมูลข้อร้องเรียน ".Datethai($date_n)."</h1>"
 				?>	
 			</div>
-			<div data-role="header" data-theme="b"><h4>กฟต.1</h4></div>
+			<div data-role="header" data-theme="c"><h4>กฟต.1</h4></div>
 			<div data-role="content">	
 				<?php       
 				echo '<ul data-role="listview">';
