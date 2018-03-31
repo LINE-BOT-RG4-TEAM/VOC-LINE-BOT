@@ -1,5 +1,5 @@
 <?php
-    $xlsxList = glob("./uploads-voc-files/*.xlsx");
+    $xlsxList = glob("*.*");
     foreach($xlsxList as $file){
-        echo "<p>".realpath($file)."</p><br/>";
+        echo "<p>".realpath($file)."</p>";
     }
