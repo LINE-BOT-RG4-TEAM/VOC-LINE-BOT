@@ -69,16 +69,6 @@
         return $namedDataArray;
     }
 
-    function deletePreviousXLSXFiles(){
-        $xlsxList = glob("../uploads-voc-files/*.xlsx");
-        foreach($xlsxList as $xlsxFile){
-            if(file_exists($xlsxFile)){
-                chmod($xlsxFile, 0777);
-                unlink($xlsxFile);
-            }
-        }
-    }
-
     function uploadXLSXFile($conn, $file){
         $filename = $file['name'];
         $ext = pathinfo($filename, PATHINFO_EXTENSION);

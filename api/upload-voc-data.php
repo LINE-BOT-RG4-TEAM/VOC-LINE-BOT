@@ -2,7 +2,6 @@
     require('../libs/database/connect-db.php');
     require('../libs/utils/utils.php');
 
-    // deletePreviousXLSXFiles();
     $target_path = uploadXLSXFile($conn, $_FILES['vocfile']);
     $namedDataArray = getDataFromXLSXPath($target_path);
     clearComplaintData($conn);
