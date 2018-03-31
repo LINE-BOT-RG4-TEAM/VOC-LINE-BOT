@@ -70,7 +70,13 @@
     }
 
     function deletePreviousXLSXFiles(){
-        array_map('unlink', glob("../uploads-voc-files/*.xlsx"));
+        $xlsxList = glob("../uploads-voc-files/*.xlsx");
+        foreach($xlsxList as $xlsxFile){
+            if(file_exists($xlsxFile)){
+                chmod($xlsxFile, 0777);
+                unlink($xlsxFile);
+            }
+        }
     }
 
     function uploadXLSXFile($conn, $file){
