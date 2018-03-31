@@ -115,10 +115,10 @@
             $received_date = isset($received_date) ? $received_date->format("Y-m-d"):NULL;
             $settlement_date = isset($settlement_date) ? $settlement_date->format("Y-m-d"):NULL;
 
-            $sql = "INSERT INTO tbl_complaint(main_office, office_code, office_name, complaint_id, sent_date, received_date, settlement_date, complainant_name, complaint_type, sub_complaint_type, complaint_location, tel_contact, complaint_status, number_of_day) ".
-                    "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            $sql = "INSERT INTO tbl_complaint(id, main_office, office_code, office_name, complaint_id, sent_date, received_date, settlement_date, complainant_name, complaint_type, sub_complaint_type, complaint_location, tel_contact, complaint_status, number_of_day) ".
+                    "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("sssssssssssssi",$main_office,
+            $stmt->bind_param("isssssssssssssi",$count_complaint, $main_office,
                     $office_code,$office_name,$complaint_id,
                     $sent_date,$received_date,$settlement_date,
                     $complainant_name,$complaint_type,$sub_complaint_type,
