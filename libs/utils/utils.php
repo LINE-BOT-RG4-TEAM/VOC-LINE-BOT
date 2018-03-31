@@ -69,6 +69,10 @@
         return $namedDataArray;
     }
 
+    function deletePreviousXLSXFiles(){
+        array_map('unlink', glob("../uploads-voc-files/*.xlsx"));
+    }
+
     function uploadXLSXFile($conn, $file){
         $filename = $file['name'];
         $ext = pathinfo($filename, PATHINFO_EXTENSION);
