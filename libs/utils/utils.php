@@ -73,7 +73,8 @@
         $filename = $file['name'];
         $ext = pathinfo($filename, PATHINFO_EXTENSION);
         $target_path = "../uploads-voc-files/".basename(date('d-m-').(date("Y")+543)).".".$ext;
-        if(!move_uploaded_file($file['tmp_name'], $target_path)) {
+        $uploaded_result = @move_uploaded_file($file['tmp_name'], $target_path);
+        if(!$uploaded_result) {
             die(error_get_last());
         }
         $insert_log_file = "INSERT INTO tbl_log_voc_file(voc_file_path, file_upload_timestamp) VALUES('$target_path', NOW())";
