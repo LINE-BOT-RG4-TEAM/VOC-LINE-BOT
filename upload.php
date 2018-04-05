@@ -47,7 +47,7 @@
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
                     <?php 
-                        $fetch_lasted_timestamp = "SELECT MAX(file_upload_timestamp) AS lasted_time FROM tbl_log_voc_file WHERE complaint_status <> 'Closed'";
+                        $fetch_lasted_timestamp = "SELECT MAX(file_upload_timestamp) AS lasted_time FROM tbl_log_voc_file";
                         $result = mysqli_query($conn, $fetch_lasted_timestamp);
                         $row = $result->fetch_assoc();
                     ?>
@@ -70,7 +70,7 @@
                             </thead>
                             <tbody>
                             <?php 
-                                $sql = "SELECT * FROM tbl_complaint";
+                                $sql = "SELECT * FROM tbl_complaint WHERE complaint_status <> 'Closed'";
                                 $results = mysqli_query($conn, $sql);
                                 $i = 0;
                                 while($row = $results->fetch_assoc()){
