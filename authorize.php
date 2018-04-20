@@ -52,7 +52,7 @@
 			</table>
 		</div>
 		<div class="center">
-			<table>
+			<table border="1" style="margin:0 auto;">
 				<thead>
 					<tr>
 						<td>ลำดับ</td>
@@ -71,7 +71,7 @@
 						while($user = $results->fetch_assoc()){
 					?>
 					<tr>
-						<td><?=$user_index ?></td>
+						<td><?=($user_index+1) ?></td>
 						<td><?=$user['name']." ".$user['lastname'] ?></td>
 						<td><?=$user['code'] ?></td>
 						<td><?=$user['line'] ?></td>
