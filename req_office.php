@@ -27,7 +27,8 @@
 			</div>
 			<div data-role="content">
 			<?php 
-				echo "รายการข้อร้องเรียนที่ค้นพบผ่านคำสั่ง '".$NUMBER."'";	
+				echo "<b>รายการข้อร้องเรียนที่ค้นพบผ่านคำสั่ง '".$NUMBER."'</b><br/>";
+				echo "<b>ทั้งสิ้น ".mysqli_num_rows($query)." ข้อร้องเรียน</b>";	
 				// echo "ข้อร้องเรียน  ".$ofname1;	
 			?>
 			</div>
