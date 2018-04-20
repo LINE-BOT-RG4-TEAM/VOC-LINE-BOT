@@ -27,7 +27,8 @@
 			</div>
 			<div data-role="content">
 			<?php 
-				echo "ข้อร้องเรียน  ".$ofname1;	
+				echo "รายการข้อร้องเรียนที่ค้นพบผ่านคำสั่ง '".$NUMBER."'";	
+				// echo "ข้อร้องเรียน  ".$ofname1;	
 			?>
 			</div>
 			<div data-role="content">	
