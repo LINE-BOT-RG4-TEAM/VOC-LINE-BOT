@@ -1,3 +1,6 @@
+<?php 
+	require('./libs/database/connect-db.php');
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -47,6 +50,38 @@
 					</tr>
 				</form>
 			</table>
+		</div>
+		<div class="center">
+			<table>
+				<thead>
+					<tr>
+						<td>ลำดับ</td>
+						<td>ชื่อ - นามสกุล</td>
+						<td>Authen code</td>
+						<td>User id</td>
+					</tr>
+				</thead>
+				<?php 
+					$fetch_authorize_user = "SELECT * FROM TBL_AUTHORIZE";
+					$results = mysqli_query($conn, $fetch_authorize_user);
+					$user_index = 0;
+				?>
+				<tbody>
+					<?php 
+						while($user = $results->fetch_assoc()){
+					?>
+					<tr>
+						<td><?=$user_index ?></td>
+						<td><?=$user['name']." ".$user['lastname'] ?></td>
+						<td><?=$user['code'] ?></td>
+						<td><?=$user['line'] ?></td>
+					</tr>
+					<?php 
+						$user_index++;
+						}
+					?>
+				</tbody>
+			</table>			
 		</div>
 	</body> 
 </html>
