@@ -76,11 +76,12 @@ if (!is_null($events['events'])) {
 			if($re <> 0){
 				$hello_prefix = substr($text, 0, 10);
 				$group_name = substr($text, 10);
-				if($hello_prefix == "/hellobot:"){
+				$source_type = $event['source']['type'];
+				if($hello_prefix == "/hellobot:" AND $source_type == "group"){
 					$group_id = $event['source']['groupId'];
 					$insert_group = "INSERT INTO tbl_line_group(group_id, group_name) VALUES('$group_id', '$group_name')";
 					mysqli_query($conn, $insert_group);
-					$messages = [ 'type' => 'text', 'text' => 'เปิดการใช้งานฟังก์ชั่น Daily Alert เรียบร้อยแล้ว'];
+					$messages = [ 'type' => 'text', 'text' => 'เปิดใช้งาน Daily Alert เรียบร้อยแล้ว'];
 					$url = 'https://api.line.me/v2/bot/message/reply';
 					$data = [
 							'replyToken' => $replyToken,
