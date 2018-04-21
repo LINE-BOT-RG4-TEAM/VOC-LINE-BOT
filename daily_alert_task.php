@@ -1,7 +1,8 @@
 <?php
     require('./libs/database/connect-db.php');
     require('./libs/utils/date_thai.php');
-
+    $access_token = 'QPUPUnMzGhO//A8J2Qi1nmBXgEW89hciaaxNExeLVgxa8cjYtvnF9TZQF3TEjEOVA5HhS6dTRT2Tp4F0I3JhC0QWrQdmlBiL/6bhuazJI/juOxmvFx31NX7RWv9z19gbUZAdPIEuAURaHPy7TnDNkQdB04t89/1O/w1cDnyilFU=';
+    
     $group_id_list = [];
     $fetch_group_list = "SELECT group_id FROM tbl_line_group WHERE status = 'A'";
     $group_list = mysqli_query($conn, $fetch_group_list);
