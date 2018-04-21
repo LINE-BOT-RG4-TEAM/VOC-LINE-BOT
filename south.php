@@ -28,7 +28,7 @@
 			</div>
 			<div data-role="content">
 			<?php 
-				echo "รายการข้อร้องเรียนรอและกำลังดำเนินการ ".$datenum." วัน";	
+				echo "รายการข้อร้องเรียนรอและกำลังดำเนินการมากกว่าหรือเท่ากับ ".$datenum." วัน";	
 			?>
 			</div>
 			<div data-role="content">
