@@ -18,14 +18,13 @@
 			echo $NUMBER;
 			if($addpos == 0){
 				$datenum = substr($NUMBER,$addpos+1,$lengh1);
-				$sql = "SELECT * , COUNT(main_office) AS NUM FROM tbl_complaint  WHERE number_of_day>=".$datenum." AND complaint_status <> 'ปิด' GROUP BY main_office HAVING(COUNT(office_name)>0)";;
+				$sql = "SELECT main_office, COUNT(main_office) AS NUM FROM tbl_complaint  WHERE number_of_day>=".$datenum." AND complaint_status <> 'ปิด' GROUP BY main_office HAVING(COUNT(office_name)>0)";
 			}
-			//$sql = "SELECT * FROM request WHERE DATEDIFF(PEA_DATE_RECIVE,NOW())<=".$NUMBER;
 			$query = mysqli_query($conn,$sql);
 		?>
 		<div data-role="page" id="page">
 			<div data-role="header" data-theme="b">
-				<h1>ข้อมูลข้อร้องเรียน </h1>
+				<h1>ข้อร้องเรียนที่รอดำเนินการ และกำลังดำเนินการมากกว่าหรือเท่ากับ 10 วัน</h1>
 			</div>
 			<div data-role="content">
 			<?php 
