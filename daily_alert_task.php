@@ -11,7 +11,7 @@
 
     $messages = [ 
         'type' => 'uri', 
-        'label' => 'รายงานข้อร้องเรียนรอและกำลังดำเนินการมากกว่าเท่ากับ 10 วัน ประจำวันที่ '.DateThai(date()),
+        'label' => 'รายงานข้อร้องเรียนรอและกำลังดำเนินการมากกว่าเท่ากับ 10 วัน ประจำวันที่ '.DateThai(date("Y-m-d")),
         'uri' => 'https://voc-bot.herokuapp.com/south.php?NUMBER=@10'
     ];
     $url = 'https://api.line.me/v2/bot/message/push';
