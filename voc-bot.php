@@ -79,6 +79,12 @@ if (!is_null($events['events'])) {
 				$source_type = $event['source']['type'];
 				if($hello_prefix == "/hellobot:" AND $source_type == "group"){
 					$group_id = $event['source']['groupId'];
+					$fetch_existing_group = "SELECT id FROM tbl_line_group WHERE group_id = '$group_id'";
+					$group_result = mysqli_query($conn, $fetch_existing_group);
+					if(mysqli_num_rows($group_result) > 0) {
+						break;
+					}
+
 					$insert_group = "INSERT INTO tbl_line_group(group_id, group_name) VALUES('$group_id', '$group_name')";
 					mysqli_query($conn, $insert_group);
 					$messages = [ 'type' => 'text', 'text' => 'เปิดใช้งาน Daily Alert เรียบร้อยแล้ว'];
