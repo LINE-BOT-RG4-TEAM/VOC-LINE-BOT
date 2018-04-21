@@ -11,7 +11,7 @@
             'altText'=> "รายงานข้อร้องเรียนรอและกำลังดำเนินการมากกว่าเท่ากับ 10 วัน \nประจำวันที่ ".DateThai(date("Y-m-d")),
             'template' => array(
                 'type'=>'buttons',
-                'text'=> "รายงานข้อร้องเรียนรอและกำลังดำเนินการมากกว่าเท่ากับ 10 วัน \nประจำวันที่ ".DateThai(date("Y-m-d")),
+                'text'=> "แจ้งเตือนรายงานข้อร้องเรียน:\n\nข้อร้องเรียนสถานะรอและกำลังดำเนินการมากกว่าเท่ากับ 10 วัน \n\nประจำวันที่ ".DateThai(date("Y-m-d")),
                 'actions'=>array(
                     array(
                         'type'=> 'uri',
@@ -21,13 +21,6 @@
             )
         ];
         
-        
-        
-        // [ 
-        //     'type' => 'uri', 
-        //     'label' => 'รายงานข้อร้องเรียนรอและกำลังดำเนินการมากกว่าเท่ากับ 10 วัน \nประจำวันที่ '.DateThai(date("Y-m-d")),
-        //     'uri' => 'https://voc-bot.herokuapp.com/south.php?NUMBER=@10'
-        // ];
         $url = 'https://api.line.me/v2/bot/message/push';
         $data = [
                 'to' => $group['group_id'],
