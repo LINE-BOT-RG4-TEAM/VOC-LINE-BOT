@@ -12,7 +12,7 @@
     $code = $_POST["password"];
     echo "ลงทะเบียนเรียนร้อย รหัสยืนยันตัวของท่านคือ     ".$code;
     
-    $sql_insert ="INSERT INTO tbl_authorize(name,lastname,position,code) VALUES('$name','$lastname','$position','$code')";
+    $sql_insert ="INSERT INTO tbl_authorize(name,lastname,position,code,status) VALUES('$name','$lastname','$position','$code','A')";
     mysqli_query($conn,$sql_insert);
 ?>
 </head>

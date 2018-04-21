@@ -75,6 +75,29 @@ if (!is_null($events['events'])) {
 //*******************************************************************************************************//
 			if($re <> 0){
 
+				if($text == "/hellobot"){
+					$group_id = $event['source']['groupId'];
+					$insert_group = "INSERT INTO tbl_line_group(group_id) VALUES('$group_id')";
+					mysqli_query($conn, $insert_group);
+
+					$messages = [ 'type' => 'text', 'text' => 'เปิดการใช้งาน Daily Alert ของกลุ่มไลน์นี้เรียบร้อยแล้ว'];
+					$url = 'https://api.line.me/v2/bot/message/reply';
+					$data = [
+							'replyToken' => $replyToken,
+							'messages' => [$messages],
+					];
+					$post = json_encode($data);
+					$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+					$ch = curl_init($url);
+					curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+					curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+					curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+					curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+					$result = curl_exec($ch);
+					curl_close($ch);
+				}
+
 				// ตำแหน่ง@อยู่ตัวแรก เช่น @15
 				if($addpos == 0){
 					$datenum = substr($text,$addpos+1,$lengh1);
@@ -85,15 +108,15 @@ if (!is_null($events['events'])) {
 				if($addpos > 1){ 
 					if($addpos == $lengh1){ 
 						$main_office = substr($text,0,$addpos); 
-			$sql = "SELECT * FROM tbl_complaint WHERE (office_name LIKE '%".$main_office."%' OR main_office LIKE '%".$main_office."%') AND complaint_status <> 'ปิด'";
+						$sql = "SELECT * FROM tbl_complaint WHERE (office_name LIKE '%".$main_office."%' OR main_office LIKE '%".$main_office."%') AND complaint_status <> 'ปิด'";
 						$datenum1 = 0;
 						$mode4 = "https://voc-bot.herokuapp.com/req_office.php?REQ=".$main_office."&REQ2=".$datenum1;
 					}
 					if($addpos < $lengh1){
 						$main_office = substr($text,0,$addpos); 
 						$datenum = substr($text,$addpos+1,$lengh1); 
-		$sql = "SELECT * FROM tbl_complaint WHERE number_of_day>=".$datenum." AND 
-		(office_name LIKE '%".$main_office."%' OR main_office LIKE '%".$main_office."%') AND complaint_status <> 'ปิด'";
+						$sql = "SELECT * FROM tbl_complaint WHERE number_of_day>=".$datenum." AND 
+						(office_name LIKE '%".$main_office."%' OR main_office LIKE '%".$main_office."%') AND complaint_status <> 'ปิด'";
 						$mode4 = "https://voc-bot.herokuapp.com/req_office.php?REQ=".$main_office."&REQ2=".$datenum;	 			
 					} 
 				}
