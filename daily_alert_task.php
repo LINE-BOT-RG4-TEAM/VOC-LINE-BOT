@@ -6,11 +6,28 @@
     $fetch_group_list = "SELECT group_id FROM tbl_line_group WHERE status = 'A'";
     $group_list = mysqli_query($conn, $fetch_group_list);
     while($group = $group_list->fetch_assoc()){
-        $messages = [ 
-            'type' => 'uri', 
-            'label' => 'รายงานข้อร้องเรียนรอและกำลังดำเนินการมากกว่าเท่ากับ 10 วัน \nประจำวันที่ '.DateThai(date("Y-m-d")),
-            'uri' => 'https://voc-bot.herokuapp.com/south.php?NUMBER=@10'
+        $messages = [
+            'type'=> 'template',
+            'altText'=> "รายงานข้อร้องเรียนรอและกำลังดำเนินการมากกว่าเท่ากับ 10 วัน \nประจำวันที่ ".DateThai(date("Y-m-d")),
+            'template' => array(
+                'type'=>'buttons',
+                'text'=> "รายงานข้อร้องเรียนรอและกำลังดำเนินการมากกว่าเท่ากับ 10 วัน \nประจำวันที่ ".DateThai(date("Y-m-d")),
+                'actions'=>array(
+                    array(
+                        'type'=> 'uri',
+                        'label'=> 'ดูรายการข้อร้องเรียน',
+                        'uri'=> 'https://voc-bot.herokuapp.com/south.php?NUMBER=@10')
+                )
+            )
         ];
+        
+        
+        
+        // [ 
+        //     'type' => 'uri', 
+        //     'label' => 'รายงานข้อร้องเรียนรอและกำลังดำเนินการมากกว่าเท่ากับ 10 วัน \nประจำวันที่ '.DateThai(date("Y-m-d")),
+        //     'uri' => 'https://voc-bot.herokuapp.com/south.php?NUMBER=@10'
+        // ];
         $url = 'https://api.line.me/v2/bot/message/push';
         $data = [
                 'to' => $group['group_id'],
