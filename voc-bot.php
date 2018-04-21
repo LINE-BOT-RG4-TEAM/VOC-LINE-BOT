@@ -74,13 +74,13 @@ if (!is_null($events['events'])) {
 			$re = mysqli_num_rows($query_line); //<<<<<ใส่ผลลัพธ์ที่ได้ลงในตัวแปร $re
 //*******************************************************************************************************//
 			if($re <> 0){
-
-				if($text == "/hellobot"){
+				$hello_prefix = substr($text, 0, 10);
+				$group_name = substr($text, 10);
+				if($hello_prefix == "/hellobot:"){
 					$group_id = $event['source']['groupId'];
-					$insert_group = "INSERT INTO tbl_line_group(group_id) VALUES('$group_id')";
+					$insert_group = "INSERT INTO tbl_line_group(group_id, group_name) VALUES('$group_id', '$group_name')";
 					mysqli_query($conn, $insert_group);
-
-					$messages = [ 'type' => 'text', 'text' => 'เปิดการใช้งาน Daily Alert ของกลุ่มไลน์นี้เรียบร้อยแล้ว'];
+					$messages = [ 'type' => 'text', 'text' => 'เปิดการใช้งานฟังก์ชั่น Daily Alert เรียบร้อยแล้ว'];
 					$url = 'https://api.line.me/v2/bot/message/reply';
 					$data = [
 							'replyToken' => $replyToken,
@@ -96,6 +96,7 @@ if (!is_null($events['events'])) {
 					curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 					$result = curl_exec($ch);
 					curl_close($ch);
+					break;
 				}
 
 				// ตำแหน่ง@อยู่ตัวแรก เช่น @15
