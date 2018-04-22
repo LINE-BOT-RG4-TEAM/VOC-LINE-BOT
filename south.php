@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" data-ajax="false" charset="utf-8">
-		<title>jQuery Mobile Web App</title>
+		<title>รายการข้อร้องเรียน</title>
 		<link href="jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css"/>
 		<link href="jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
 		<script src="jquery-1.6.4.min.js" type="text/javascript"></script>
@@ -17,8 +17,8 @@
 			$lengh1 =$lengh-1;
 			echo $NUMBER;
 			// if($addpos == 0){
-				$datenum = substr($NUMBER,$addpos+1,$lengh1);
-				$sql = "SELECT main_office, COUNT(main_office) AS NUM FROM tbl_complaint  WHERE number_of_day>=".$datenum." AND complaint_status <> 'ปิด' GROUP BY main_office HAVING(COUNT(office_name)>0)";
+			$datenum = substr($NUMBER,$addpos+1,$lengh1);
+			$sql = "SELECT main_office, COUNT(main_office) AS NUM FROM tbl_complaint  WHERE number_of_day>=".$datenum." AND complaint_status <> 'ปิด' GROUP BY main_office HAVING(COUNT(office_name)>0)";
 			// }
 			$query = mysqli_query($conn,$sql);
 		?>
