@@ -33,13 +33,13 @@
         return $thaiDate;
     }
 
-    function getDiffDate($sent_date){
-        if(!is_null($sent_date)){
+    function getDiffDate($sent_date, $settlement_date, $complaint_status){
+        if($complaint_status == "ปิด"){
+            $diff = $sent_date->diff(new DateTime($settlement_date));
+        } else {
             $diff = $sent_date->diff(new DateTime('now'));
-            return $diff->days;
-        }else{
-            throw new Exception('sent_date\'s null');
         }
+        return ($diff->days + 1);
     }
 
     function getDataFromXLSXPath($xlsxPath){
@@ -109,7 +109,7 @@
             $complaint_location = $row['สถานที่เกิดข้อร้องเรียน'];
             $tel_contact = $row['เบอร์โทรศัพท์'];
             $complaint_status = $row['ผลการดำเนินการ'];
-            $number_of_day = getDiffDate($sent_date, $received_date, $settlement_date);
+            $number_of_day = getDiffDate($sent_date, $settlement_date, $complaint_status) + 1;
 
             // check null
             $sent_date = isset($sent_date) ? $sent_date->format("Y-m-d"):NULL;
