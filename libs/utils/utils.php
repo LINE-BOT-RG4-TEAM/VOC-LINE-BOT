@@ -35,7 +35,7 @@
 
     function getDiffDate($sent_date, $settlement_date, $complaint_status){
         if($complaint_status == "ปิด"){
-            $diff = $sent_date->diff(new DateTime($settlement_date));
+            $diff = $sent_date->diff($settlement_date);
         } else {
             $diff = $sent_date->diff(new DateTime('now'));
         }
@@ -109,7 +109,7 @@
             $complaint_location = $row['สถานที่เกิดข้อร้องเรียน'];
             $tel_contact = $row['เบอร์โทรศัพท์'];
             $complaint_status = $row['ผลการดำเนินการ'];
-            $number_of_day = getDiffDate($sent_date, $settlement_date, $complaint_status) + 1;
+            $number_of_day = getDiffDate($sent_date, $settlement_date, $complaint_status);
 
             // check null
             $sent_date = isset($sent_date) ? $sent_date->format("Y-m-d"):NULL;
