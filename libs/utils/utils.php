@@ -109,7 +109,8 @@
             $complaint_location = $row['สถานที่เกิดข้อร้องเรียน'];
             $tel_contact = $row['เบอร์โทรศัพท์'];
             $complaint_status = $row['ผลการดำเนินการ'];
-            $number_of_day = getDiffDate($sent_date, $settlement_date, $complaint_status);
+            // $number_of_day = getDiffDate($sent_date, $settlement_date, $complaint_status);
+            $number_of_day = $row['จำนวนวัน'];
 
             // check null
             $sent_date = isset($sent_date) ? $sent_date->format("Y-m-d"):NULL;
