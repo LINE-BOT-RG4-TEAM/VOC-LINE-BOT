@@ -77,7 +77,7 @@ if (!is_null($events['events'])) {
 				$hello_prefix = substr($text, 0, 10);
 				$group_name = substr($text, 10);
 				$source_type = $event['source']['type'];
-				if($hello_prefix == "/hellobot:" AND $source_type == "group" AND $source_type == "room"){
+				if($hello_prefix == "/hellobot:" AND $source_type == "group"){
 					$group_id = $event['source']['groupId'];
 					$fetch_existing_group = "SELECT id FROM tbl_line_group WHERE group_id = '$group_id'";
 					$group_result = mysqli_query($conn, $fetch_existing_group);
