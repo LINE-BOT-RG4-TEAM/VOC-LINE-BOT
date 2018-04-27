@@ -1,24 +1,22 @@
 <?php
     require('./libs/database/connect-db.php');
     require('./libs/utils/date_thai.php');
+    require('./libs/utils/date_utils.php');
     $access_token = 'QPUPUnMzGhO//A8J2Qi1nmBXgEW89hciaaxNExeLVgxa8cjYtvnF9TZQF3TEjEOVA5HhS6dTRT2Tp4F0I3JhC0QWrQdmlBiL/6bhuazJI/juOxmvFx31NX7RWv9z19gbUZAdPIEuAURaHPy7TnDNkQdB04t89/1O/w1cDnyilFU=';
+    
+    $todaytime = strtotime('today');
+    $todaydate = date('Y-m-d', $todaytime);
+    $fetch_holiday = "SELECT * FROM tbl_holiday WHERE status = 'A' AND holiday_date = '$todaydate'";
+    $holiday_list = mysqli_query($conn, $fetch_holiday);
+
+    if(isWeekend($todaydate) || mysqli_num_rows($holiday_list) > 0){
+        return;
+    }
 
     $fetch_group_list = "SELECT group_id FROM tbl_line_group WHERE status = 'A'";
     $group_list = mysqli_query($conn, $fetch_group_list);
     while($group = $group_list->fetch_assoc()){
         $messages = [
-            // 'type'=> 'template',
-            // 'altText'=> "รายงานข้อร้องเรียนรอและกำลังดำเนินการมากกว่าเท่ากับ 10 วัน \nประจำวันที่ ".DateThai(date("Y-m-d")),
-            // 'template' => array(
-            //     'type'=>'buttons',
-            //     'text'=> "แจ้งเตือนรายงานข้อร้องเรียน:\n\nข้อร้องเรียนสถานะรอและกำลังดำเนินการมากกว่าเท่ากับ 10 วัน \n\nประจำวันที่ ".DateThai(date("Y-m-d")),
-            //     'actions'=>array(
-            //         array(
-            //             'type'=> 'uri',
-            //             'label'=> 'ดูรายการข้อร้องเรียน',
-            //             'uri'=> 'https://voc-bot.herokuapp.com/south.php?NUMBER=@10')
-            //     )
-            // )
             "type"=> "text",
             "text"=> "Daily Alert :\n\nรายงานข้อร้องเรียนสถานะรอและกำลังดำเนินการมากกว่าเท่ากับ 10 วัน\n\nประจำวันที่ ".DateThai(date("Y-m-d"))." \n\nhttps://voc-bot.herokuapp.com/south.php?NUMBER=@10"
         ];

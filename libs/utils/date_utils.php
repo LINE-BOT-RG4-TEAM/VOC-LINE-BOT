@@ -3,3 +3,7 @@
     function isToday($otherDate){
         return (strtotime('today') == strtotime($otherDate));
     }
+
+    function isWeekend($date){
+        return (date('N', strtotime($date)) >= 7);
+    }
