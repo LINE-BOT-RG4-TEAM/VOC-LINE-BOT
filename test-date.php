@@ -32,6 +32,9 @@
     $fetch_holiday = "SELECT * FROM tbl_holiday WHERE status = 'A' AND holiday_date = '$todaydate'";
     $holiday_list = mysqli_query($conn, $fetch_holiday);
 
+    echo "Today:".$todaydate."<br/>";
+    echo date('Y-m-d H:i:s')."<br/>";
+
     echo isWeekend($todaydate)?"weekend":"weekday";
     echo "<br/>";
     echo (mysqli_num_rows($holiday_list) > 0)?"holiday":"not holiday";
