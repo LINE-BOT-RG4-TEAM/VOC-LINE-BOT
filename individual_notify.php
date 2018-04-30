@@ -13,7 +13,7 @@ $sql_select_officename = "SELECT * FROM tbl_complaint WHERE (complaint_status LI
 $officename_list = mysqli_query($conn,$sql_select_officename);
 while($obj_office_name = mysqli_fetch_array($officename_list))
 {
-	echo $obj_office_name["office_name"]." ".$obj_office_name["number_of_day"]."<br>";
+	echo $obj_office_name["office_name"]." ".$obj_office_name["office_code"]."<br>";
 	
 	}
 
