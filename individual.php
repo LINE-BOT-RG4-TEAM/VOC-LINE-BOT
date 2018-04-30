@@ -22,11 +22,12 @@ $query = mysqli_query($conn,$sql_select);
 
 <div data-role="page" id="page">
 	<div data-role="header">
-		<h1>Page One</h1>
+		<h1>รายงานข้อขร้องเรียน</h1>
 	</div>
 	<div data-role="content">	
 		
 				<?php
+				$a = 1;
 				while($row = mysqli_fetch_array($query))
 				{
 						if($row["received_date"]== Null){
@@ -35,20 +36,22 @@ $query = mysqli_query($conn,$sql_select);
 						$strDate = $row["received_date"];
 						$strDate1 = DateThai($strDate);
 						}
-						echo "คำร้องเลขที่ ".$row["complaint_id"]."<br>";
+						echo $a.".คำร้องเลขที่ ".$row["complaint_id"]."<br>";
 						echo "วันที่รับคำร้อง ".$strDate1."<br>";
 						echo "จำนวนวัน ".$row["number_of_day"]."<br>";
 						echo "ชื่อผู้ร้องเรียน ".$row["complainant_name"]."<br>";
 						echo "เบอร์โทรศัพท์ ".$row["tel_contact"]."<br>";
 						echo "ประเภทข้อร้องเรียน ".$row["complaint_type"]."<br>";
 						echo "หัวข้อย่อย ".$row["sub_complaint_type"]."<br>";
-						echo "สถานะข้อร้องเรียน ".$row["complaint_status"]."<br>";		
+						echo "สถานะข้อร้องเรียน ".$row["complaint_status"]."<br><br>";
+						$a= $a +1 ;		
 				}
+				$a= 0;
 				?>
 				
 	</div>
 	<div data-role="footer">
-		<h4>Page Footer</h4>
+		<h4>PEA</h4>
 	</div>
 </div>
 
