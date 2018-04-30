@@ -1,5 +1,6 @@
 <?php
 require('./libs/database/connect-db.php');
+require('./libs/utils/line.php');
 $access_token = 'QPUPUnMzGhO//A8J2Qi1nmBXgEW89hciaaxNExeLVgxa8cjYtvnF9TZQF3TEjEOVA5HhS6dTRT2Tp4F0I3JhC0QWrQdmlBiL/6bhuazJI/juOxmvFx31NX7RWv9z19gbUZAdPIEuAURaHPy7TnDNkQdB04t89/1O/w1cDnyilFU=';
  
 // Get POST body content
@@ -18,7 +19,7 @@ if (!is_null($events['events'])) {
 			$lineid = $event['source']['userId'];		
 			$addpos = strpos($text,"@");
 			$lengh = strlen($text);
-			$lengh1 =$lengh-1;
+			$lengh1 = $lengh-1;
 			// Get replyToken
             $replyToken = $event['replyToken'];
          
@@ -26,25 +27,41 @@ if (!is_null($events['events'])) {
 //---------------------------------เก็บ UID ลง DATABASE-----------------------------------------------------//		 
 			if($regis_code == "#"){
 				$sql = "SELECT * FROM tbl_authorize WHERE code LIKE '%".$text."%'";
-				$query = mysqli_query($conn,$sql);
+				$query = mysqli_query($conn, $sql);
 				$nums = mysqli_num_rows($query);
-				while($result = mysqli_fetch_array($query)){
-					$t = $result['name'];
-					$t2 = $result['lastname'];
-					$t1 = $result['line'];
-				}
-				//mysqli_close($conn);
-				if($nums == 1 AND $t1 <> ""){
-					$txtans = "รหัสยืนยันนี้ถูใช้งานแล้วโดย ".$t." ".$t2;
+				$result = mysqli_fetch_array($query);
+				$t = $result['name'];
+				$t2 = $result['lastname'];
+				$t1 = $result['line'];
+
+				if($nums == 1 AND $t1 <> "") {
+					$txtans = "รหัสยืนยันนี้ถูกใช้งานแล้วโดย ".$t." ".$t2;
 				}
 
-				if($nums == 1 AND $t1 ==""){
+				if($nums == 1 AND $t1 == ""){
 					$sql_regis = "UPDATE tbl_authorize SET line ='$lineid' WHERE code LIKE '%".$text."%'";
 					mysqli_query($conn, $sql_regis);
-					mysqli_close($conn);
 					$txtans = "ลงทะเบียนเรียบร้อย";
 				}
 
+				$select_code = "SELECT * FROM tbl_manager WHERE code LIKE '%".$text."%'";
+				$query = mysqli_query($conn, $select_code);
+				$nums = mysqli_num_rows($query);
+				$result = mysqli_fetch_array($query);
+				$t = $result['name'];
+				$t2 = $result['lastname'];
+				$t1 = $result['line'];
+
+				if($nums == 1 AND $t1 <> "") {
+					$txtans = "รหัสยืนยันนี้ถูกใช้งานแล้วโดย ".$t." ".$t2;
+				}
+
+				if($nums == 1 AND $t1 == ""){
+					$sql_regis = "UPDATE tbl_manager SET uid ='$lineid' WHERE code LIKE '%".$text."%'";
+					mysqli_query($conn, $sql_regis);
+					$txtans = "ลงทะเบียนเรียบร้อย";
+				}
+				
 				if($nums == 0){
 					$txtans = "รหัสยืนยันไม่ถูกต้อง";
 				}
@@ -65,7 +82,7 @@ if (!is_null($events['events'])) {
 				curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 				$result = curl_exec($ch);
 				curl_close($ch);
-				echo $result . "\r\n";
+				return;
 			}
 //******************************************************************************************************//
 //----------------------------------------เอา UID ค้นหาในฐานข้อมูล-----------------------------------------//
