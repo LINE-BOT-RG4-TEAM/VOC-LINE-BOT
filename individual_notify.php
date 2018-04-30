@@ -42,11 +42,11 @@ while($obj_office_name = mysqli_fetch_array($officename_list))
 	$query_office_id = mysqli_query($conn,$sql_office_id);
 	while($obj_office_id = mysqli_fetch_array($query_office_id))
 		{
-			$sql_manager = "SELECT * FROM tbl_manager WHERE office_id LIKE '%".$obj_office_id["id"]."%'";
+			$sql_manager = "SELECT * FROM tbl_manager manager JOIN tbl_pea_office office ON manager.office_id = office.id WHERE office_id = ".$obj_office_id["id"]." AND manager.status = 'A' ";
 			$query_manager = mysqli_query($conn,$sql_manager);
 			while($obj_manager = mysqli_fetch_array($query_manager))
 				{
-				$sql_log_notify = "INSERT INTO tbl_individual_log(manager_id,notify_timestamp) VALUES('".$obj_manager["uid"]."','".DateThai(date("Y-m-d"))."')";
+				$sql_log_notify = "INSERT INTO tbl_individual_log(manager_id,notify_timestamp) VALUES('".$obj_manager["id"]."','NOW()')";
 				mysqli_query($conn,$sql_log_notify);
 				$lasted_id = mysqli_insert_id($conn);
 				echo push($obj_manager["office_name"],$obj_manager["uid"], $lasted_id);
