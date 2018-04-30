@@ -44,7 +44,7 @@ if (!is_null($events['events'])) {
 					$txtans = "ลงทะเบียนเรียบร้อย";
 				}
 
-				$select_code = "SELECT * FROM tbl_manager WHERE code LIKE '%".$text."%'";
+				$select_code = "SELECT * FROM tbl_manager WHERE uid LIKE '%".$text."%'";
 				$query = mysqli_query($conn, $select_code);
 				$nums = mysqli_num_rows($query);
 				$result = mysqli_fetch_array($query);
