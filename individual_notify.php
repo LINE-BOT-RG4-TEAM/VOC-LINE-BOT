@@ -34,7 +34,7 @@ $messages = [
         curl_close($ch);	
 	}
 /////////////////////////////////////////
-$sql_select_officename = "SELECT * FROM tbl_complaint WHERE (complaint_status LIKE '%กำลังดำเนินการ%' OR complaint_status LIKE '%รอดำเนินการ%') AND (number_of_day >= 0) GROUP BY office_name";
+$sql_select_officename = "SELECT * FROM tbl_complaint WHERE (complaint_status LIKE '%กำลังดำเนินการ%' OR complaint_status LIKE '%รอดำเนินการ%') AND (number_of_day >= 10) GROUP BY office_name";
 $officename_list = mysqli_query($conn,$sql_select_officename);
 while($obj_office_name = mysqli_fetch_array($officename_list))
 {	
@@ -42,11 +42,11 @@ while($obj_office_name = mysqli_fetch_array($officename_list))
 	$query_office_id = mysqli_query($conn,$sql_office_id);
 	while($obj_office_id = mysqli_fetch_array($query_office_id))
 		{
-			$sql_manager = "SELECT * FROM tbl_manager manager JOIN tbl_pea_office office ON manager.office_id = office.id WHERE office_id = ".$obj_office_id["id"]." AND manager.status = 'A' ";
+			$sql_manager = "SELECT office_name, uid, manager.id AS manager_id, manager.name FROM tbl_manager manager JOIN tbl_pea_office office ON manager.office_id = office.id WHERE office_id = ".$obj_office_id["id"]." AND manager.status = 'A' ";
 			$query_manager = mysqli_query($conn,$sql_manager);
 			while($obj_manager = mysqli_fetch_array($query_manager))
 				{
-				$sql_log_notify = "INSERT INTO tbl_individual_log(manager_id,notify_timestamp) VALUES('".$obj_manager["id"]."',NOW())";
+				$sql_log_notify = "INSERT INTO tbl_individual_log(manager_id,notify_timestamp) VALUES('".$obj_manager["manager_id"]."',NOW())";
 				mysqli_query($conn,$sql_log_notify);
 				$lasted_id = mysqli_insert_id($conn);
 				echo push($obj_manager["office_name"],$obj_manager["uid"], $lasted_id);
