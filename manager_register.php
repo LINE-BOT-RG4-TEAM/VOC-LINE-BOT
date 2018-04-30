@@ -30,9 +30,9 @@
     <body>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-4 offsets-lg-4">
+                <div class="col-lg-3 offset-lg-1">
                     <form name="manager-regis-form" id="manager-regis-form" method="POST">
-                        <h1>ลงทะเบียนผู้จัดการ</h1>
+                        <h2>ลงทะเบียนผู้จัดการ</h2>
                         <div class="form-group">
                             <label for="name">ชื่อ</label>
                             <input type="text" class="form-control" id="name" placeholder="กรอกชื่อจริง" required>
@@ -68,7 +68,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-lg-8">
+                <div class="col-lg-7">
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead class="thead-light">
