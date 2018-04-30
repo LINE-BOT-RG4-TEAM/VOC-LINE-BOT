@@ -14,7 +14,7 @@ function push($office_name,$uid,$log_id)
 $access_token = 'QPUPUnMzGhO//A8J2Qi1nmBXgEW89hciaaxNExeLVgxa8cjYtvnF9TZQF3TEjEOVA5HhS6dTRT2Tp4F0I3JhC0QWrQdmlBiL/6bhuazJI/juOxmvFx31NX7RWv9z19gbUZAdPIEuAURaHPy7TnDNkQdB04t89/1O/w1cDnyilFU=';
 $messages = [
             "type"=> "text",
-            "text"=> "Daily Alert :\n\nรายงานข้อร้องเรียนสถานะรอและกำลังดำเนินการมากกว่าเท่ากับ 10 วัน\n\nประจำวันที่ ".DateThai(date("Y-m-d"))." \n\nhttps://voc-bot.herokuapp.com/individual.php?office_name=".$office_name
+            "text"=> "Daily Alert :\n\nรายงานข้อร้องเรียนสถานะรอและกำลังดำเนินการมากกว่าเท่ากับ 10 วัน\n\nประจำวันที่ ".DateThai(date("Y-m-d"))." \n\nhttps://voc-bot.herokuapp.com/individual.php?office_name=".$office_name."&log_id=".$log_id
         ];
         
         $url = 'https://api.line.me/v2/bot/message/push';
@@ -46,7 +46,7 @@ while($obj_office_name = mysqli_fetch_array($officename_list))
 			$query_manager = mysqli_query($conn,$sql_manager);
 			while($obj_manager = mysqli_fetch_array($query_manager))
 				{
-				$sql_log_notify = "INSERT INTO tbl_individual_log(manager_id,notify_timestamp) VALUES('".$obj_manager["id"]."','NOW()')";
+				$sql_log_notify = "INSERT INTO tbl_individual_log(manager_id,notify_timestamp) VALUES('".$obj_manager["id"]."',NOW())";
 				mysqli_query($conn,$sql_log_notify);
 				$lasted_id = mysqli_insert_id($conn);
 				echo push($obj_manager["office_name"],$obj_manager["uid"], $lasted_id);
