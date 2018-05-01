@@ -22,17 +22,17 @@ $query_log_id = mysqli_query($conn,$sql_log_id);
 	</div>
 	<div data-role="content">	
 		<?php
-		echo "11111111111111111111";
+		//echo "11111111111111111111";
 		while($obj_log_id = mysqli_fetch_array($query_log_id))
 			{
-				echo "2222222222222222222";
-				//if($obj_log_id["accept_status"] == "Y"){$status = "รับทราบ";}
-				//else if($obj_log_id["accept_status"] == "N"){$status = "รอ";}
+				//echo "2222222222222222222";
+				if($obj_log_id["accept_status"] == "Y"){$status = "รับทราบ";}
+				else if($obj_log_id["accept_status"] == "N"){$status = "รอ";}
 				$sql_manager = "SELECT * FROM tbl_manager WHERE id = ".$obj_log_id["manager_id"];  
 				$query_manager = mysqli_query($conn,$sql_manager);
-				while($obj_manager = mysqli_fetch($query_manager))
+				while($obj_manager = mysqli_fetch_array($query_manager))
 				{
-					echo "3333333333333333333";
+					//echo "3333333333333333333";
 					$sql_office = "SELECT * FROM tbl_pea_office WHERE id = ".$obj_manager["office_id"];
 					$query_office = mysqli_query($conn,$sql_office);
 					while($obj_office = mysqli_fetch_array($query_office))
