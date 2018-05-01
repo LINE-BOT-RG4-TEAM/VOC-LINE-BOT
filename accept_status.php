@@ -26,8 +26,8 @@ $query_log_id = mysqli_query($conn,$sql_log_id);
 		while($obj_log_id = mysqli_fetch_array($query_log_id))
 			{
 				echo "2222222222222222222";
-				if($obj_log_id["accept_status"] == "Y"){$status = "รับทราบ";}
-				else if($obj_log_id["accept_status"] == "N"){$status = "รอ";}
+				//if($obj_log_id["accept_status"] == "Y"){$status = "รับทราบ";}
+				//else if($obj_log_id["accept_status"] == "N"){$status = "รอ";}
 				$sql_manager = "SELECT * FROM tbl_manager WHERE id = ".$obj_log_id["manager_id"];  
 				$query_manager = mysqli_query($conn,$sql_manager);
 				while($obj_manager = mysqli_fetch($query_manager))
