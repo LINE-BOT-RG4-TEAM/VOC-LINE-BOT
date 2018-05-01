@@ -14,7 +14,6 @@
 	require('./libs/utils/date_utils.php');
 	$office_name = $_GET['office_name'];
 	$log_id = $_GET['log_id'];
-	$confirm =$_GET['comfirm'];
 	$sql_log_id = "SELECT * FROM tbl_individual_log WHERE id = ".$log_id;
 	$query_sql_log_id = mysqli_query($conn,$sql_log_id);
 	$obj_query = mysqli_fetch_array($query_sql_log_id);
@@ -23,7 +22,7 @@
       	echo 'window.location.href="req_office1.php?REQ='.$office_name.'&REQ2=10";';
       	echo '</script>';
 		}
-	else if($confirm AND $obj_query["accept_status"] == "N"){
+	else if($obj_query["accept_status"] == "N"){
 		$sql_con = "UPDATE tbl_individual_log SET accept_status = 'Y' WHERE id = ".$log_id;
 		mysqli_query($conn,$sql_con);
 		echo '<script type="text/javascript">';
@@ -40,10 +39,10 @@
 	<div data-role="content">	
 		<h1><?=$office_name ?></h1>
         <label>การไฟฟ้าของท่านมีข้อร้องเรียน ....</label>
-        <form name="frm" action="individual.php" method="get">
-          <input type="submit" id="confirm" value="รับทราบ" />
         
-        </form>
+          <input type="submit"  value="รับทราบ" />
+        
+        
 	</div>
 	<div data-role="footer">
 		<h4>PEA</h4>
