@@ -23,31 +23,14 @@
       	echo '</script>';
 		}
 	else if($obj_query["accept_status"] == "N"){
-		$sql_con = "UPDATE tbl_individual_log SET accept_status = 'Y' WHERE id = ".$log_id;
+		$sql_con = "UPDATE tbl_individual_log SET accept_status = 'Y',accept_timestamp = NOW() WHERE id = ".$log_id;
 		mysqli_query($conn,$sql_con);
 		echo '<script type="text/javascript">';
       	echo 'window.location.href="req_office1.php?REQ='.$office_name.'&REQ2=10";';
       	echo '</script>';		
 		}
 ?> 
-<body> 
 
-<div data-role="page" id="page">
-	<div data-role="header">
-		<h1>รายงานข้อขร้องเรียน</h1>
-	</div>
-	<div data-role="content">	
-		<h1><?=$office_name ?></h1>
-        <label>การไฟฟ้าของท่านมีข้อร้องเรียน ....</label>
-        
-          <input type="submit"  value="รับทราบ" />
-        
-        
-	</div>
-	<div data-role="footer">
-		<h4>PEA</h4>
-	</div>
-</div>
 
 
 
