@@ -9,14 +9,27 @@
 <script src="jquery.mobile-1.0.min.js" type="text/javascript"></script>
 </head>
 <?php
-require('./libs/database/connect-db.php');
-require('./libs/utils/date_thai.php');
-require('./libs/utils/date_utils.php');
-$office_code = $_GET['office_code'];
-//$notify_id = $_GET['notify_id'];
-$sql_select = "SELECT * FROM tbl_complaint WHERE office_code LIKE '%".$office_code."%' AND number_of_day >=0";
-$query = mysqli_query($conn,$sql_select);
-
+	require('./libs/database/connect-db.php');
+	require('./libs/utils/date_thai.php');
+	require('./libs/utils/date_utils.php');
+	$office_name = $_GET['office_name'];
+	$log_id = $_GET['log_id'];
+	$confirm =$_GET['comfirm'];
+	$sql_log_id = "SELECT * FROM tbl_individual_log WHERE id = ".$log_id;
+	$query_sql_log_id = mysqli_query($conn,$sql_log_id);
+	$obj_query = mysqli_fetch_array($query_sql_log_id);
+	if($obj_query["accept_status"] == "Y"){
+		echo '<script type="text/javascript">';
+      	echo 'window.location.href="req_office1.php?REQ='.$office_name.'&REQ2=10";';
+      	echo '</script>';
+		}
+	else if($confirm AND $obj_query["accept_status"] == "N"){
+		$sql_con = "UPDATE tbl_individual_log SET accept_status = 'Y' WHERE id = ".$log_id;
+		mysqli_query($conn,$sql_con);
+		echo '<script type="text/javascript">';
+      	echo 'window.location.href="req_office1.php?REQ='.$office_name.'&REQ2=10";';
+      	echo '</script>';		
+		}
 ?> 
 <body> 
 
@@ -25,30 +38,12 @@ $query = mysqli_query($conn,$sql_select);
 		<h1>รายงานข้อขร้องเรียน</h1>
 	</div>
 	<div data-role="content">	
-		
-				<?php
-				$a = 1;
-				while($row = mysqli_fetch_array($query))
-				{
-						if($row["received_date"]== Null){
-						$strDate1 = "รอดำเนินการ";
-						}else{
-						$strDate = $row["received_date"];
-						$strDate1 = DateThai($strDate);
-						}
-						echo $a.".คำร้องเลขที่ ".$row["complaint_id"]."<br>";
-						echo "วันที่รับคำร้อง ".$strDate1."<br>";
-						echo "จำนวนวัน ".$row["number_of_day"]."<br>";
-						echo "ชื่อผู้ร้องเรียน ".$row["complainant_name"]."<br>";
-						echo "เบอร์โทรศัพท์ ".$row["tel_contact"]."<br>";
-						echo "ประเภทข้อร้องเรียน ".$row["complaint_type"]."<br>";
-						echo "หัวข้อย่อย ".$row["sub_complaint_type"]."<br>";
-						echo "สถานะข้อร้องเรียน ".$row["complaint_status"]."<br><br>";
-						$a= $a +1 ;		
-				}
-				$a= 0;
-				?>
-				
+		<h1><?=$office_name ?></h1>
+        <label>การไฟฟ้าของท่านมีข้อร้องเรียน ....</label>
+        <form name="frm" action="individual.php" method="get">
+          <input type="submit" id="confirm" value="รับทราบ" />
+        
+        </form>
 	</div>
 	<div data-role="footer">
 		<h4>PEA</h4>
