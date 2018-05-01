@@ -38,7 +38,7 @@ $query_log_id = mysqli_query($conn,$sql_log_id);
 					while($obj_office = mysqli_fetch_array($query_office))
 						{
 							echo "การแจ้งเตือนเลขที่ ".$obj_log_id["id"]."<br>";
-							echo "แจ้งเตือนเมื่อ ".$obj_log_id["notify_timestamp"];
+							echo "แจ้งเตือนเมื่อ ".$obj_log_id["notify_timestamp"]."<br>";
 							echo "หน่วยงาน ".$obj_office["office_name"]."<br>";
 							echo "ผู้รับ ".$obj_manager["name"]." ".$obj_manager["surname"]." ".$obj_manager["position"]."<br>";
 							echo "สถานะ ".$status."(".$obj_log_id["accept_status"].")<br>";
