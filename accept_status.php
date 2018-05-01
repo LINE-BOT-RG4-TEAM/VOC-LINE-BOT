@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html>
 <head>
-<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0," data-ajax="false" charset="utf-8">
 <title>jQuery Mobile Web App</title>
 <link href="jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css"/>
 <link href="jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
@@ -40,7 +40,7 @@ $query_log_id = mysqli_query($conn,$sql_log_id);
 							echo "การแจ้งเตือนเลขที่ ".$obj_log_id["id"]."<br>";
 							echo "หน่วยงาน ".$obj_office["office_name"]."<br>";
 							echo "ผู้รับ ".$obj_manager["name"]." ".$obj_manager["surname"]." ".$obj_manager["position"]."<br>";
-							echo "สถานะ ".$status."(".$obj_log_id["accept_ststus"].")";
+							echo "สถานะ ".$status."(".$obj_log_id["accept_status"].")<br><br>";
 						
 						
 						}
