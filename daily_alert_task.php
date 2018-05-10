@@ -15,22 +15,12 @@
 
     $fetch_group_list = "SELECT group_id FROM tbl_line_group WHERE status = 'A'";
     $group_list = mysqli_query($conn, $fetch_group_list);
-
-    $fetch_existing_complaint = "SELECT * FROM tbl_complaint WHERE number_of_day>='10' AND complaint_status <> 'ปิด'";
-    $complaint_list = mysqli_query($conn, $fetch_existing_complaint);
-    if(mysqli_num_rows($complaint_list) > 0){
+    while($group = $group_list->fetch_assoc()){
         $messages = [
             "type"=> "text",
             "text"=> "Daily Alert :\n\nรายงานข้อร้องเรียนสถานะรอและกำลังดำเนินการมากกว่าเท่ากับ 10 วัน\n\nประจำวันที่ ".DateThai(date("Y-m-d"))." \n\nhttps://voc-bot.herokuapp.com/south.php?NUMBER=@10"
         ];
-    } else {
-        $messages = [
-            "type"=> "text",
-            "text"=> "Daily Alert :\n\nไม่มีข้อร้องเรียนสถานะกำลังดำเนินการหรือรอดำเนินการที่มากกว่าเท่ากับ 10 วัน ในวันที่ ".DateThai(date("Y-m-d"))
-        ];
-    }
-
-    while($group = $group_list->fetch_assoc()){
+        
         $url = 'https://api.line.me/v2/bot/message/push';
         $data = [
             'to' => $group['group_id'],
