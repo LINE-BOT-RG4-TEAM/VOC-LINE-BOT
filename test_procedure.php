@@ -16,7 +16,7 @@
     $fetch_group_list = "SELECT group_id FROM tbl_line_group WHERE status = 'A'";
     $group_list = mysqli_query($conn, $fetch_group_list);
 
-    $fetch_existing_complaint = "SELECT * FROM tbl_complaint WHERE number_of_day>='100' AND complaint_status <> 'ปิด'";
+    $fetch_existing_complaint = "SELECT * FROM tbl_complaint WHERE number_of_day>='100' AND complaint_status <> 'Closed'";
     $complaint_list = mysqli_query($conn, $fetch_existing_complaint);
     if(mysqli_num_rows($complaint_list) > 0){
         $messages = [

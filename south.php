@@ -18,7 +18,7 @@
 			echo $NUMBER;
 			// if($addpos == 0){
 			$datenum = substr($NUMBER,$addpos+1,$lengh1);
-			$sql = "SELECT main_office, COUNT(main_office) AS NUM FROM tbl_complaint  WHERE number_of_day>=".$datenum." AND complaint_status <> 'ปิด' GROUP BY main_office HAVING(COUNT(office_name)>0)";
+			$sql = "SELECT main_office, COUNT(main_office) AS NUM FROM tbl_complaint  WHERE number_of_day>=".$datenum." AND complaint_status <> 'Closed' GROUP BY main_office HAVING(COUNT(office_name)>0)";
 			// }
 			$query = mysqli_query($conn,$sql);
 		?>

@@ -70,7 +70,7 @@
                             </thead>
                             <tbody>
                             <?php 
-                                $sql = "SELECT * FROM tbl_complaint WHERE complaint_status <> 'ปิด'";
+                                $sql = "SELECT * FROM tbl_complaint WHERE complaint_status <> 'Closed'";
                                 $results = mysqli_query($conn, $sql);
                                 $i = 0;
                                 while($row = $results->fetch_assoc()){
