@@ -40,25 +40,49 @@ if (!is_null($events['events'])) {
 				if($nums == 1 AND $t1 == ""){
 					$sql_regis = "UPDATE tbl_authorize SET line ='$lineid' WHERE code LIKE '%".$text."%'";
 					mysqli_query($conn, $sql_regis);
-					$txtans = "ลงทะเบียนเรียบร้อย";
+					$txtans = "ลงทะเบียนสิทธิ์การพิมพ์คำสั่งเรียบร้อย";
 				}
 
-				$select_code = "SELECT * FROM tbl_manager WHERE code LIKE '%".$text."%'";
+				if($nums == 0){
+					$txtans = "รหัสยืนยันไม่ถูกต้อง";
+				}
+					
+				$messages = [ 'type' => 'text', 'text' => $txtans];
+				$url = 'https://api.line.me/v2/bot/message/reply';
+				$data = [
+						'replyToken' => $replyToken,
+						'messages' => [$messages],
+				];
+				$post = json_encode($data);
+				$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+				$ch = curl_init($url);
+				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+				curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+				curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+				$result = curl_exec($ch);
+				curl_close($ch);
+				return;
+			}
+
+			if($regis_code == "$"){
+				$select_code = "SELECT * FROM tbl_manager WHERE code = '".$text."'";
 				$query = mysqli_query($conn, $select_code);
 				$nums = mysqli_num_rows($query);
 				$result = mysqli_fetch_array($query);
 				$t = $result['name'];
-				$t2 = $result['lastname'];
-				$t1 = $result['line'];
+				$t2 = $result['surname'];
+				$t1 = $result['uid'];
 
 				if($nums == 1 AND $t1 <> "") {
 					$txtans = "รหัสยืนยันนี้ถูกใช้งานแล้วโดย ".$t." ".$t2;
 				}
 
 				if($nums == 1 AND $t1 == ""){
-					$sql_regis = "UPDATE tbl_manager SET uid ='$lineid' WHERE code LIKE '%".$text."%'";
+					$sql_regis = "UPDATE tbl_manager SET uid ='$lineid' WHERE code = '".$text."'";
 					mysqli_query($conn, $sql_regis);
-					$txtans = "ลงทะเบียนเรียบร้อย";
+					$txtans = "ลงทะเบียนการแจ้งเตือนรายบุคคลเรียบร้อย";
 				}
 				
 				if($nums == 0){

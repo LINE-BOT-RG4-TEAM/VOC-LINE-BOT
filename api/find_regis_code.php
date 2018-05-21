@@ -5,7 +5,7 @@
     function randomRegisCode() {
         $chars = "ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghijklmnopqrstuvwxtz0123456789";
         $string_length = 8;
-        $regisCode = array("#");
+        $regisCode = array("$");
         for ($i=0; $i<$string_length; $i++) {
             $pos_num = rand(0, strlen($chars));
             array_push($regisCode, $chars[$pos_num]);

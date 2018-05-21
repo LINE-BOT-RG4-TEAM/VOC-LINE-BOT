@@ -9,7 +9,12 @@
         <title>Manager register</title>
         <!-- css -->
         <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.css" />
-
+        
+        <!-- js -->
+        <script src="./assets/jquery/jquery-3.3.1.min.js"></script>
+        <script src="./assets/bootstrap/js/bootstrap.js"></script>
+        <script src="./assets/blockUI/jquery.blockUI.js"></script>
+        <script src="./assets/jqueryScrollTableBody/jqueryScrollTableBody.js"></script>
         <script>
             function copyToClipboard(element) {
                 var $temp = $("<input>");
@@ -19,18 +24,46 @@
                 $temp.remove();
                 alert('คัดลอกไปยัง Clipboard เรียบร้อยแล้ว');
             }
-        </script>
 
-        <!-- js -->
-        <script src="./assets/jquery/jquery-3.3.1.min.js"></script>
-        <script src="./assets/bootstrap/js/bootstrap.js"></script>
-        <script src="./assets/blockUI/jquery.blockUI.js"></script>
-        <script src="./assets/jqueryScrollTableBody/jqueryScrollTableBody.js"></script>
+            function deleteUserId(userId, name){
+                if(!confirm("ต้องการลบข้อมูลของ "+name+" หรือไม่")){
+                    return;
+                }
+
+                $.ajax({
+                    url: "api/delete_user.php",
+                    method: "POST",
+                    data: {
+                        userId: userId
+                    },
+                    async: true,
+                    cache: false,
+                    beforeSend: function(){
+                        $.blockUI({ message:'<h3>deleting...</h3>' });
+                    },
+                    error: function(response){
+                        console.log('[error]', response);
+                    },
+                    complete: function() {
+                        $.unblockUI();
+                        location.reload();
+                    }
+                })
+            }
+
+            function view_manager(officeId){
+                var newwindow = window.open("view_manager.php?office_id="+officeId, "รายชื่อผู้จัดการ", "width=900,height=400,left=10,top=10,titlebar=no,toolbar=no,menubar=no,location=no,directories=no,status=no");
+                if (window.focus) {
+                    newwindow.focus();
+                }
+                return false;
+            }
+        </script>
     </head>
     <body>
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
-                <div class="col-lg-3 offset-lg-1">
+                <div class="col-lg-4">
                     <form name="manager-regis-form" id="manager-regis-form" method="POST">
                         <h2>ลงทะเบียนผู้จัดการ</h2>
                         <div class="form-group">
@@ -49,13 +82,24 @@
                             <label for="pea_office">การไฟฟ้าสังกัด</label>
                             <select class="form-control" name="pea_office" id="pea_office">
                             <?php 
-                                $fetch_office = "SELECT * FROM tbl_pea_office WHERE status = 'A'";
+                                $option_html = "";
+                                $fetch_office = "SELECT * FROM tbl_pea_office WHERE status = 'A' AND office_code LIKE '%101' ORDER BY office_code";
                                 $office_result = mysqli_query($conn, $fetch_office);
                                 while($office = $office_result->fetch_assoc()){
-                            ?>
-                                <option value="<?=$office['id'] ?>"><?=$office['office_name'] ?></option>
-                            <?php 
+                                    $option_html .= "<option value='".$office['id']."'>".$office['office_code'].":".$office['office_name']."  (".$office['office_type'].")</option>";
+                                    
+                                    $fetch_branch = "SELECT * FROM tbl_pea_office WHERE status = 'A' AND parent_level_1 = ".$office['id']." ORDER BY office_code";
+                                    $branch_result = mysqli_query($conn, $fetch_branch);
+                                    while($branch = $branch_result->fetch_assoc()){
+                                        $option_html .= "<option value='".$branch['id']."'>&nbsp;&nbsp;&nbsp;".$branch['office_code'].":".$branch['office_name']."  (".$branch['office_type'].")</option>";
+                                        // $fetch_sub_branch = "SELECT * FROM tbl_pea_office WHERE status = 'A' AND parent_level_1 = ".$branch['id']." ORDER BY office_code";
+                                        // $sub_branch_result = mysqli_query($conn, $fetch_sub_branch);
+                                        // while($sub_branch = $sub_branch_result->fetch_assoc()){
+                                        //     $option_html .= "<option value='".$sub_branch['id']."'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$sub_branch['office_code'].":".$sub_branch['office_name']."  (".$sub_branch['office_type'].")</option>";
+                                        // }
+                                    }
                                 }
+                                echo $option_html;
                             ?>
                             </select>
                         </div>
@@ -68,7 +112,108 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-lg-7">
+                <div class="col-lg-8">
+                    <ul class="nav nav-pills nav-fill" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="district_1-tab" data-toggle="tab" href="#south_district_1" role="tab" aria-selected="true">กฟต.1</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="district_2-tab" data-toggle="tab" href="#south_district_2" role="tab" aria-selected="false">กฟต.2</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="district_3-tab" data-toggle="tab" href="#south_district_3" role="tab" aria-selected="false">กฟต.3</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                    <?php 
+                        $tabs_name = array("J"=>"south_district_1","K"=>"south_district_2","L"=>"south_district_3");
+                        foreach($tabs_name as $key=>$district){
+                    ?>
+                        <div class="tab-pane fade <?php if($key == "J") echo 'show active'; ?>" id="<?=$district ?>" role="tabpanel">
+                            <table class="table table-sm table-hover table-borderless">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>รหัสการไฟฟ้า</th>
+                                        <th>ชื่อการไฟฟ้า</th>
+                                        <th>ประเภทการไฟฟ้า</th>
+                                        <th>จำนวน</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <?php 
+                                    $fetch_office_district = "SELECT * FROM tbl_pea_office WHERE status = 'A' AND office_code LIKE '".$key."%101' ORDER BY office_code";
+                                    $office_results = mysqli_query($conn, $fetch_office_district);
+                                    $count = 0;
+                                    while($office = $office_results->fetch_assoc()){
+                                        // count complaint
+                                        $fetch_count_complaint= "SELECT * FROM tbl_complaint WHERE office_name = '".$office['office_name']."'";
+                                        $complaint_result = mysqli_query($conn, $fetch_count_complaint);
+                                        $count_complaint = mysqli_num_rows($complaint_result);
+                                        // count manager
+                                        $fetch_count_manager = "SELECT * FROM tbl_manager WHERE office_id = ".$office['id']." AND status = 'A'";
+                                        $manager_result = mysqli_query($conn, $fetch_count_manager);
+                                        $count_manager = mysqli_num_rows($manager_result);
+                                ?>
+                                    <tr style="background: #C0C0C0;">
+                                        <td><?=$count+1 ?></td>
+                                        <td><?=$office['office_code'] ?></td>
+                                        <td><b><?=$office['office_name'] ."  (".$office['office_type'].")" ?></b></td>
+                                        <td><?=($count_complaint==0)?"<b>ไม่มีข้อร้องเรียน</b>":"<i style='color:red;'>".$count_complaint." เรื่อง</i>" ?> </td>
+                                        <td><button class="btn btn-sm btn-primary <?=($count_manager==0)?"disabled":"" ?>" onclick="view_manager(<?=$office['id'] ?>);">ผู้รับการแจ้งเตือน (<?= $count_manager?>)</button></td>
+                                    </tr>
+                                    <?php 
+                                        $count++;
+                                        $fetch_branch = "SELECT * FROM tbl_pea_office WHERE status = 'A' AND parent_level_1 = ".$office['id']." ORDER BY office_code";
+                                        $branch_results = mysqli_query($conn, $fetch_branch);
+                                        while($branch = $branch_results->fetch_assoc()){
+                                            // count complaint
+                                            $fetch_count_complaint= "SELECT * FROM tbl_complaint WHERE office_name = '".$branch['office_name']."'";
+                                            $complaint_result = mysqli_query($conn, $fetch_count_complaint);
+                                            $count_complaint = mysqli_num_rows($complaint_result);
+                                            // count manager
+                                            $fetch_count_manager = "SELECT * FROM tbl_manager WHERE office_id = ".$branch['id']." AND status = 'A'";
+                                            $manager_result = mysqli_query($conn, $fetch_count_manager);
+                                            $count_manager = mysqli_num_rows($manager_result);
+                                    ?>
+                                    <tr style="background: #E0E0E0;">
+                                        <td><?=$count+1 ?></td>
+                                        <td><?=$branch['office_code'] ?></td>
+                                        <td><?="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$branch['office_name']."  (".$branch['office_type'].")" ?></td>
+                                        <td><?=($count_complaint==0)?"<b>ไม่มีข้อร้องเรียน</b>":"<i style='color:red;'>".$count_complaint." เรื่อง</i>" ?> </td>
+                                        <td><button class="btn btn-sm btn-secondary <?=($count_manager==0)?"disabled":"" ?>" onclick="view_manager(<?=$branch['id'] ?>);">ผู้รับการแจ้งเตือน (<?=$count_manager ?>)</button></td>
+                                    </tr>
+                                    <?php 
+                                                $count++;
+                                                $fetch_sub_branch = "SELECT * FROM tbl_pea_office WHERE status = 'A' AND parent_level_1 = ".$branch['id']." ORDER BY office_code";
+                                                $sub_branch_results = mysqli_query($conn, $fetch_sub_branch);
+                                                while($sub_branch = $sub_branch_results->fetch_assoc()){
+                                                    $fetch_count_complaint= "SELECT * FROM tbl_complaint WHERE office_name = '".$sub_branch['office_name']."'";
+                                                    $complaint_result = mysqli_query($conn, $fetch_count_complaint);
+                                                    $count_complaint = mysqli_num_rows($complaint_result);
+                                    ?>
+                                    <tr style="background:#F8F8F8;">
+                                        <td><?=$count+1 ?></td>
+                                        <td><?=$sub_branch['office_code'] ?></td>
+                                        <td><?="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$sub_branch['office_name']."  (".$sub_branch['office_type'].")" ?></td>
+                                        <td><?=($count_complaint==0)?"<b>ไม่มีข้อร้องเรียน</b>":"<i style='color:red;'>".$count_complaint." เรื่อง</i>" ?> </td>
+                                        <td></td>
+                                    </tr>
+                                    <?php
+                                                $count++;
+                                                }
+                                            }
+                                        }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <?php 
+                            }
+                        ?>
+                    </div>
+                </div>
+                <div class="col-lg-12">
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead class="thead-light">
@@ -103,11 +248,12 @@
                                             if($manager['uid'] != NULL){
                                                 $hidden_uid = "uid-".$manager['id'];
                                         ?>
-                                            <button class="btn btn-default" onclick="copyToClipboard('#<?=$hidden_uid ?>')">Copy uid</button>
+                                            <button class="btn btn-sm btn-default" onclick="copyToClipboard('#<?=$hidden_uid ?>')">Copy uid</button>
                                             <input type="hidden" name="<?=$hidden_uid ?>" id="<?=$hidden_uid ?>" value="<?=$manager['uid'] ?>" />
                                         <?php 
                                             }
                                         ?>
+                                        <button class="btn btn-sm btn-danger" onclick="deleteUserId(<?=$manager['id']?>, '<?=$manager['name']." ".$manager['surname'] ?>')">delete</button>
                                     </td>
                                 </tr>
                                 <?php 
@@ -124,7 +270,7 @@
     <script>
         $(function(){
 
-            $('table').scrollTableBody({ rowsToDisplay:10 });
+            $('.table').scrollTableBody({ rowsToDisplay: 10 });
 
             $.ajax({
                 type: "GET",
