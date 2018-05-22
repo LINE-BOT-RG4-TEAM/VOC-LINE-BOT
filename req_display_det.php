@@ -46,6 +46,8 @@
 					}
 					echo "เลขที่คำร้อง :"."<br>";
 					echo $result["complaint_id"]."<br><br>";
+					echo "วันที่เรื่องเข้าระบบ :"."<br>";
+					echo (DateThai($result["sent_date"]))."<br><br>";
 					echo "วันที่รับคำร้อง :"."<br>";
 					echo $strDate1."<br><br>";
 					echo "จำนวนวัน :"."<br>";
