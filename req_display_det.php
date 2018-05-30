@@ -44,25 +44,25 @@
 						$strDate = $result["received_date"];
 						$strDate1 = DateThai($strDate);
 					}
-					echo "เลขที่คำร้อง :"."<br>";
+					echo "<b>เลขที่คำร้อง : </b>";
 					echo $result["complaint_id"]."<br><br>";
-					echo "วันที่เรื่องเข้าระบบ :"."<br>";
+					echo "<b>วันที่เรื่องเข้าระบบ : </b>";
 					echo (DateThai($result["sent_date"]))."<br><br>";
-					echo "วันที่รับคำร้อง :"."<br>";
+					echo "<b>วันที่รับคำร้อง : </b>";
 					echo $strDate1."<br><br>";
-					echo "จำนวนวัน :"."<br>";
-					echo $result["number_of_day"]."<br><br>";
-					echo "หน่วยงาน :"."<br>";
+					echo "<b>จำนวนวัน : </b>";
+					echo $result["number_of_day"]." วัน <br><br>";
+					echo "<b>หน่วยงาน : </b>";
 					echo $result["office_name"]."<br><br>";
-					echo "ชื่อผู้ร้องเรียน :"."<br>";
+					echo "<b>ชื่อผู้ร้องเรียน : </b>";
 					echo $result["complainant_name"]."<br><br>";
-					echo "เบอร์โทรศัพท์ :"."<br>";
+					echo "<b>เบอร์โทรศัพท์ : </b>";
 					echo $result["tel_contact"]."<br><br>";
-					echo "ประเภทข้อร้องเรียน :"."<br>";
+					echo "<b>ประเภทข้อร้องเรียน : </b>";
 					echo $result["complaint_type"]."<br><br>";
-					echo "หัวข้อย่อย :"."<br>";
+					echo "<b>หัวข้อย่อย : </b>";
 					echo $result["sub_complaint_type"]."<br><br>";
-					echo "สถานะข้อร้องเรียน :"."<br>";
+					echo "<b>สถานะข้อร้องเรียน : </b>";
 					echo $result["complaint_status"]."<br><br>";
 				}
 			?>	

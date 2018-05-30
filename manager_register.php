@@ -91,12 +91,10 @@
                                     $fetch_branch = "SELECT * FROM tbl_pea_office WHERE status = 'A' AND parent_level_1 = ".$office['id']." ORDER BY office_code";
                                     $branch_result = mysqli_query($conn, $fetch_branch);
                                     while($branch = $branch_result->fetch_assoc()){
+                                        if($branch['office_type'] == "กฟย."){
+                                            continue;
+                                        }
                                         $option_html .= "<option value='".$branch['id']."'>&nbsp;&nbsp;&nbsp;".$branch['office_code'].":".$branch['office_name']."  (".$branch['office_type'].")</option>";
-                                        // $fetch_sub_branch = "SELECT * FROM tbl_pea_office WHERE status = 'A' AND parent_level_1 = ".$branch['id']." ORDER BY office_code";
-                                        // $sub_branch_result = mysqli_query($conn, $fetch_sub_branch);
-                                        // while($sub_branch = $sub_branch_result->fetch_assoc()){
-                                        //     $option_html .= "<option value='".$sub_branch['id']."'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$sub_branch['office_code'].":".$sub_branch['office_name']."  (".$sub_branch['office_type'].")</option>";
-                                        // }
                                     }
                                 }
                                 echo $option_html;
@@ -131,15 +129,15 @@
                     ?>
                         <div class="tab-pane fade <?php if($key == "J") echo 'show active'; ?>" id="<?=$district ?>" role="tabpanel">
                             <table class="table table-sm table-hover table-borderless">
-                                <thead class="thead-light">
+                                <!-- <thead class="thead-light">
                                     <tr>
                                         <th>#</th>
                                         <th>รหัสการไฟฟ้า</th>
                                         <th>ชื่อการไฟฟ้า</th>
-                                        <th>ประเภทการไฟฟ้า</th>
-                                        <th>จำนวน</th>
+                                        <th>จำนวนเรื่อง</th>
+                                        <th>ผู้รับผิดชอบ</th>
                                     </tr>
-                                </thead>
+                                </thead> -->
                                 <tbody>
                                 <?php 
                                     $fetch_office_district = "SELECT * FROM tbl_pea_office WHERE status = 'A' AND office_code LIKE '".$key."%101' ORDER BY office_code";
@@ -147,7 +145,7 @@
                                     $count = 0;
                                     while($office = $office_results->fetch_assoc()){
                                         // count complaint
-                                        $fetch_count_complaint= "SELECT * FROM tbl_complaint WHERE office_name = '".$office['office_name']."'";
+                                        $fetch_count_complaint= "SELECT * FROM tbl_complaint WHERE office_name = '".$office['office_name']."' AND complaint_status <> 'ปิด' AND number_of_day >= 10";
                                         $complaint_result = mysqli_query($conn, $fetch_count_complaint);
                                         $count_complaint = mysqli_num_rows($complaint_result);
                                         // count manager
@@ -160,7 +158,9 @@
                                         <td><?=$office['office_code'] ?></td>
                                         <td><b><?=$office['office_name'] ."  (".$office['office_type'].")" ?></b></td>
                                         <td><?=($count_complaint==0)?"<b>ไม่มีข้อร้องเรียน</b>":"<i style='color:red;'>".$count_complaint." เรื่อง</i>" ?> </td>
-                                        <td><button class="btn btn-sm btn-primary <?=($count_manager==0)?"disabled":"" ?>" onclick="view_manager(<?=$office['id'] ?>);">ผู้รับการแจ้งเตือน (<?= $count_manager?>)</button></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary <?=($count_manager==0)?"disabled":"" ?>" onclick="view_manager(<?=$office['id'] ?>);">ผู้รับการแจ้งเตือน (<?= $count_manager?>)</button>
+                                        </td>
                                     </tr>
                                     <?php 
                                         $count++;
@@ -168,7 +168,7 @@
                                         $branch_results = mysqli_query($conn, $fetch_branch);
                                         while($branch = $branch_results->fetch_assoc()){
                                             // count complaint
-                                            $fetch_count_complaint= "SELECT * FROM tbl_complaint WHERE office_name = '".$branch['office_name']."'";
+                                            $fetch_count_complaint= "SELECT * FROM tbl_complaint WHERE office_name = '".$branch['office_name']."' AND complaint_status <> 'ปิด' AND number_of_day >= 10";
                                             $complaint_result = mysqli_query($conn, $fetch_count_complaint);
                                             $count_complaint = mysqli_num_rows($complaint_result);
                                             // count manager
@@ -181,14 +181,22 @@
                                         <td><?=$branch['office_code'] ?></td>
                                         <td><?="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$branch['office_name']."  (".$branch['office_type'].")" ?></td>
                                         <td><?=($count_complaint==0)?"<b>ไม่มีข้อร้องเรียน</b>":"<i style='color:red;'>".$count_complaint." เรื่อง</i>" ?> </td>
-                                        <td><button class="btn btn-sm btn-secondary <?=($count_manager==0)?"disabled":"" ?>" onclick="view_manager(<?=$branch['id'] ?>);">ผู้รับการแจ้งเตือน (<?=$count_manager ?>)</button></td>
+                                        <td>
+                                        <?php 
+                                            if($branch['office_type'] == "กฟส."){
+                                        ?>
+                                            <button class="btn btn-sm btn-secondary <?=($count_manager==0)?"disabled":"" ?>" onclick="view_manager(<?=$branch['id'] ?>);">ผู้รับการแจ้งเตือน (<?=$count_manager ?>)</button>
+                                        <?php 
+                                            }
+                                        ?>
+                                        </td>
                                     </tr>
                                     <?php 
                                                 $count++;
                                                 $fetch_sub_branch = "SELECT * FROM tbl_pea_office WHERE status = 'A' AND parent_level_1 = ".$branch['id']." ORDER BY office_code";
                                                 $sub_branch_results = mysqli_query($conn, $fetch_sub_branch);
                                                 while($sub_branch = $sub_branch_results->fetch_assoc()){
-                                                    $fetch_count_complaint= "SELECT * FROM tbl_complaint WHERE office_name = '".$sub_branch['office_name']."'";
+                                                    $fetch_count_complaint= "SELECT * FROM tbl_complaint WHERE office_name = '".$sub_branch['office_name']."' AND complaint_status <> 'ปิด' AND number_of_day >= 10";
                                                     $complaint_result = mysqli_query($conn, $fetch_count_complaint);
                                                     $count_complaint = mysqli_num_rows($complaint_result);
                                     ?>
@@ -253,7 +261,7 @@
                                         <?php 
                                             }
                                         ?>
-                                        <button class="btn btn-sm btn-danger" onclick="deleteUserId(<?=$manager['id']?>, '<?=$manager['name']." ".$manager['surname'] ?>')">delete</button>
+                                        <button class="btn btn-sm btn-danger" onclick="deleteUserId(<?=$manager['id']?>, '<?=$manager['name']." ".$manager['surname'] ?>')">Delete</button>
                                     </td>
                                 </tr>
                                 <?php 

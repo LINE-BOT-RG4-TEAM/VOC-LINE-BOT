@@ -16,7 +16,7 @@
       $count_main_complaint[$main_branch['office_code']]['main'][$main_branch['id']] = 0;
 
       // fetch complaint by main_branch
-      $fetch_complaint = "SELECT * FROM tbl_complaint WHERE office_name = '".$main_branch['office_name']."' AND complaint_status <> 'ปิด'";
+      $fetch_complaint = "SELECT * FROM tbl_complaint WHERE office_name = '".$main_branch['office_name']."' AND complaint_status <> 'ปิด' AND number_of_day >= 10";
       $complaint_results = mysqli_query($conn, $fetch_complaint);
       $count_main_complaint[$main_branch['office_code']]['main'][$main_branch['id']] += mysqli_num_rows($complaint_results);
 
@@ -28,7 +28,7 @@
         // initial complaint's count
         $count_main_complaint[$main_branch['office_code']]['branch'][$branch['id']] = 0;
 
-        $fetch_complaint_branch = "SELECT * FROM tbl_complaint WHERE office_name ='".$branch['office_name']."' AND complaint_status <> 'ปิด'";
+        $fetch_complaint_branch = "SELECT * FROM tbl_complaint WHERE office_name ='".$branch['office_name']."' AND complaint_status <> 'ปิด' AND number_of_day >= 10";
         $complaint_results = mysqli_query($conn, $fetch_complaint_branch);
         $count_main_complaint[$main_branch['office_code']]['main'][$main_branch['id']] += mysqli_num_rows($complaint_results);
         $count_main_complaint[$main_branch['office_code']]['branch'][$branch['id']] += mysqli_num_rows($complaint_results);
@@ -36,7 +36,7 @@
         $fetch_sub_pea = "SELECT * FROM tbl_pea_office WHERE parent_level_1 ='".$branch['id']."'";
         $sub_pea_results = mysqli_query($conn, $fetch_sub_pea);
         while($sub_pea = $sub_pea_results->fetch_assoc()){
-          $fetch_complaint_sub_branch = "SELECT * FROM tbl_complaint WHERE office_name ='".$sub_pea['office_name']."' AND complaint_status <> 'ปิด'";
+          $fetch_complaint_sub_branch = "SELECT * FROM tbl_complaint WHERE office_name ='".$sub_pea['office_name']."' AND complaint_status <> 'ปิด' AND number_of_day >= 10";
           $complaint_results = mysqli_query($conn, $fetch_complaint_sub_branch);
           $count_main_complaint[$main_branch['office_code']]['main'][$main_branch['id']] += mysqli_num_rows($complaint_results);
           $count_main_complaint[$main_branch['office_code']]['branch'][$branch['id']] += mysqli_num_rows($complaint_results);
@@ -52,6 +52,12 @@
         $count_office++;
       }
       foreach($value["branch"] as $office_id=>$complaint_count){
+        $filter_branch = "SELECT * FROM tbl_pea_office WHERE id=".$office_id;
+        $office_object = mysqli_query($conn, $filter_branch);
+        $office = $office_object->fetch_assoc();
+        if($office['office_type'] == "กฟย."){
+          continue;
+        }
         $log_branch_office = "INSERT INTO tbl_tmp_notify_office VALUES ($count_office, $office_id, $complaint_count);";
         mysqli_query($conn, $log_branch_office);
         $count_office++;
