@@ -95,12 +95,12 @@
                                 $option_html = "";
                                 $fetch_office = "SELECT * FROM tbl_pea_office WHERE status = 'A' AND office_code LIKE '%101' ORDER BY office_code";
                                 $office_result = mysqli_query($conn, $fetch_office);
-                                while($office = $office_result->fetch_assoc()){
+                                while($office = mysqli_fetch_array($office_result)){
                                     $option_html .= "<option value='".$office['id']."'>".$office['office_code'].":".$office['office_name']."  (".$office['office_type'].")</option>";
                                     
                                     $fetch_branch = "SELECT * FROM tbl_pea_office WHERE status = 'A' AND parent_level_1 = ".$office['id']." ORDER BY office_code";
                                     $branch_result = mysqli_query($conn, $fetch_branch);
-                                    while($branch = $branch_result->fetch_assoc()){
+                                    while($branch = mysqli_fetch_array($branch_result)){
                                         if($branch['office_type'] == "กฟย."){
                                             continue;
                                         }
@@ -176,7 +176,7 @@
                                         $count++;
                                         $fetch_branch = "SELECT * FROM tbl_pea_office WHERE status = 'A' AND parent_level_1 = ".$office['id']." ORDER BY office_code";
                                         $branch_results = mysqli_query($conn, $fetch_branch);
-                                        while($branch = $branch_results->fetch_assoc()){
+                                        while($branch = mysqli_fetch_array($branch_results)){
                                             // count complaint
                                             $fetch_count_complaint= "SELECT * FROM tbl_complaint WHERE office_name = '".$branch['office_name']."' AND complaint_status <> 'ปิด' AND number_of_day >= 10";
                                             $complaint_result = mysqli_query($conn, $fetch_count_complaint);
@@ -205,7 +205,7 @@
                                                 $count++;
                                                 $fetch_sub_branch = "SELECT * FROM tbl_pea_office WHERE status = 'A' AND parent_level_1 = ".$branch['id']." ORDER BY office_code";
                                                 $sub_branch_results = mysqli_query($conn, $fetch_sub_branch);
-                                                while($sub_branch = $sub_branch_results->fetch_assoc()){
+                                                while($sub_branch = mysqli_fetch_array($sub_branch_results)){
                                                     $fetch_count_complaint= "SELECT * FROM tbl_complaint WHERE office_name = '".$sub_branch['office_name']."' AND complaint_status <> 'ปิด' AND number_of_day >= 10";
                                                     $complaint_result = mysqli_query($conn, $fetch_count_complaint);
                                                     $count_complaint = mysqli_num_rows($complaint_result);
@@ -268,7 +268,7 @@
                                         $select_manager = "SELECT manager.id AS id, manager.name, manager.surname, manager.position, manager.code, office.office_code, office.office_name, uid FROM tbl_manager manager JOIN tbl_pea_office office ON manager.office_id = office.id WHERE manager.status = 'A' ORDER BY office.office_code ASC ";
                                         $results_manager = mysqli_query($conn, $select_manager);
                                         $count = 0;
-                                        while($manager = $results_manager->fetch_assoc()){
+                                        while($manager = mysqli_fetch_array($results_manager)){
                                             ?>
                                     <tr>
                                         <td><?=$count+1 ?></td>
