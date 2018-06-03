@@ -82,7 +82,7 @@ if (!is_null($events['events'])) {
 				if($nums == 1 AND $t1 == ""){
 					$sql_regis = "UPDATE tbl_manager SET uid ='$lineid' WHERE code = '".$text."'";
 					mysqli_query($conn, $sql_regis);
-					$txtans = "ลงทะเบียนการแจ้งเตือนรายบุคคลเรียบร้อย";
+					$txtans = "ลงทะเบียนการแจ้งเตือนรายบุคคลในนามของ $t $t2 เรียบร้อย";
 				}
 				
 				if($nums == 0){
