@@ -165,7 +165,7 @@
                                 ?>
                                     <tr style="background: #C0C0C0;">
                                         <!-- <td><?=$count+1 ?></td> -->
-                                        <td><?=$office['office_code'] ?></td>
+                                        <td align='center'><?=$office['office_code'] ?></td>
                                         <td><b><?=$office['office_name'] ."  (".$office['office_type'].")" ?></b></td>
                                         <td><?=($count_complaint==0)?"<b>ไม่มีข้อร้องเรียน</b>":"<i style='color:red;'>".$count_complaint." เรื่อง</i>" ?> </td>
                                         <td>
@@ -188,7 +188,7 @@
                                     ?>
                                     <tr style="background: #E0E0E0;">
                                         <!-- <td><?=$count+1 ?></td> -->
-                                        <td><?=$branch['office_code'] ?></td>
+                                        <td align='center'><?=$branch['office_code'] ?></td>
                                         <td><?="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$branch['office_name']."  (".$branch['office_type'].")" ?></td>
                                         <td><?=($count_complaint==0)?"<b>ไม่มีข้อร้องเรียน</b>":"<i style='color:red;'>".$count_complaint." เรื่อง</i>" ?> </td>
                                         <td>
@@ -212,7 +212,7 @@
                                     ?>
                                     <tr style="background:#F8F8F8;">
                                         <!-- <td><?=$count+1 ?></td> -->
-                                        <td><?=$sub_branch['office_code'] ?></td>
+                                        <td align='center'><?=$sub_branch['office_code'] ?></td>
                                         <td><?="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$sub_branch['office_name']."  (".$sub_branch['office_type'].")" ?></td>
                                         <td><?=($count_complaint==0)?"<b>ไม่มีข้อร้องเรียน</b>":"<i style='color:red;'>".$count_complaint." เรื่อง</i>" ?> </td>
                                         <td></td>
