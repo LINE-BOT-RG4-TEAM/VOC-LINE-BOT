@@ -257,15 +257,15 @@
                                         <th>#</th>
                                         <th>ชื่อ-นามสกุล</th>
                                         <th>ตำแหน่ง</th>
+                                        <th>กฟข.</th>
                                         <th>การไฟฟ้า</th>
-                                        <th>รหัสสมัคร</th>
                                         <th>สถานะ</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php 
-                                        $select_manager = "SELECT manager.id AS id, manager.name, manager.surname, manager.position, manager.code, office.office_name, uid FROM tbl_manager manager JOIN tbl_pea_office office ON manager.office_id = office.id WHERE manager.status = 'A' ";
+                                        $select_manager = "SELECT manager.id AS id, manager.name, manager.surname, manager.position, manager.code, office.office_code, office.office_name, uid FROM tbl_manager manager JOIN tbl_pea_office office ON manager.office_id = office.id WHERE manager.status = 'A' ORDER BY office.office_code ASC ";
                                         $results_manager = mysqli_query($conn, $select_manager);
                                         $count = 0;
                                         while($manager = $results_manager->fetch_assoc()){
@@ -274,8 +274,24 @@
                                         <td><?=$count+1 ?></td>
                                         <td><?=$manager['name']." ".$manager['surname'] ?></td>
                                         <td><?=$manager['position'] ?></td>
+                                        <td>
+                                            <?php 
+                                                switch(substr($manager['office_code'], 0, 1)){
+                                                    case "J":
+                                                        echo "กฟต.1";
+                                                        break;
+                                                    case "K":
+                                                        echo "กฟต.2";
+                                                        break;
+                                                    case "J":
+                                                        echo "กฟต.3";
+                                                        break;
+                                                    default:
+                                                        break;
+                                                } 
+                                            ?>
+                                        </td>
                                         <td><?=$manager['office_name'] ?></td>
-                                        <td><?=$manager['code'] ?></td>
                                         <td>
                                             <?=($manager['uid'] == NULL)?"ยังไม่ได้ลงทะเบียน":"ลงทะเบียนแล้ว" ?>
                                         </td>
