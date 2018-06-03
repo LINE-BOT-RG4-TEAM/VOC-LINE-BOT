@@ -57,6 +57,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
+                    <h2 style='text-align:center'>รายชื่อผู้รับการแจ้งเตือนแบบ Individual Alert</h2>
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead class="thead-light">
