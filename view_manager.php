@@ -83,7 +83,7 @@
                               <?php
                                 }
                                 $count = 0;
-                                while($manager = $manager_results->fetch_assoc()){
+                                while($manager = mysqli_fetch_array($manager_results)){
                               ?>
                               <tr>
                                 <td><?=$count+1 ?></td>
