@@ -283,7 +283,7 @@
                                                     case "K":
                                                         echo "กฟต.2";
                                                         break;
-                                                    case "J":
+                                                    case "L":
                                                         echo "กฟต.3";
                                                         break;
                                                     default:
