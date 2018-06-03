@@ -153,7 +153,7 @@
                                     $fetch_office_district = "SELECT * FROM tbl_pea_office WHERE status = 'A' AND office_code LIKE '%101' ORDER BY office_code";
                                     $office_results = mysqli_query($conn, $fetch_office_district);
                                     $count = 0;
-                                    while($office = $office_results->fetch_assoc()){
+                                    while($office = mysqli_fetch_array($office_results)){
                                         // count complaint
                                         $fetch_count_complaint= "SELECT * FROM tbl_complaint WHERE office_name = '".$office['office_name']."' AND complaint_status <> 'ปิด' AND number_of_day >= 10";
                                         $complaint_result = mysqli_query($conn, $fetch_count_complaint);
