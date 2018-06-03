@@ -317,6 +317,9 @@
                             </table>
                         </div>
                     <!-- </form> -->
+                    <?php 
+                        mysqli_close($conn);
+                    ?>
                 </div>
             </div>
         </div>

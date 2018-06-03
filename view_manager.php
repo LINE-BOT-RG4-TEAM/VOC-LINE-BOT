@@ -110,6 +110,7 @@
                               <?php
                               $count++;
                                 }
+                                mysqli_close($conn);
                               ?>
                             </tbody>
                         </table>

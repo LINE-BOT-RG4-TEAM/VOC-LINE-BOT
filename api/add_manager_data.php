@@ -12,3 +12,4 @@
     $result = mysqli_query($conn, $insert_manager) or trigger_error($conn->error."[$sql]");
 
     echo 'เพิ่มข้อมูลผู้จัดการเรียบร้อยแล้ว';
+    mysqli_close($conn);

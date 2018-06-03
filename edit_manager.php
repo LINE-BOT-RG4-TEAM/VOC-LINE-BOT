@@ -155,6 +155,7 @@
                                         <button class="btn btn-outline-secondary" type="button" disabled>CLEAR</button>
                                 <?php
                                     }
+                                    mysqli_close($conn);
                                 ?>
                             </div>
                         </div>
