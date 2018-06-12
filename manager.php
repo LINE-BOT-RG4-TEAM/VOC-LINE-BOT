@@ -40,25 +40,8 @@
         <script src="./assets/jqueryScrollTableBody/jqueryScrollTableBody.js"></script>
         <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
         <script>
-            function copyToClipboard(element) {
-                var $temp = $("<input>");
-                $("body").append($temp);
-                $temp.val($(element).val()).select();
-                document.execCommand("copy");
-                $temp.remove();
-                alert('คัดลอกไปยัง Clipboard เรียบร้อยแล้ว');
-            }
-
             function editManagerId(managerId){
                 var newwindow = window.open("edit_manager.php?manager_id="+managerId, "", "width=500,height=650,left=10,top=10,titlebar=no,toolbar=no,menubar=no,location=no,directories=no,status=no");
-                if (window.focus) {
-                    newwindow.focus();
-                }
-                return false;
-            }
-
-            function view_manager(officeId){
-                var newwindow = window.open("view_manager.php?office_id="+officeId, "รายชื่อผู้จัดการ", "width=900,height=400,left=10,top=10,titlebar=no,toolbar=no,menubar=no,location=no,directories=no,status=no");
                 if (window.focus) {
                     newwindow.focus();
                 }
@@ -98,18 +81,9 @@
                                         <td><?=$manager['office_name'] ?></td>
                                         <td><?=$manager['office_type'] ?></td>
                                         <td>
-                                            <?=($manager['uid'] == NULL)?"ยังไม่ได้ลงทะเบียน":"ลงทะเบียนแล้ว" ?>
+                                            <?=($manager['uid'] == NULL)?"<b style='color:red;'>ยังไม่ได้ลงทะเบียน</b>":"<b style='color:green;'>ลงทะเบียนแล้ว</b>" ?>
                                         </td>
                                         <td>
-                                            <?php 
-                                                if($manager['uid'] != NULL){
-                                                    $hidden_uid = "uid-".$manager['id'];
-                                                    ?>
-                                                <button class="btn btn-sm btn-default" onclick="copyToClipboard('#<?=$hidden_uid ?>')">Copy uid</button>
-                                                <input type="hidden" name="<?=$hidden_uid ?>" id="<?=$hidden_uid ?>" value="<?=$manager['uid'] ?>" />
-                                            <?php 
-                                                }
-                                                ?>
                                             <button class='btn btn-sm btn-secondary' onclick='editManagerId(<?=$manager['id']?>);'>Edit</button>
                                         </td>
                                     </tr>
@@ -131,45 +105,6 @@
     <script>
         $(function(){
             $('table').DataTable();
-
-            $.ajax({
-                type: "GET",
-                url: './api/find_regis_code.php',
-                dataType: 'text',
-                success: function(response) {
-                    $("#regisCode").val(response);
-                }
-            });
-
-            $('[id="manager-regis-form"]').submit(function(event){
-                event.preventDefault();
-                var formData = new FormData();
-                formData.append('name', $("#name").val());
-                formData.append('surname', $("#surname").val());
-                formData.append('position', $("#position").val());
-                formData.append('pea_office', $("#pea_office").val());
-                formData.append('regisCode', $("#regisCode").val());
-                $.ajax({
-                    url: './api/add_manager_data.php',
-                    method: 'POST',
-                    data: formData,
-                    async: true,
-                    cache: false,
-                    processData: false,
-                    contentType: false,
-                    beforeSend: function(){
-                        $.blockUI({ message:'<h3>กำลังนำเข้าสู่ระบบ...</h3>' });
-                    },
-                    success: function(response) {
-                        alert(response);
-                    },
-                    complete: function() {
-                        $.unblockUI();
-                        location.reload();
-                    }
-                });
-                return false;
-            });
         });
     </script>
 </html>
