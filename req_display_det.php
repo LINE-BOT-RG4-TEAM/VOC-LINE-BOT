@@ -54,10 +54,10 @@
 					echo $result["number_of_day"]." วัน <br><br>";
 					echo "<b>หน่วยงาน : </b>";
 					echo $result["office_name"]."<br><br>";
-					echo "<b>ชื่อผู้ร้องเรียน : </b>";
-					echo $result["complainant_name"]."<br><br>";
-					echo "<b>เบอร์โทรศัพท์ : </b>";
-					echo $result["tel_contact"]."<br><br>";
+					// echo "<b>ชื่อผู้ร้องเรียน : </b>";
+					// echo $result["complainant_name"]."<br><br>";
+					// echo "<b>เบอร์โทรศัพท์ : </b>";
+					// echo $result["tel_contact"]."<br><br>";
 					echo "<b>ประเภทข้อร้องเรียน : </b>";
 					echo $result["complaint_type"]."<br><br>";
 					echo "<b>หัวข้อย่อย : </b>";
