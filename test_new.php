@@ -24,7 +24,7 @@
                                 "ORDER BY main_office ASC";
     $complaint_list = mysqli_query($conn, $fetch_existing_complaint);
     if(mysqli_num_rows($complaint_list) > 0){
-        $messages = getBubbleMessages($conn);
+        $messages = getBubbleMessages($conn, DateThai(date("Y-m-d")), $complaint_list);
         // $messages = [
         //     "type"=> "text",
         //     "text"=> "Daily Alert :\n\nรายงานข้อร้องเรียนสถานะรอและกำลังดำเนินการมากกว่าเท่ากับ 10 วัน\n\nประจำวันที่ ".DateThai(date("Y-m-d"))." \n\nhttps://voc-bot.herokuapp.com/south.php?NUMBER=@10"
