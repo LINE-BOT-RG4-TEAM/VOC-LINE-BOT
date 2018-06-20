@@ -2,6 +2,7 @@
     require('./libs/database/connect-db.php');
     require('./libs/utils/date_thai.php');
     require('./libs/utils/date_utils.php');
+    require('./libs/utils/messages.php');
     $access_token = 'QPUPUnMzGhO//A8J2Qi1nmBXgEW89hciaaxNExeLVgxa8cjYtvnF9TZQF3TEjEOVA5HhS6dTRT2Tp4F0I3JhC0QWrQdmlBiL/6bhuazJI/juOxmvFx31NX7RWv9z19gbUZAdPIEuAURaHPy7TnDNkQdB04t89/1O/w1cDnyilFU=';
     
     $todaytime = strtotime('today');
@@ -16,13 +17,14 @@
     $fetch_group_list = "SELECT group_id FROM tbl_line_group WHERE status = 'A'";
     $group_list = mysqli_query($conn, $fetch_group_list);
 
-    $fetch_existing_complaint = "SELECT * FROM tbl_complaint WHERE number_of_day>='10' AND complaint_status <> 'ปิด'";
+    $fetch_existing_complaint = "SELECT main_office, COUNT(main_office) AS count_complaint ".
+                                "FROM tbl_complaint ".
+                                "WHERE number_of_day>='10' AND complaint_status <> 'ปิด' ".
+                                "GROUP BY main_office ".
+                                "ORDER BY main_office ASC";
     $complaint_list = mysqli_query($conn, $fetch_existing_complaint);
     if(mysqli_num_rows($complaint_list) > 0){
-        $messages = [
-            "type"=> "text",
-            "text"=> "Daily Alert :\n\nรายงานข้อร้องเรียนสถานะรอและกำลังดำเนินการมากกว่าเท่ากับ 10 วัน\n\nประจำวันที่ ".DateThai(date("Y-m-d"))." \n\nhttps://voc-bot.herokuapp.com/south.php?NUMBER=@10"
-        ];
+        $messages = getBubbleMessages($conn, DateThai(date("Y-m-d")), $complaint_list);
     } else {
         $messages = [
             "type"=> "text",
