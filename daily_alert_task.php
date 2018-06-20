@@ -21,6 +21,7 @@
                                 "FROM tbl_complaint ".
                                 "WHERE number_of_day>='10' AND complaint_status <> 'ปิด' ".
                                 "GROUP BY main_office ".
+                                "HAVING COUNT(main_office) > 0 ".
                                 "ORDER BY main_office ASC";
     $complaint_list = mysqli_query($conn, $fetch_existing_complaint);
     if(mysqli_num_rows($complaint_list) > 0){
