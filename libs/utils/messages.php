@@ -4,7 +4,7 @@
     $count = 0;
     $json = '{
       "type": "flex",
-      "altText": "This is a Flex Message",
+      "altText": "DAILY ALERT : รายงานเรื่องร้องเรียนสถานะรอและกำลังดำเนินการมากกว่าเท่ากับ 10 วัน",
       "contents": {
           "type": "bubble",
           "styles": {
