@@ -34,7 +34,7 @@
               },
               {
                 "type": "text",
-                "text": "ประจำวันที่ $today",
+                "text": "ประจำวันที่ '.$today.'",
                 "size": "md",
                 "color": "#aaaaaa",
                 "align": "center",
@@ -58,7 +58,7 @@
                         {
                           "type": "text",
                           "text": "'.$district['main_office'].'",
-                          "size": "md",
+                          "size": "lg",
                           "color": "#555555",
                           "weight": "bold",
                           "flex": 0
@@ -66,7 +66,7 @@
                         {
                           "type": "text",
                           "text": "'.$district['count_complaint'].' เรื่อง",
-                          "size": "md",
+                          "size": "lg",
                           "color": "#111111",
                           "align": "end"
                         }
@@ -87,14 +87,14 @@
                       {
                         "type": "text",
                         "text": "รวมทั้งสิ้น",
-                        "size": "md",
+                        "size": "lg",
                         "weight": "bold",
                         "color": "#555555"
                       },
                       {
                         "type": "text",
                         "text": "'.$count.' เรื่อง",
-                        "size": "md",
+                        "size": "lg",
                         "color": "#111111",
                         "align": "end"
                       }
