@@ -93,6 +93,9 @@
             if($row['กลุ่ม'] <> "ร้องเรียน" || $row['ผลการดำเนินการ'] == "ยกเลิก"){
                 continue;
             }
+            if(substr($row['รหัสการไฟฟ้า'], 0, 1) == "Z"){
+                continue;
+            }
             $count_complaint++;
             $main_office = getMainOfficeByOfficeCode($row['รหัสการไฟฟ้า']);
             $office_code = $row['รหัสการไฟฟ้า'];
