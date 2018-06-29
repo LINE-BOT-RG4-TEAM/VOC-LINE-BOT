@@ -138,7 +138,93 @@
                         // foreach($tabs_name as $key=>$district){
                     ?>
                         <!-- <div class="tab-pane fade <?php //if($key == "J") echo 'show active'; ?>" id="<?php //echo $district; ?>" role="tabpanel"> -->
-                            <!-- replace here -->
+                        <table class="table table-sm table-hover table-borderless">
+                            <thead class="thead-light">
+                                <tr>
+                                    <!-- <th>#</th> -->
+                                    <th>รหัสการไฟฟ้า</th>
+                                    <th>ชื่อการไฟฟ้า</th>
+                                    <th>จำนวนเรื่อง</th>
+                                    <th>ผู้รับผิดชอบ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php 
+                                $fetch_office_district = "SELECT * FROM tbl_pea_office WHERE status = 'A' AND office_code LIKE '%101' ORDER BY office_code";
+                                $office_results = mysqli_query($conn, $fetch_office_district);
+                                $count = 0;
+                                while($office = mysqli_fetch_array($office_results)){
+                                    // count complaint
+                                    $fetch_count_complaint= "SELECT * FROM tbl_complaint WHERE office_name = '".$office['office_name']."' AND complaint_status <> 'ปิด' AND number_of_day >= 10";
+                                    $complaint_result = mysqli_query($conn, $fetch_count_complaint);
+                                    $count_complaint = mysqli_num_rows($complaint_result);
+                                    // count manager
+                                    $fetch_count_manager = "SELECT * FROM tbl_manager WHERE office_id = ".$office['id']." AND status = 'A'";
+                                    $manager_result = mysqli_query($conn, $fetch_count_manager);
+                                    $count_manager = mysqli_num_rows($manager_result);
+                            ?>
+                                <tr style="background: #C0C0C0;">
+                                    <!-- <td><?=$count+1 ?></td> -->
+                                    <td align='center'><?=$office['office_code'] ?></td>
+                                    <td><b><?=$office['office_name'] ."  (".$office['office_type'].")" ?></b></td>
+                                    <td><?=($count_complaint==0)?"<b>ไม่มีข้อร้องเรียน</b>":"<i style='color:red;'>".$count_complaint." เรื่อง</i>" ?> </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary <?=($count_manager==0)?"disabled":"" ?>" onclick="view_manager(<?=$office['id'] ?>);">ผู้รับการแจ้งเตือน (<?= $count_manager?>)</button>
+                                    </td>
+                                </tr>
+                                <?php 
+                                    $count++;
+                                    $fetch_branch = "SELECT * FROM tbl_pea_office WHERE status = 'A' AND parent_level_1 = ".$office['id']." ORDER BY office_code";
+                                    $branch_results = mysqli_query($conn, $fetch_branch);
+                                    while($branch = mysqli_fetch_array($branch_results)){
+                                        // count complaint
+                                        $fetch_count_complaint= "SELECT * FROM tbl_complaint WHERE office_name = '".$branch['office_name']."' AND complaint_status <> 'ปิด' AND number_of_day >= 10";
+                                        $complaint_result = mysqli_query($conn, $fetch_count_complaint);
+                                        $count_complaint = mysqli_num_rows($complaint_result);
+                                        // count manager
+                                        $fetch_count_manager = "SELECT * FROM tbl_manager WHERE office_id = ".$branch['id']." AND status = 'A'";
+                                        $manager_result = mysqli_query($conn, $fetch_count_manager);
+                                        $count_manager = mysqli_num_rows($manager_result);
+                                ?>
+                                <tr style="background: #E0E0E0;">
+                                    <!-- <td><?=$count+1 ?></td> -->
+                                    <td align='center'><?=$branch['office_code'] ?></td>
+                                    <td><?="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$branch['office_name']."  (".$branch['office_type'].")" ?></td>
+                                    <td><?=($count_complaint==0)?"<b>ไม่มีข้อร้องเรียน</b>":"<i style='color:red;'>".$count_complaint." เรื่อง</i>" ?> </td>
+                                    <td>
+                                    <?php 
+                                        if($branch['office_type'] == "กฟส."){
+                                    ?>
+                                        <button class="btn btn-sm btn-secondary <?=($count_manager==0)?"disabled":"" ?>" onclick="view_manager(<?=$branch['id'] ?>);">ผู้รับการแจ้งเตือน (<?=$count_manager ?>)</button>
+                                    <?php 
+                                        }
+                                    ?>
+                                    </td>
+                                </tr>
+                                <?php 
+                                            $count++;
+                                            $fetch_sub_branch = "SELECT * FROM tbl_pea_office WHERE status = 'A' AND parent_level_1 = ".$branch['id']." ORDER BY office_code";
+                                            $sub_branch_results = mysqli_query($conn, $fetch_sub_branch);
+                                            while($sub_branch = mysqli_fetch_array($sub_branch_results)){
+                                                $fetch_count_complaint= "SELECT * FROM tbl_complaint WHERE office_name = '".$sub_branch['office_name']."' AND complaint_status <> 'ปิด' AND number_of_day >= 10";
+                                                $complaint_result = mysqli_query($conn, $fetch_count_complaint);
+                                                $count_complaint = mysqli_num_rows($complaint_result);
+                                ?>
+                                <tr style="background:#F8F8F8;">
+                                    <!-- <td><?=$count+1 ?></td> -->
+                                    <td align='center'><?=$sub_branch['office_code'] ?></td>
+                                    <td><?="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$sub_branch['office_name']."  (".$sub_branch['office_type'].")" ?></td>
+                                    <td><?=($count_complaint==0)?"<b>ไม่มีข้อร้องเรียน</b>":"<i style='color:red;'>".$count_complaint." เรื่อง</i>" ?> </td>
+                                    <td></td>
+                                </tr>
+                                <?php
+                                            $count++;
+                                            }
+                                        }
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
                         <!-- </div> -->
                         <?php 
                             // }
