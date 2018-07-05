@@ -160,7 +160,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <!-- <input class="btn btn-primary" type="submit" value="ปรับปรุง" /> -->
+                            <input class="btn btn-primary" type="submit" value="ปรับปรุง" />
                             <input class="btn btn-danger" onclick='window.opener.location.reload();window.close();' type="button" value="ปิด" />
                         </div>
                     </form>
