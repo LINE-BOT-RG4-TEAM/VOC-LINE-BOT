@@ -95,19 +95,19 @@
                     <form name="edit-regis-form" id="edit-regis-form" method="POST">
                         <div class="form-group">
                             <label for="name">ชื่อ</label>
-                            <input type="text" class="form-control" readonly id="name" placeholder="กรอกชื่อจริง" value='<?=$manager['name']?>' required>
+                            <input type="text" class="form-control" id="name" placeholder="กรอกชื่อจริง" value='<?=$manager['name']?>' required>
                         </div>
                         <div class="form-group">
                             <label for="surname">นามสกุล</label>
-                            <input type="text" class="form-control" readonly id="surname" placeholder="กรอกนามสกุล" value='<?=$manager['surname']?>' required>
+                            <input type="text" class="form-control" id="surname" placeholder="กรอกนามสกุล" value='<?=$manager['surname']?>' required>
                         </div>
                         <div class="form-group">
                             <label for="position">ตำแหน่ง</label>
-                            <input type="text" class="form-control" readonly id="position" placeholder="กรอกตำแหน่งพร้อมระดับของท่าน" value='<?=$manager['position']?>' required>
+                            <input type="text" class="form-control" id="position" placeholder="กรอกตำแหน่งพร้อมระดับของท่าน" value='<?=$manager['position']?>' required>
                         </div>
                         <div class="form-group">
                             <label for="pea_office">การไฟฟ้าสังกัด</label>
-                            <select class="form-control" readonly name="pea_office" id="pea_office">
+                            <select class="form-control" name="pea_office" id="pea_office">
                             <?php 
                                 $option_html = "";
                                 $fetch_office = "SELECT * FROM tbl_pea_office WHERE status = 'A' AND office_code LIKE '%101' ORDER BY office_code";
