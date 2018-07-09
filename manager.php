@@ -9,7 +9,7 @@
       header('Location: manager.php?officeCode=J');
       exit();
     }
-    switch ($officeCode) {
+    switch (strtoupper($officeCode)) {
       case "J":
         $officeName = "กฟต.1";
         break;
@@ -73,7 +73,7 @@
                                         $results_manager = mysqli_query($conn, $select_manager);
                                         $count = 0;
                                         while($manager = mysqli_fetch_array($results_manager)){
-                                            ?>
+                                    ?>
                                     <tr>
                                         <td><?=$count+1 ?></td>
                                         <td><?=$manager['name']." ".$manager['surname'] ?></td>

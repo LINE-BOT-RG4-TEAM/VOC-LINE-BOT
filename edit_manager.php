@@ -97,7 +97,7 @@
                             <label for="name">ชื่อ</label>
                             <input type="text" class="form-control" id="name" readonly placeholder="กรอกชื่อจริง" value='<?=$manager['name']?>' required>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group"> 
                             <label for="surname">นามสกุล</label>
                             <input type="text" class="form-control" id="surname" readonly placeholder="กรอกนามสกุล" value='<?=$manager['surname']?>' required>
                         </div>
@@ -113,10 +113,9 @@
                                 $fetch_office = "SELECT * FROM tbl_pea_office WHERE status = 'A' AND office_code LIKE '%101' ORDER BY office_code";
                                 $office_result = mysqli_query($conn, $fetch_office);
                                 while($office = $office_result->fetch_assoc()){
+                                    $selected = '';
                                     if($office['id'] == $office_id){
                                         $selected = 'selected';
-                                    }else{
-                                        $selected = '';
                                     }
                                     $option_html .= "<option $selected value='".$office['id']."'>".$office['office_code'].":".$office['office_name']."  (".$office['office_type'].")</option>";
                                     

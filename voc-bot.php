@@ -68,7 +68,7 @@ if (!is_null($events['events'])) {
 
 			if($regis_code == "$"){
 
-				$find_existing_regis = "SELECT uid FROM tbl_manager WHERE uid = '".$lineid."'";
+				$find_existing_regis = "SELECT uid FROM tbl_manager WHERE uid = '$lineid'";
 				$query = mysqli_query($conn, $find_existing_regis);
 				$count_existing = mysqli_num_rows($query);
 				if( $count_existing > 0 ){
