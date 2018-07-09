@@ -67,6 +67,14 @@ if (!is_null($events['events'])) {
 			}
 
 			if($regis_code == "$"){
+
+				$find_existing_regis = "SELECT uid FROM tbl_manager WHERE uid = '".$result['uid']."'";
+				$query = mysqli_query($conn, $find_existing_regis);
+				$count_existing = mysqli_num_rows($query);
+				if( $count_existing > 0 ){
+					$txtans = "ท่านลงทะเบียนเรียบร้อยแล้ว ไม่สามารถลงทะเบียนซ้ำได้อีก...";
+				}
+
 				$select_code = "SELECT * FROM tbl_manager WHERE code = '".$text."'";
 				$query = mysqli_query($conn, $select_code);
 				$nums = mysqli_num_rows($query);
@@ -75,9 +83,9 @@ if (!is_null($events['events'])) {
 				$t2 = $result['surname'];
 				$t1 = $result['uid'];
 
-				if($nums == 1 AND $t1 <> "") {
-					$txtans = "รหัสยืนยันนี้ถูกใช้งานแล้วโดย ".$t." ".$t2;
-				}
+				// if($nums == 1 AND $t1 <> "") {
+				// 	$txtans = "รหัสยืนยันนี้ถูกใช้งานแล้วโดย ".$t." ".$t2;
+				// }
 
 				if($nums == 1 AND $t1 == ""){
 					$sql_regis = "UPDATE tbl_manager SET uid ='$lineid' WHERE code = '".$text."'";
