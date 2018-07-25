@@ -43,8 +43,9 @@
       // auto increment with manual
       $log_id = $log_id + 1;
       // log push data
+			$timestamp = date('Y-m-d H:i:s');
       $log_individual_notify = "INSERT INTO tbl_individual_log(id, manager_id, notify_timestamp) ".
-                              "VALUES($log_id, ".$manager['manager_id'].", NOW())";
+                              "VALUES($log_id, ".$manager['manager_id'].", '$timestamp')";
       mysqli_query($conn, $log_individual_notify) or die($log_individual_notify);
 
       $log_id = mysqli_insert_id($conn);
