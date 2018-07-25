@@ -13,6 +13,6 @@
 		<script src="jquery.mobile-1.0.min.js" type="text/javascript"></script>
 	</head> 
 	<body> 
-    <h1>ทดสอบ</h1>
+    <h1>ทดสอบ#2</h1>
 	</body>
 </html>
