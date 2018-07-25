@@ -14,6 +14,7 @@
 		<script>
 			$(function(){
 				liff.init();
+			});
 		</script>
 	</head> 
 	<body> 
