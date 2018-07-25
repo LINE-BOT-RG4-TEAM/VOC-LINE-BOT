@@ -48,5 +48,11 @@
 				<h4>PEA</h4>
 			</div>
 		</div>
+		<script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
+		<script>
+			window.onload = function (e) {
+				liff.init();
+			};
+		</script>
 	</body>
 </html>
