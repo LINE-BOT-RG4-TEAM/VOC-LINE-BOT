@@ -10,7 +10,12 @@
 		<script src="jquery.mobile-1.0.min.js" type="text/javascript"></script>
 		<script>
 			$(function(){
-				liff.init(function(){ alert('success')}, function(){alert('fail')});
+				liff.init(function(data){ 
+					alert(data.context.userId);
+					}, function(){
+						alert('fail');
+					}
+				);
 			});
 		</script>
 	</head> 
