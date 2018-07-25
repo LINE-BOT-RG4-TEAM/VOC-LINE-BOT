@@ -18,19 +18,6 @@
 		</script>
 	</head> 
 	<body> 
-		<div data-role="page" id="page">
-			<div data-role="header" data-theme="b">
-				<h1>ข้อร้องเรียน</h1>
-			</div>
-			<div data-role="content">
-			ทดสอบจ้า
-			</div>
-			<div data-role="content">
-			ทดสอบจ้า 2
-			</div>
-			<div data-role="footer" data-theme="b">
-				<h4>PEA</h4>
-			</div>
-		</div>
+			ทดสอบ
 	</body>
 </html>
