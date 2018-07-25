@@ -18,38 +18,15 @@
 		</script>
 	</head> 
 	<body> 
-		<?php
-			require('./libs/database/connect-db.php');
-			// $NUMBER = $_GET['NUMBER'];
-			// $addpos = strpos($NUMBER,"@");
-			// $lengh = strlen($NUMBER);
-			// $lengh1 =$lengh-1;
-			// $datenum = substr($NUMBER,$addpos+1,$lengh1);
-			$datenum = 10;
-			$sql = "SELECT main_office, COUNT(main_office) AS NUM FROM tbl_complaint  WHERE number_of_day>=".$datenum." AND complaint_status <> 'ปิด' GROUP BY main_office HAVING(COUNT(office_name)>0)";
-			$query = mysqli_query($conn,$sql);
-		?>
 		<div data-role="page" id="page">
 			<div data-role="header" data-theme="b">
 				<h1>ข้อร้องเรียน</h1>
 			</div>
 			<div data-role="content">
-			<?php 
-				echo "รายการข้อร้องเรียนรอและกำลังดำเนินการมากกว่าหรือเท่ากับ ".$datenum." วัน";	
-			?>
+			ทดสอบจ้า
 			</div>
 			<div data-role="content">
-				<ul data-role="listview">
-					<?php
-						$a = 1;
-						while($result=mysqli_fetch_array($query)){
-							echo "<li><a href ='req_office.php?REQ=".$result["main_office"]."&REQ2=$datenum'>".$a.".".$result["main_office"]."  จำนวน  ".$result["NUM"]." เรื่อง</a></li>";
-							$a =$a +1;
-						}
-						$a = 0;
-						mysqli_close($conn);
-					?>
-				</ul>		
+			ทดสอบจ้า 2
 			</div>
 			<div data-role="footer" data-theme="b">
 				<h4>PEA</h4>
