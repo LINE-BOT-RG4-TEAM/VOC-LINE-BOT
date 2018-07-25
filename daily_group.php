@@ -11,13 +11,21 @@
 		<link href="jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
 		<script src="jquery-1.6.4.min.js" type="text/javascript"></script>
 		<script src="jquery.mobile-1.0.min.js" type="text/javascript"></script>
-		<script>
-			$(function(){
-				liff.init();
-			});
-		</script>
 	</head> 
 	<body> 
-			ทดสอบ
+		<div data-role="page" id="page">
+			<div data-role="header" data-theme="b">
+				<h1>ข้อร้องเรียน</h1>
+			</div>
+			<div data-role="content">
+			ทดสอบจ้า
+			</div>
+			<div data-role="content">
+			ทดสอบจ้า 2
+			</div>
+			<div data-role="footer" data-theme="b">
+				<h4>PEA</h4>
+			</div>
+		</div>
 	</body>
 </html>
