@@ -77,7 +77,8 @@
         if(!$uploaded_result) {
             die(error_get_last());
         }
-        $insert_log_file = "INSERT INTO tbl_log_voc_file(voc_file_path, file_upload_timestamp) VALUES('$target_path', NOW())";
+        $current_timestamp = date("Y-m-d H:i:s");
+        $insert_log_file = "INSERT INTO tbl_log_voc_file(voc_file_path, file_upload_timestamp) VALUES('$target_path', '$current_timestamp')";
         mysqli_query($conn, $insert_log_file) or trigger_error($conn->error."[$sql]");    
         return $target_path;
     }
