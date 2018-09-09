@@ -62,7 +62,7 @@
 			<div data-role="content">
 				<h3 align='center'>
 					<?php 
-						echo "รายการข้อร้องเรียนรอและกำลังดำเนินการมากกว่าหรือเท่ากับ 10 วัน ของ ".$office['office_name']." และ กฟฟ.ในสังกัด";	
+						echo "รายการข้อร้องเรียนรอและกำลังดำเนินการมากกว่าหรือเท่ากับ 7 วัน ของ ".$office['office_name']." และ กฟฟ.ในสังกัด";	
 					?>
 				</h3>
 				<h4 align='center'>
@@ -77,42 +77,42 @@
 						$fetch_main_complaint = "SELECT office.office_name, COUNT(*) AS count_complaint ".
 																		"FROM tbl_pea_office office JOIN tbl_complaint complaint ".
 																		"		ON office.office_name = complaint.office_name ".
-																		"WHERE complaint.number_of_day >= 10 AND complaint.complaint_status <> 'ปิด' ".
+																		"WHERE complaint.number_of_day >= 7 AND complaint.complaint_status <> 'ปิด' ".
 																		"				AND office.office_type = 'กฟฟ.ชั้น 1-3' AND office.id=".$office_id." ".
 																		"GROUP BY office.office_name";
 						$complaint_main_object = mysqli_query($conn, $fetch_main_complaint);
 						if(mysqli_num_rows($complaint_main_object) > 0){
 							echo "<li style='font-size:22px;color:crimson;text-align:center;'><b>การไฟฟ้าจุดรวมงาน (ชั้น 1-3)</b></li>";
 							while($complaint_main = mysqli_fetch_array($complaint_main_object)){
-								echo "<li style='text-indent:20px'><a href ='req_office1.php?REQ=".$complaint_main["office_name"]."&REQ2=10'>".$complaint_main["office_name"]." <small>(จำนวน ".$complaint_main["count_complaint"]." เรื่อง)</small></a></li>"; 
+								echo "<li style='text-indent:20px'><a href ='req_office1.php?REQ=".$complaint_main["office_name"]."&REQ2=7'>".$complaint_main["office_name"]." <small>(จำนวน ".$complaint_main["count_complaint"]." เรื่อง)</small></a></li>"; 
 							}
 						}
 
 						$fetch_branch_complaint = "SELECT office.office_name, COUNT(*) AS count_complaint ".
 																			"FROM tbl_pea_office office JOIN tbl_complaint complaint ".
 																			"		ON office.office_name = complaint.office_name ".
-																			"WHERE complaint.number_of_day >= 10 AND complaint.complaint_status <> 'ปิด' ".
+																			"WHERE complaint.number_of_day >= 7 AND complaint.complaint_status <> 'ปิด' ".
 																			"				AND office.office_type = 'กฟส.' AND (office.id=".$office_id." OR office.parent_level_1=".$office_id.") ".
 																			"GROUP BY office.office_name";
 						$complaint_branch_object = mysqli_query($conn, $fetch_branch_complaint);
 						if(mysqli_num_rows($complaint_branch_object) > 0){
 							echo "<li style='font-size:22px;color:brown;text-align:center;'><b>การไฟฟ้าสาขา (กฟส.)</b></li>";
 							while($complaint_branch = mysqli_fetch_array($complaint_branch_object)){
-								echo "<li style='text-indent:20px'><a href ='req_office1.php?REQ=".$complaint_branch["office_name"]."&REQ2=10'>".$complaint_branch["office_name"]." <small>(จำนวน ".$complaint_branch["count_complaint"]." เรื่อง)</small></a></li>"; 
+								echo "<li style='text-indent:20px'><a href ='req_office1.php?REQ=".$complaint_branch["office_name"]."&REQ2=7'>".$complaint_branch["office_name"]." <small>(จำนวน ".$complaint_branch["count_complaint"]." เรื่อง)</small></a></li>"; 
 							}
 						}
 
 						$fetch_sub_branch_complaint = "SELECT office.office_name, COUNT(*) AS count_complaint ".
 																			"FROM tbl_pea_office office JOIN tbl_complaint complaint ".
 																			"		ON office.office_name = complaint.office_name ".
-																			"WHERE complaint.number_of_day >= 10 AND complaint.complaint_status <> 'ปิด' ".
+																			"WHERE complaint.number_of_day >= 7 AND complaint.complaint_status <> 'ปิด' ".
 																			"				AND office.office_type = 'กฟย.' AND (office.parent_level_1=".$office_id." OR office.parent_level_2=".$office_id.") ".
 																			"GROUP BY office.office_name";
 						$complaint_sub_branch_object = mysqli_query($conn, $fetch_sub_branch_complaint);
 						if(mysqli_num_rows($complaint_sub_branch_object) > 0){
 							echo "<li style='font-size:22px;color:#462b2b;text-align:center;'><b>การไฟฟ้าสาขาย่อย (กฟย.)</b></li>";
 							while($complaint_sub_branch = mysqli_fetch_array($complaint_sub_branch_object)){
-								echo "<li style='text-indent:20px'><a href ='req_office1.php?REQ=".$complaint_sub_branch["office_name"]."&REQ2=10'>".$complaint_sub_branch["office_name"]." <small>(จำนวน ".$complaint_sub_branch["count_complaint"]." เรื่อง)</small></a></li>"; 
+								echo "<li style='text-indent:20px'><a href ='req_office1.php?REQ=".$complaint_sub_branch["office_name"]."&REQ2=7'>".$complaint_sub_branch["office_name"]." <small>(จำนวน ".$complaint_sub_branch["count_complaint"]." เรื่อง)</small></a></li>"; 
 							}
 						}
 					?>
