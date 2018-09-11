@@ -51,7 +51,7 @@
       $log_id = mysqli_insert_id($conn);
       $messages = [
         "type"=> "text",
-        "text"=> "Individual Alert :\n\nรายงานข้อร้องเรียนสถานะรอและกำลังดำเนินการมากกว่าเท่ากับ 10 วัน ของ ".$manager['office_name']." \n\nประจำวันที่ ".DateThai(date("Y-m-d"))." \n\nhttps://voc-bot.herokuapp.com/individual.php?office_id=".$manager['office_id']."&log_id=".$log_id
+        "text"=> "Individual Alert :\n\nรายงานข้อร้องเรียนสถานะรอและกำลังดำเนินการมากกว่าเท่ากับ 7 วัน ของ ".$manager['office_name']." \n\nประจำวันที่ ".DateThai(date("Y-m-d"))." \n\nhttps://voc-bot.herokuapp.com/individual.php?office_id=".$manager['office_id']."&log_id=".$log_id
       ];
 
       $data = [
