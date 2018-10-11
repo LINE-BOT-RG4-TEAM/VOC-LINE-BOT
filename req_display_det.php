@@ -44,7 +44,7 @@
 						$strDate = $result["received_date"];
 						$strDate1 = DateThai($strDate);
 					}
-					echo "<b>เลขที่คำร้อง : </b>";
+					echo "<b>หมายเลขข้อร้องเรียน : </b>";
 					echo $result["complaint_id"]."<br><br>";
 					echo "<b>วันที่เรื่องเข้าระบบ : </b>";
 					echo (DateThai($result["sent_date"]))."<br><br>";
