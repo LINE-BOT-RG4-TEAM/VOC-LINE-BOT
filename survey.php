@@ -91,6 +91,7 @@
             window.alert("Error getting profile: " + error);
         });
       }
+      showLINEProfile()
       </script>
   </body>
 </html>

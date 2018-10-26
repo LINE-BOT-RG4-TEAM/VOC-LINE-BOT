@@ -119,6 +119,6 @@
           }
         }
      }';
-    $result = json_decode ($json);
+    $result = json_decode($json);
     return $result;
   }
