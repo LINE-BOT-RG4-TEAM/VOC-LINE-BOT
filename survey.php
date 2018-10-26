@@ -4,7 +4,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
     <script>
-      $(function(){
         var name
         liff.init(function(data){
           // var userId = data.context.userId;
@@ -12,13 +11,14 @@
         },function(err){
           alert(err)
         });
-
-        liff.getProfile().then(function(profile){
-          name = profile.displayName
-          $("input[type=text]").val(name)
-        }).catch(function(err){
-          console.log('error', err)
-        })
+      $(function(){
+        liff.getProfile()
+            .then(function(profile){
+              name = profile.displayName
+              document.write(name);
+            }).catch(function(err){
+              console.log('error', err)
+            })
       })
     </script>
   </head>
