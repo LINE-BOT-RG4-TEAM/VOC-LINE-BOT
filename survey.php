@@ -2,40 +2,36 @@
   <head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>LIFF Starter</title>
-      <link rel="stylesheet" href="style.css">
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   </head>
 
   <body>
-      <div class="buttongroup">
-          <div class="buttonrow">
-              <button id="openwindowbutton">Open Window</button>
-              <button id="closewindowbutton">Close Window</button>
-          </div>
-          <div class="buttonrow">
-              <button id="getprofilebutton">Get Profile</button>
-              <button id="sendmessagebutton">Send Message</button>
-          </div>
+    <div class="buttongroup">
+      <div class="buttonrow">
+        <button id="getprofilebutton">Get Profile</button>
       </div>
+    </div>
 
       <div id="profileinfo">
-          <h2>Profile</h2>
-          <a href="#" onclick="toggleProfileData()">Close Profile</a>
-          <div id="profilepicturediv">
-          </div>
-          <table border="1">
-              <tr>
-                  <th>userId</th>
-                  <td id="useridprofilefield"></td>
-              </tr>
-              <tr>
-                  <th>displayName</th>
-                  <td id="displaynamefield"></td>
-              </tr>
-              <tr>
-                  <th>statusMessage</th>
-                  <td id="statusmessagefield"></td>
-              </tr>
-          </table>
+        <h2>Profile</h2>
+        <div id="profilepicturediv">
+        </div>
+        <table border="1">
+          <tr>
+            <th>userId</th>
+            <td id="useridprofilefield"></td>
+          </tr>
+          <tr>
+            <th>displayName</th>
+            <td id="displaynamefield"></td>
+          </tr>
+          <tr>
+            <th>statusMessage</th>
+            <td id="statusmessagefield"></td>
+          </tr>
+        </table>
       </div>
 
       <div id="liffdata">
@@ -75,72 +71,25 @@
             initializeApp(data);
         });
       };
-      function initializeApp(data) {
-          document.getElementById('languagefield').textContent = data.language;
-          document.getElementById('viewtypefield').textContent = data.context.viewType;
-          document.getElementById('useridfield').textContent = data.context.userId;
-          document.getElementById('utouidfield').textContent = data.context.utouId;
-          document.getElementById('roomidfield').textContent = data.context.roomId;
-          document.getElementById('groupidfield').textContent = data.context.groupId;
 
-          // openWindow call
-          document.getElementById('openwindowbutton').addEventListener('click', function () {
-              liff.openWindow({
-                  url: 'https://line.me'
-              });
-          });
+      function showLINEProfile(){
+        liff.getProfile().then(function (profile) {
+          document.getElementById('useridprofilefield').textContent = profile.userId;
+          document.getElementById('displaynamefield').textContent = profile.displayName;
 
-          // closeWindow call
-          document.getElementById('closewindowbutton').addEventListener('click', function () {
-              liff.closeWindow();
-          });
-
-          // sendMessages call
-          document.getElementById('sendmessagebutton').addEventListener('click', function () {
-              liff.sendMessages([{
-                  type: 'text',
-                  text: "You've successfully sent a message! Hooray!"
-              }, {
-                  type: 'sticker',
-                  packageId: '2',
-                  stickerId: '144'
-              }]).then(function () {
-                  window.alert("Message sent");
-              }).catch(function (error) {
-                  window.alert("Error sending message: " + error);
-              });
-          });
-
-          //get profile call
-          document.getElementById('getprofilebutton').addEventListener('click', function () {
-              liff.getProfile().then(function (profile) {
-                  document.getElementById('useridprofilefield').textContent = profile.userId;
-                  document.getElementById('displaynamefield').textContent = profile.displayName;
-
-                  var profilePictureDiv = document.getElementById('profilepicturediv');
-                  if (profilePictureDiv.firstElementChild) {
-                      profilePictureDiv.removeChild(profilePictureDiv.firstElementChild);
-                  }
-                  var img = document.createElement('img');
-                  img.src = profile.pictureUrl;
-                  img.alt = "Profile Picture";
-                  profilePictureDiv.appendChild(img);
-
-                  document.getElementById('statusmessagefield').textContent = profile.statusMessage;
-                  toggleProfileData();
-              }).catch(function (error) {
-                  window.alert("Error getting profile: " + error);
-              });
-          });
-      }
-
-      function toggleProfileData() {
-          var elem = document.getElementById('profileinfo');
-          if (elem.offsetWidth > 0 && elem.offsetHeight > 0) {
-              elem.style.display = "none";
-          } else {
-              elem.style.display = "block";
+          var profilePictureDiv = document.getElementById('profilepicturediv');
+          if (profilePictureDiv.firstElementChild) {
+              profilePictureDiv.removeChild(profilePictureDiv.firstElementChild);
           }
+          var img = document.createElement('img');
+          img.src = profile.pictureUrl;
+          img.alt = "Profile Picture";
+          profilePictureDiv.appendChild(img);
+
+          document.getElementById('statusmessagefield').textContent = profile.statusMessage;
+        }).catch(function (error) {
+            window.alert("Error getting profile: " + error);
+        });
       }
       </script>
   </body>
