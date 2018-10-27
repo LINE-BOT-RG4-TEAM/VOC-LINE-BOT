@@ -25,6 +25,7 @@
                 <div class="welcome-column col-md-8 offset-md-2">
                   <div class="text-center">
                     <h5 id="welcome-text" style="font-weight:bold;"></h5>
+                    <br/>
                   </div>
                 </div>
               </div>
@@ -32,7 +33,7 @@
                 <div class="first-column col-md-6 offset-md-3">
                   <div class="text-center">
                     <img id="avatar" style="height:100px;width:100px;border-radius: 50%;" />
-                    <div class="dropdown-divider"></div>
+                    <!-- <div class="dropdown-divider"></div> -->
                   </div>
                 </div>
               </div>
