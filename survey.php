@@ -24,6 +24,7 @@
               <div class="row">
                 <div class="welcome-column col-md-8 offset-md-2">
                   <div class="text-center">
+                    <h4 style="font-weight:bold;">ยินดีต้อนรับ</h4>
                     <h5 id="welcome-text" style="font-weight:bold;"></h5>
                     <br/>
                   </div>
@@ -32,8 +33,7 @@
               <div class="row">
                 <div class="first-column col-md-6 offset-md-3">
                   <div class="text-center">
-                    <img id="avatar" style="height:100px;width:100px;border-radius: 50%;" />
-                    <!-- <div class="dropdown-divider"></div> -->
+                    <img id="avatar" style="height:100px;width:100px;border-radius: 50%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" />
                   </div>
                 </div>
               </div>
@@ -56,7 +56,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิดหน้าต่างนี้</button>
           </div>
         </div>
       </div>
@@ -69,7 +69,7 @@
       function showLINEProfile(){
         liff.getProfile().then(function (profile) {
           var welcome_text = document.getElementById("welcome-text");
-          welcome_text.textContent = "ยินดีต้อนรับ คุณ " + profile.displayName;
+          welcome_text.textContent = "คุณ " + profile.displayName;
 
           var avatar = document.getElementById("avatar");
           avatar.src = avatar.src = profile.pictureUrl;
