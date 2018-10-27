@@ -56,7 +56,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิดหน้าต่างนี้</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">ตอบแบบสำรวจ</button>
           </div>
         </div>
       </div>
@@ -66,8 +66,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
     <script>
+      var displayName;
+      var uid;
       function showLINEProfile(){
         liff.getProfile().then(function (profile) {
+
+          displayName = profile.displayName;
+          uid = profile.userId;
+
           var welcome_text = document.getElementById("welcome-text");
           welcome_text.textContent = "คุณ " + profile.displayName;
 
@@ -83,6 +89,7 @@
         $('#myModal').modal('show')
         $("#myModal").on('hidden.bs.modal', function(){
           window.location = "https://goo.gl/forms/1TRgTk6TWUpx5O072"
+          window.location = "https://docs.google.com/forms/d/e/1FAIpQLSf-WpArhq2LNoYT8LTr35iNUpf4z4SVkySG4i9MhPgzDbU8Xg/viewform?entry.1966882595="+displayName+"&entry.1866127721="+uid
         })
       });
     };
