@@ -21,20 +21,26 @@
           </div>
           <div class="modal-body">
             <div class="container">
-              <div class="row">
-                <div class="welcome-column col-md-8 offset-md-2">
-                  <div class="text-center">
-                    <h4 style="font-weight:bold;">ยินดีต้อนรับ</h4>
-                    <h5 id="welcome-text" style="font-weight:bold;"></h5>
-                    <br/>
+              <!-- <div class="row">
+                <div class="text-center">
+                  <div class="media">
+                    <img id="avatar" class="mr-3" style="height:80px;width:80px;border-radius: 50%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" alt="Avatar">
+                    <div class="media-body">
+                      <h4 class="mt-0" style="font-weight:bold;">ยินดีต้อนรับ</h4>
+                      <h5 id="welcome-text"></h5>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
               <div class="row">
-                <div class="first-column col-md-6 offset-md-3">
-                  <div class="text-center">
+                <div class="col-5">
+                  <div class="text-right">
                     <img id="avatar" style="height:100px;width:100px;border-radius: 50%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" />
                   </div>
+                </div>
+                <div class="col-7">
+                    <h3 style="font-weight:bold;">ยินดีต้อนรับ</h3>
+                    <h5 id="welcome-text" style="font-weight:bold;"></h5>
                 </div>
               </div>
               <br/>
@@ -56,7 +62,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">ตอบแบบสำรวจ</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">ตอบแบบสำรวจ
+            </button>
           </div>
         </div>
       </div>
