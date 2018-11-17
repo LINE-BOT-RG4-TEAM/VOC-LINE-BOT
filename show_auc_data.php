@@ -70,7 +70,7 @@
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">กฟฟ.</th>
-                    <th scope="col">WBS</th>
+                    <th scope="col">องค์ประกอบ WBS</th>
                     <th scope="col">ชื่องาน</th>
                     <th scope="col">ผู้ควบคุมงาน</th>
                     <th scope="col">ตำแหน่ง</th>
