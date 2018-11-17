@@ -2,7 +2,7 @@
     require('./libs/database/connect-db.php');
 
     if(!isset($_GET['year']) || !isset($_GET['district'])){
-      die('เข้าดูรายงาน AUC Report ไม่ถูกต้อง');
+      die('วิธีการเข้าดูรายงาน AUC Report ไม่ถูกต้อง');
     }
 
     $district_map = array(
@@ -17,7 +17,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="UTF-8">
-        <title>Upload VOC xlsx file</title>
+        <title>AUC Report</title>
         <!-- css -->
         <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.css" />
         <link href="https://fonts.googleapis.com/css?family=Pridi|Niramit|K2D|Bai+Jamjuree" rel="stylesheet">
