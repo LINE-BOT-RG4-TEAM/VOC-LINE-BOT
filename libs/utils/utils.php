@@ -117,9 +117,9 @@
             $number_of_day = $row['จำนวนวัน'];
 
             // check null
-            $sent_date = isset($sent_date) || !empty($sent_date) ? $sent_date:NULL;
-            $received_date = isset($received_date) || !empty($received_date) ? $received_date:NULL;
-            $settlement_date = isset($settlement_date) || !empty($settlement_date) ? $settlement_date:NULL;
+            // $sent_date = isset($sent_date) || !empty($sent_date) ? $sent_date:NULL;
+            // $received_date = isset($received_date) || !empty($received_date) ? $received_date:NULL;
+            // $settlement_date = isset($settlement_date) || !empty($settlement_date) ? $settlement_date:NULL;
 
             $sql = "INSERT INTO tbl_complaint(id, main_office, office_code, office_name, complaint_id, sent_date, received_date, settlement_date, complainant_name, complaint_type, sub_complaint_type, complaint_location, tel_contact, complaint_status, number_of_day) ".
                     "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
