@@ -103,9 +103,9 @@
             $office_name = $row['การไฟฟ้า'];
             $complaint_id = $row['เลขที่คำร้องส่งถึง กฟภ.'];
 
-            $sent_date = (string) $row['วันที่คำร้องส่งถึง กฟภ.'];
-            $received_date = (string) $row['วันที่รับข้อร้องเรียน'];
-            $settlement_date = (string) $row['วันที่ปิดข้อร้องเรียน'];
+            $sent_date = ($row['วันที่คำร้องส่งถึง กฟภ.']);
+            $received_date = ($row['วันที่รับข้อร้องเรียน']);
+            $settlement_date = ($row['วันที่ปิดข้อร้องเรียน']);
 
             $complainant_name = $row['ชื่อผู้ร้องเรียน'];
             $complaint_type = $row['ประเภทข้อร้องเรียน'];
@@ -117,9 +117,9 @@
             $number_of_day = $row['จำนวนวัน'];
 
             // check null
-            // $sent_date = isset($sent_date) || !empty($sent_date) ? $sent_date:NULL;
-            // $received_date = isset($received_date) || !empty($received_date) ? $received_date:NULL;
-            // $settlement_date = isset($settlement_date) || !empty($settlement_date) ? $settlement_date:NULL;
+            // $sent_date = isset($sent_date) ? $sent_date->format("Y-m-d"):NULL;
+            // $received_date = isset($received_date) ? $received_date->format("Y-m-d"):NULL;
+            // $settlement_date = isset($settlement_date) ? $settlement_date->format("Y-m-d"):NULL;
 
             $sql = "INSERT INTO tbl_complaint(id, main_office, office_code, office_name, complaint_id, sent_date, received_date, settlement_date, complainant_name, complaint_type, sub_complaint_type, complaint_location, tel_contact, complaint_status, number_of_day) ".
                     "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";

@@ -41,13 +41,12 @@
 					if($result["received_date"]== Null){
 						$strDate1 = "รอดำเนินการ";
 					}else{
-						$strDate = $result["received_date"];
-						$strDate1 = DateThai($strDate);
+						$strDate1 = $result["received_date"];
 					}
 					echo "<b>หมายเลขข้อร้องเรียน : </b>";
 					echo $result["complaint_id"]."<br><br>";
 					echo "<b>วันที่เรื่องเข้าระบบ : </b>";
-					echo (DateThai($result["sent_date"]))."<br><br>";
+					echo ($result["sent_date"])."<br><br>";
 					echo "<b>วันที่รับคำร้อง : </b>";
 					echo $strDate1."<br><br>";
 					echo "<b>จำนวนวัน : </b>";
