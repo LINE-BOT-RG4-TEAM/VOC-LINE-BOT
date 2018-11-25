@@ -19,7 +19,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="UTF-8">
-        <title>AUC Report</title>
+        <title>AUC Charts</title>
         <!-- css -->
         <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.css" />
         <link href="https://fonts.googleapis.com/css?family=Pridi|Niramit|K2D|Bai+Jamjuree" rel="stylesheet">
@@ -63,13 +63,13 @@
 
         $row = $results->fetch_assoc();
         $goal_job = $row['amount_job'];
-
+        $percentage_closed_job = number_format(($closed_job/$goal_job)*100, 0, ".", "");
       ?>
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-12">
-            <h5 class="text-center"><b>กราฟแสดงความสัมพันธ์จำนวนงานที่ปิดกับเป้าหมาย<br/>ปี <?=$year ?> <?=$district_map[$district]?></b></h5>
-            <h5 class="text-center">(สถานะ 15 พ.ย. 2561)</h5>
+            <h5 class="text-center"><b>กราฟแสดงความสัมพันธ์จำนวนงานที่ปิดกับเป้าหมาย ปี <?=$year ?> <?=$district_map[$district]?></b></h5>
+            <h5 class="text-center">ปิดงานก่อสร้างได้ <?=$percentage_closed_job ?> %</h5>
             <div id="container" style="width:100%; height:400px;"></div>
           </div>
         </div>
