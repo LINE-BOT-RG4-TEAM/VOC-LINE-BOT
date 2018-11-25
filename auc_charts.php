@@ -69,7 +69,7 @@
         <div class="row">
           <div class="col-lg-12">
             <h5 class="text-center"><b>กราฟแสดงความสัมพันธ์จำนวนงานที่ปิดกับเป้าหมาย ปี <?=$year ?> <?=$district_map[$district]?></b></h5>
-            <h5 class="text-center">ปิดงานก่อสร้างได้ <?=$percentage_closed_job ?> %</h5>
+            <h5 class="text-center">ปิดงานก่อสร้างได้ <?=$percentage_closed_job ?> %, จำนวนงานคงเหลือ <?=$goal_job - $closed_job ?> งาน</h5>
             <div id="container" style="width:100%; height:400px;"></div>
           </div>
         </div>
@@ -100,16 +100,16 @@
                   }
               },
               series: [{
-                  name: 'จำนวนงานที่ปิดแล้วในปี <?=$year?>',
+                  name: 'จำนวนงานที่ปิดแล้ว',
                   data: [<?=$closed_job ?>]
               }, {
-                  name: 'จำนวนงานที่ต้องปิดตามเป้า',
+                  name: 'จำนวนงานตามเป้าหมาย',
                   data: [<?=$goal_job ?>]
               }],
               legend: {
                 itemStyle: {
-                    font: '9pt K2D, Verdana, sans-serif',
-                    color: 'black'
+                    font: '16pt K2D',
+                    color: 'black',
                 },
                 itemHoverStyle:{
                     color: 'gray'
