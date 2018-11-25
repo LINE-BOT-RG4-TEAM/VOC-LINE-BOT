@@ -63,7 +63,7 @@
 
         $row = $results->fetch_assoc();
         $goal_job = $row['amount_job'];
-        $percentage_closed_job = number_format(($closed_job/$goal_job)*100, 0, ".", "");
+        $percentage_closed_job = number_format(($closed_job/$goal_job)*100, 2, ".", "");
       ?>
       <div class="container-fluid">
         <div class="row">
@@ -120,7 +120,7 @@
                       dataLabels: {
                         enabled: true,
                         formatter: function(){
-                          return this.y + " งาน"
+                          return (this.y).toLocaleString('en') + " งาน"
                         }
                       }
                   }

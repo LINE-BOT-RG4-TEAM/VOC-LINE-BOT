@@ -274,7 +274,7 @@
       // เอางานปิดตามเป้า
       $row = $results->fetch_assoc();
       $goal_job = $row['amount_job'];
-      $percentage_closed_job = number_format(($closed_job/$goal_job)*100, 0, ".", "");
+      $percentage_closed_job = number_format(($closed_job/$goal_job)*100, 2, ".", "");
 
       // เพิ่มปุ่มกดโดยตรวจสอบก่อนว่ามีจำนวนงานในเงื่อนไขหรือไม่
       $each_auc_type['contents'][] = [
