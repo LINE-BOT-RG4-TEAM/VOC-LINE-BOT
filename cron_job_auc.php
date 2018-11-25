@@ -62,7 +62,7 @@
         "type" => "box",
         "layout" => "vertical",
         "contents" => [
-          // วาง 3 ส่วนในการ์ดในนี้คือ ก่อนปี 59, การคั่นกลาง และ ปี 2559
+          // วาง 3 ส่วนในการ์ดในนี้คือ ก่อนปี 59, ปี 2559, ปี 2560 และ ปี 2561
         ]
       ]
     ];
@@ -207,6 +207,91 @@
 
       $district_object['body']['contents'][] = $each_auc_type;
 
+      // เพิ่มตัวคั่นก่อนปิดท้าย
+      // if($index === 0){
+        $district_object['body']['contents'][] = [
+          "type" => "text",
+          "text" => "Spacing here",
+          "size" => "md",
+          "align" => "center",
+          "color" => "#FFFFFF"
+        ];
+      // }
+    }
+
+    // เพิ่มข้อมูลปี 2560 และ 2561
+    $another_auc_type = [
+      ["criteria" => "2560", "desc" => "ปี 2560"],
+      ["criteria" => "2561", "desc" => "ปี 2561"]
+    ];
+    foreach($another_auc_type as $index => $data){
+      $criteria_year = $data['criteria'];
+      $desc = $data['desc'];
+
+      $each_auc_type = [
+        "type" => "box",
+        "layout" => "vertical",
+        "margin" => "md",
+        "spacing" => "sm",
+        //ใส่รายละเอียดตั้งแต่หัวข้อคือก่อนปี 2559 จำนวนงานรวม ตัวคั่นและรายละเอียดการไฟฟ้า
+        "contents" => [
+          //หัวข้อ ปี 2560 และ ปี 2561
+          [
+            "type" => "box",
+            "layout" => "horizontal",
+            "contents" => [
+              [
+                "type" => "text",
+                "text" => "$desc",
+                "size" => "md",
+                "color" => "#000000",
+                "weight" => "bold",
+                "flex" => 6
+              ]
+            ]
+          ],[
+            "type" => "separator",
+            "margin" => "md"
+          ]
+          // จำนวนงานไล่มาเป็นลิสต์
+          // ใส่ปุ่มให้กดดูรายละเอียด
+        ] 
+      ];
+
+      // คำนวณร้อยละการปิดงาน
+      $fetch_amount_job = "SELECT * FROM tbl_auc_goal WHERE district = '$district' AND year = '$criteria_year' ".
+                          "ORDER BY CASE ".
+                          "          WHEN type = 'closed' THEN 1 ".
+                          "          WHEN type = 'goal' THEN 2 ".
+                          "          ELSE 3 ".
+                          "        END ASC ";
+      $results = mysqli_query($conn, $fetch_amount_job);
+
+      // เอางานปิดได้ปัจจุบัน
+      $row = $results->fetch_assoc();
+      $closed_job = $row['amount_job'];
+      
+      // เอางานปิดตามเป้า
+      $row = $results->fetch_assoc();
+      $goal_job = $row['amount_job'];
+      $percentage_closed_job = number_format(($closed_job/$goal_job)*100, 0, ".", "");
+
+      // เพิ่มปุ่มกดโดยตรวจสอบก่อนว่ามีจำนวนงานในเงื่อนไขหรือไม่
+      $each_auc_type['contents'][] = [
+        "type" => "button",
+        "margin" => "md",
+        "height" => "sm",
+        "action" => [
+          "type" => "uri",
+          "label" => "ปิดงานก่อสร้างได้ $percentage_closed_job %",
+          "uri" => "https://voc-bot.herokuapp.com/auc_charts.php?year=".urlencode($criteria_year)."&district=".urlencode($district)
+        ],
+        "style" => "secondary"
+      ];
+
+      $district_object['body']['contents'][] = $each_auc_type;
+
+      // เพิ่มต้วเว้นโดยใส่เป็นตัวอักษรสีขาว
       if($index === 0){
         $district_object['body']['contents'][] = [
           "type" => "text",
