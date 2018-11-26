@@ -69,7 +69,7 @@
         <div class="row">
           <div class="col-lg-12">
             <h5 class="text-center"><b>กราฟแสดงความสัมพันธ์จำนวนงานที่ปิดกับเป้าหมาย ปี <?=$year ?> <?=$district_map[$district]?></b></h5><br/>
-            <h5 class="text-center">ปิดงานก่อสร้างได้ <?=$percentage_closed_job ?> %, จำนวนงานคงเหลือ <?=$goal_job - $closed_job ?> งาน</h5><br/>
+            <h5 class="text-center">ปิดงานก่อสร้างได้ <?=$percentage_closed_job ?> %<br/>จำนวนงานคงเหลือ <?=$goal_job - $closed_job ?> งาน</h5><br/>
             <div id="container" style="width:100%; height:400px;"></div>
           </div>
         </div>
