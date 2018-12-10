@@ -73,7 +73,7 @@
                             </thead>
                             <tbody>
                               <?php 
-                                $select_manager = "SELECT manager.id AS id, manager.name, manager.surname, manager.position, manager.code, office.office_name, uid FROM tbl_manager manager JOIN tbl_pea_office office ON manager.office_id = office.id WHERE manager.office_id = $officeId AND status ='A'";
+                                $select_manager = "SELECT manager.id AS id, manager.name, manager.surname, manager.position, manager.code, office.office_name, uid FROM tbl_manager manager JOIN tbl_pea_office office ON manager.office_id = office.id WHERE manager.office_id = $officeId AND manager.status ='A'";
                                 $manager_results = mysqli_query($conn, $select_manager);
                                 if(mysqli_num_rows($manager_results) == 0){
                               ?>
