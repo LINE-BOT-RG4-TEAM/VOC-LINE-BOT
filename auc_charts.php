@@ -22,14 +22,14 @@
         <title>AUC Charts</title>
         <!-- css -->
         <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.css" />
-        <link href="https://fonts.googleapis.com/css?family=Pridi|Niramit|K2D|Bai+Jamjuree" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Pridi|Niramit|K2D|Bai+Jamjuree|Sarabun" rel="stylesheet">
         <style>
             body {
               padding-top: 20px;
             }
 
             h1, h2, h3, h4, h5 {
-                  font-family: 'K2D', serif;
+                  font-family: 'Sarabun', 'K2D', serif;
             }
 
             thead {
@@ -68,7 +68,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-12">
-            <h5 class="text-center"><b>กราฟแสดงความสัมพันธ์จำนวนงานที่ปิดกับเป้าหมาย ปี <?=$year ?> <?=$district_map[$district]?></b></h5><br/>
+            <h4 class="text-center"><b>กราฟแสดงความสัมพันธ์จำนวนงานที่ปิดกับเป้าหมาย ปี <?=$year ?> <?=$district_map[$district]?></b></h4><br/>
             <h5 class="text-center">ปิดงานก่อสร้างได้ <?=$percentage_closed_job ?> %<br/>จำนวนงานคงเหลือ <?=$goal_job - $closed_job ?> งาน</h5><br/>
             <div id="container" style="width:100%; height:400px;"></div>
           </div>
@@ -117,12 +117,12 @@
               },
               plotOptions: {
                 column: {
-                      dataLabels: {
+                    dataLabels: {
                         enabled: true,
                         formatter: function(){
-                          return (this.y).toLocaleString('en') + " งาน"
+                            return (this.y).toLocaleString('en') + " งาน"
                         }
-                      }
+                    }
                   }
               }
           });

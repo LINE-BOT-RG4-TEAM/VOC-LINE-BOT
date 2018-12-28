@@ -20,14 +20,14 @@
         <title>AUC Report</title>
         <!-- css -->
         <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.css" />
-        <link href="https://fonts.googleapis.com/css?family=Pridi|Niramit|K2D|Bai+Jamjuree" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Pridi|Niramit|K2D|Bai+Jamjuree|Sarabun" rel="stylesheet">
         <style>
             body {
               padding-top: 20px;
             }
 
             h1, h2, h3, h4, h5 {
-                  font-family: 'K2D', serif;
+                  font-family: 'Sarabun', 'K2D', serif;
             }
 
             thead {
@@ -63,7 +63,7 @@
             ?>
             <h2 class="text-center"><b>ข้อมูลงานคงค้างของ <?= $district_map[$district] ?> <?=$desc ?></b></h2>
             <h3 class="text-center">จำนวนทั้งสิ้น <?= $result_count ?> งาน</h3>
-            <h5 class="text-center">(สถานะ 15 พ.ย. 2561)</h5>
+            <h5 class="text-center">(สถานะ 26 ธ.ค. 2561)</h5>
             <div class="table-responsive">
               <table class="table table-hover table-striped table-bordered">
                 <thead class="thead-dark">
