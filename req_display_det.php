@@ -10,7 +10,9 @@
 	</head> 
 	<body> 
 		<?php
+    	require 'vendor/autoload.php';
 			require('./libs/database/connect-db.php');
+			use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 			function DateThai($strDate){
 				$strYear = date("Y",strtotime($strDate))+543;
@@ -19,7 +21,8 @@
 				//$strHour= date("H",strtotime($strDate));
 				//$strMinute= date("i",strtotime($strDate));
 				//$strSeconds= date("s",strtotime($strDate));
-				$strMonthCut = Array("","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
+				// $strMonthCut = Array("","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
+				$strMonthCut = Array("","มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม");
 				$strMonthThai=$strMonthCut[$strMonth];
 				return "$strDay $strMonthThai $strYear";
 			}
@@ -41,12 +44,14 @@
 					if($result["received_date"]== Null){
 						$strDate1 = "รอดำเนินการ";
 					}else{
-						$strDate1 = $result["received_date"];
+						$strDate1 = DateThai(Date::excelToDateTimeObject($result["received_date"]));
 					}
+
+					// DateThai(Date::excelToDateTimeObject(43500.452693669)->format('Y-m-d H:i:s'))
 					echo "<b>หมายเลขข้อร้องเรียน : </b>";
 					echo $result["complaint_id"]."<br><br>";
 					echo "<b>วันที่เรื่องเข้าระบบ : </b>";
-					echo ($result["sent_date"])."<br><br>";
+					echo DateThai(Date::excelToDateTimeObject($result["sent_date"]))."<br><br>";
 					echo "<b>วันที่รับคำร้อง : </b>";
 					echo $strDate1."<br><br>";
 					echo "<b>จำนวนวัน : </b>";
