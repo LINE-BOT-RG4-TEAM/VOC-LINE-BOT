@@ -132,4 +132,5 @@
             });
         });
     </script>
+	<?php include("ga_analytics.php"); ?>
 </html>

@@ -22,4 +22,5 @@
             </div><!-- /header -->
         </div><!-- /page -->
     </body>
+    <?php include("ga_analytics.php"); ?>
 </html>

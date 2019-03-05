@@ -59,4 +59,5 @@
 			</div>
 		</div>
 	</body>
+	<?php include("ga_analytics.php"); ?>
 </html>
