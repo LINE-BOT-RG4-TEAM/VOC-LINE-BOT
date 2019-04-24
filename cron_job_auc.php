@@ -1,7 +1,7 @@
 <?php
   require('./libs/database/connect-db.php');
   $payload = [
-    "to" => "C43891afa8280759911833f4c071a1190",
+    "to" => "Ube5f4c7c18af1e4536d7b9bf6b7c15d1",
     "messages" => [
       [
         "type" => "flex",
@@ -222,7 +222,8 @@
     // เพิ่มข้อมูลปี 2560 และ 2561
     $another_auc_type = [
       ["criteria" => "2560", "desc" => "ปี 2560"],
-      ["criteria" => "2561", "desc" => "ปี 2561"]
+      ["criteria" => "2561", "desc" => "ปี 2561"],
+      ["criteria" => "2562", "desc" => "ปี 2562"]
     ];
     foreach($another_auc_type as $index => $data){
       $criteria_year = $data['criteria'];
