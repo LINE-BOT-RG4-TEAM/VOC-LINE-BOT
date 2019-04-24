@@ -293,7 +293,7 @@
       $district_object['body']['contents'][] = $each_auc_type;
 
       // เพิ่มต้วเว้นโดยใส่เป็นตัวอักษรสีขาว
-      if($index === 0){
+      if($index !== count($another_auc_type) - 1){
         $district_object['body']['contents'][] = [
           "type" => "text",
           "text" => "Spacing here",
