@@ -18,7 +18,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="UTF-8">
-        <title>Upload VOC xlsx file</title>
+        <title>Upload AUC xlsx file</title>
         <!-- css -->
         <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.css" />
         <link href="https://fonts.googleapis.com/css?family=Pridi|Niramit|K2D" rel="stylesheet">

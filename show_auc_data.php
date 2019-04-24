@@ -63,7 +63,7 @@
             ?>
             <h2 class="text-center"><b>ข้อมูลงานคงค้างของ <?= $district_map[$district] ?> <?=$desc ?></b></h2>
             <h3 class="text-center">จำนวนทั้งสิ้น <?= $result_count ?> งาน</h3>
-            <h5 class="text-center">(สถานะ 26 ธ.ค. 2561)</h5>
+            <h5 class="text-center">(สถานะ 18 เม.ย. 2562)</h5>
             <div class="table-responsive">
               <table class="table table-hover table-striped table-bordered">
                 <thead class="thead-dark">
