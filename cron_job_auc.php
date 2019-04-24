@@ -204,18 +204,18 @@
           "style" => "primary"
         ];
       }
-      // remarks TODO:
+      // remarks TODO: uncomment 208, 212 - 217
       // $district_object['body']['contents'][] = $each_auc_type;
 
       // เพิ่มตัวคั่นก่อนปิดท้าย
       // if($index === 0){
-        $district_object['body']['contents'][] = [
-          "type" => "text",
-          "text" => "Spacing here",
-          "size" => "md",
-          "align" => "center",
-          "color" => "#FFFFFF"
-        ];
+        // $district_object['body']['contents'][] = [
+        //   "type" => "text",
+        //   "text" => "Spacing here",
+        //   "size" => "md",
+        //   "align" => "center",
+        //   "color" => "#FFFFFF"
+        // ];
       // }
     }
 
