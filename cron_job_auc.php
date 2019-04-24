@@ -204,8 +204,8 @@
           "style" => "primary"
         ];
       }
-
-      $district_object['body']['contents'][] = $each_auc_type;
+      // remarks TODO:
+      // $district_object['body']['contents'][] = $each_auc_type;
 
       // เพิ่มตัวคั่นก่อนปิดท้าย
       // if($index === 0){
