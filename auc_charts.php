@@ -28,7 +28,7 @@
               padding-top: 20px;
             }
 
-            h1, h2, h3, h4, h5 {
+            h1, h2, h3, h4, h5, a, label {
                   font-family: 'Sarabun', 'K2D', serif;
             }
 
@@ -68,12 +68,18 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-12">
-            <h4 class="text-center"><b>กราฟแสดงความสัมพันธ์จำนวนงานที่ปิดกับเป้าหมาย ปี <?=$year ?> <?=$district_map[$district]?></b></h4><br/>
+            <h4 class="text-center">
+              <b>กราฟแสดงความสัมพันธ์จำนวนงานที่ปิดกับเป้าหมาย ปี <?=$year ?> <?=$district_map[$district]?>
+              </b><br/>
+              <label>ข้อมูลสถานะ 18 เม.ย. 2562</label>
+            </h4><br/>
             <h5 class="text-center">
               ปิดงานก่อสร้างได้ <?=$percentage_closed_job ?> %<br/>
               จำนวนงานคงเหลือ <?=$goal_job - $closed_job ?> งาน
             </h5>
-            <a class="btn btn-lg btn-primary" href="show_auc_data.php?year=<?=$year?>&district=<?=$district?>">ดูรายละเอียดงานคงค้าง</a><br/>
+            <div class="text-center">
+              <a class="btn btn-primary" href="show_auc_data.php?year=<?=$year?>&district=<?=$district?>">ดูรายละเอียดงานคงค้าง</a>
+            </div><br/><br/>
             <div id="container" style="width:100%; height:400px;"></div>
           </div>
         </div>
