@@ -125,7 +125,6 @@
                     url: './api/upload-auc-data.php',
                     method: 'POST',
                     data: formData,
-                    async: true,
                     cache: false,
                     contentType: false,
                     enctype: 'multipart/form-data',

@@ -54,7 +54,7 @@
         $highestRow = $objWorksheet->getHighestRow();
         $highestColumn = $objWorksheet->getHighestColumn();
         $headingsArray = $objWorksheet->rangeToArray('A1:'.$highestColumn.'1', null, true, true, true);
-        print_r($headingsArray);
+        // print_r($headingsArray);
         $headingsArray = $headingsArray[1];
 
         // collect data within $namedDataArray
