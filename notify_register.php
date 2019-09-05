@@ -104,7 +104,7 @@
                     alert("กรุณากรอกชื่อผู้ใช้ หรือกลุ่มเพื่อรับการแจ้งเตือน");
                     return;
                 }
-                var authoirze_uri = "https://pea-crm.herokuapp.com/notify_authorize_callback.php?payload="+btoa(name);
+                var authoirze_uri = "https://voc-bot.herokuapp.com/notify_authorize_callback.php?payload="+btoa(name);
                 $("#authorize_uri").val(authoirze_uri);
             });
 
