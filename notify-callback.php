@@ -48,9 +48,23 @@
     require("./libs/database/connect-db.php");
     $state = trim($_GET["state"]);
     $access_token = $json->access_token;
+
+    // get type of access_token
+    $status_header = [
+        "Authorization" => "Bearer {$access_token}"
+    ];
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $status_header);
+    curl_setopt($ch, CURLOPT_URL, "https://notify-api.line.me/api/status");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    $access_token_results = curl_exec($ch);
+    $json = json_decode($access_token_results);
+    $target = $json->target;
+    $targetType = $json->targetType;
+
     $insert_access_token = "
-        INSERT INTO tbl_notify(name, access_token)
-        VALUES('{$state}', '{$access_token}')
+        INSERT INTO tbl_notify(name, target, targetType, access_token)
+        VALUES('{$state}', '{$target}', '{$targetType}', '{$access_token}')
     ";
     $results = mysqli_query($conn, $insert_access_token);
     if(mysqli_error($conn)){
