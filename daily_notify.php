@@ -20,8 +20,7 @@
     while($notify_row = $notify_list->fetch_assoc()){
         $access_token = $notify_row["access_token"];
         $headers = [
-            "Content-Type: application/x-www-form-urlencoded",
-            "Authorization: Bearer $access_token"
+            "Authorization: Bearer ".$access_token
         ];
 
         $message = [
