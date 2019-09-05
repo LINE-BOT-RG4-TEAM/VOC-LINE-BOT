@@ -41,7 +41,7 @@
                             </div>
                             <div class="offset-sm-3 col-sm-6">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="authorize_uri" name="authorize_uri" disabled="disabled" />
+                                    <input type="text" class="form-control disabled" id="authorize_uri" name="authorize_uri" />
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-secondary" id="copyLink" type="button">คัดลอกลิงก์</button>
                                     </div>
@@ -104,7 +104,7 @@
                     alert("กรุณากรอกชื่อผู้ใช้ หรือกลุ่มเพื่อรับการแจ้งเตือน");
                     return;
                 }
-                var authoirze_uri = "https://voc-bot.herokuapp.com/notify_authorize_callback.php?payload="+btoa(name);
+                var authoirze_uri = "https://voc-bot.herokuapp.com/notify_authorize_redirect.php?payload="+btoa(name);
                 $("#authorize_uri").val(authoirze_uri);
             });
 
@@ -121,7 +121,7 @@
 
                 /* Select the text field */
                 copyText.select(); 
-                copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+                // copyText.setSelectionRange(0, 99999); /*For mobile devices*/
 
                 /* Copy the text inside the text field */
                 document.execCommand("copy");

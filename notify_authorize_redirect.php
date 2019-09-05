@@ -1,7 +1,8 @@
 <?php
     $CLIENT_ID = getenv("LINE_NOTIFY_CLIENT_ID");
     $payload = base64_decode($_GET['payload']);
-    $redirect_uri = "https://voc-bot.herokuapp.com/notify-callback.php";
+    $redirect_uri = getenv("LINE_NOTIFY_REDIRECT_URI");
+    $authorize_notify_uri = getenv("LINE_NOTIFY_AUTHORIZE_URI");
 
     $params = array(
         'response_type' => 'code',
@@ -11,5 +12,5 @@
         'state' => $payload
     );
 
-    header("Location: https://notify-bot.line.me/oauth/authorize?".http_build_query($params));
+    header("Location: $authorize_notify_uri?".http_build_query($params));
     die();
