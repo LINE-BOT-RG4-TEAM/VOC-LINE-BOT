@@ -51,12 +51,12 @@
 
     // get type of access_token
     $status_header = [
-        "Authorization" => "Bearer {$access_token}"
+        "Authorization: Bearer {$access_token}"
     ];
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_HTTPHEADER, $status_header);
     curl_setopt($ch, CURLOPT_URL, "https://notify-api.line.me/api/status");
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $access_token_results = curl_exec($ch);
     $json = json_decode($access_token_results);
     $target = $json->target;
