@@ -11,7 +11,6 @@
     $client_id = getenv("LINE_NOTIFY_CLIENT_ID");
     $client_secret = getenv("LINE_NOTIFY_CLIENT_SECRET");
     $code = $_GET["code"];
-    $state = $_GET["state"];
 
     $headers = [
         'Content-Type' => 'application/x-www-form-urlencoded'
@@ -40,7 +39,23 @@
         throw new Exception(curl_error($ch), curl_errno($ch));
     
     $json = json_decode($res);
-    var_dump($json);
-    $status = $json->status;
-    // $access_token = $json->access_token;
-    die();
+    $status_code = $json->status;
+    if($status_code != 200){
+        echo "{$status_code}: ไม่สามารถออก access token ได้ กรุณาลองใหม่อีกครั้ง";
+        exit();
+    }
+
+    require("./libs/database/connect-db.php");
+    $state = trim($_GET["state"]);
+    $access_token = $json->access_token;
+    $insert_access_token = "
+        INSERT INTO tbl_notify(name, access_token)
+        VALES('{$state}', '{$access_token}')
+    ";
+    $results = mysqli_query($conn, $insert_access_token);
+    if(mysqli_error($conn)){
+        die("เพิ่มข้อมูล access token ไม่สำเร็จ: ".mysqli_error($conn));
+    }
+    $message = "เชื่อมต่อกับ LINE Notify สำเร็จ หากท่านเลือกกลุ่มเพื่อแจ้งเตือน กรุณาดึง LINE Notify เข้าไปในกลุ่มเพื่อรับการแจ้งเตือน";
+    echo $message;
+    exit();
