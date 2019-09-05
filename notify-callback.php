@@ -70,6 +70,10 @@
     if(mysqli_error($conn)){
         die("เพิ่มข้อมูล access token ไม่สำเร็จ: ".mysqli_error($conn));
     }
-    $message = "เชื่อมต่อกับ LINE Notify สำเร็จ หากท่านเลือกกลุ่มเพื่อแจ้งเตือน กรุณาดึง LINE Notify เข้าไปในกลุ่มเพื่อรับการแจ้งเตือน";
+    if($targetType === "GROUP") {
+        $message = "เชื่อมต่อกับกลุ่ม `$target` เพื่อรับการแจ้งเตือนผ่าน LINE Notify สำเร็จ กรุณาดึง LINE Notify เข้ากลุ่มเพื่อรับการแจ้งเตือน";
+    } else if($targetType === "USER") {
+        $message = "เชื่อมต่อกับ `$target` เพื่อรับการแจ้งเตือนผ่าน LINE Notify สำเร็จ";
+    }
     echo $message;
     exit();
