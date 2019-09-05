@@ -50,7 +50,7 @@
     $access_token = $json->access_token;
     $insert_access_token = "
         INSERT INTO tbl_notify(name, access_token)
-        VALES('{$state}', '{$access_token}')
+        VALUES('{$state}', '{$access_token}')
     ";
     $results = mysqli_query($conn, $insert_access_token);
     if(mysqli_error($conn)){
