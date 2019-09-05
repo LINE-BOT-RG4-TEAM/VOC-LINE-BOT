@@ -6,7 +6,7 @@
     $params = array(
         'response_type' => 'code',
         'client_id' => $CLIENT_ID,
-        'redirect_uri' => $redirect_uri."/notify-callback.php",
+        'redirect_uri' => $redirect_uri,
         'scope' => 'notify',
         'state' => $payload
     );
