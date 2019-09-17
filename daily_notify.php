@@ -22,7 +22,7 @@
                                 "ORDER BY main_office ASC";
     $complaint_list = mysqli_query($conn, $fetch_existing_complaint);
     if(mysqli_num_rows($complaint_list) > 0){
-        $prepare_message = "\n\n·รายงานข้อร้องเรียนสถานะรอและกำลังดำเนินการมากกว่าเท่ากับ 10 วัน \n\nประจำวันที่ ".DateThai(date("Y-m-d"));
+        $prepare_message = "\n\nรายงานข้อร้องเรียนสถานะรอและกำลังดำเนินการมากกว่าเท่ากับ 10 วัน ประจำวันที่ ".DateThai(date("Y-m-d"));
         $prepare_message .= getStringComplaintList($complaint_list);
         $prepare_message .= "\n\nhttps://voc-bot.herokuapp.com/south.php?NUMBER=@10";
         $message = [
