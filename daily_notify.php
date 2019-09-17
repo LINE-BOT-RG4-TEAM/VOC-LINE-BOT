@@ -57,7 +57,7 @@
     function getStringComplaintList($complaint_list){
         $complaint_string_list = "";
         while($complaint = $complaint_list->fetch_assoc()){
-            $complaint_string_list .= "\n  · {$complaint["main_office"]} จำนวน `{$complaint[count_complaint]} เรื่อง`";
+            $complaint_string_list .= "\n  · {$complaint["main_office"]} จำนวน *{$complaint["count_complaint"]} เรื่อง*";
         }
         return $complaint_string_list;
     }
