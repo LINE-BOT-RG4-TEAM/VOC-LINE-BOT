@@ -44,14 +44,14 @@
 					if($result["received_date"]== Null){
 						$strDate1 = "รอดำเนินการ";
 					}else{
-						$strDate1 = DateThai(Date::excelToDateTimeObject($result["received_date"])->format('Y-m-d H:i:s'));
+						// $strDate1 = DateThai(date_format(date_create($result["received_date"],"Y-m-d, H:i:s")));
+						$strDate1 = DateThai(date_format(date_create($result["received_date"]), "Y-m-d, H:i:s"));
 					}
 
-					// DateThai(Date::excelToDateTimeObject(43500.452693669)->format('Y-m-d H:i:s'))
 					echo "<b>หมายเลขข้อร้องเรียน : </b>";
 					echo $result["complaint_id"]."<br><br>";
 					echo "<b>วันที่เรื่องเข้าระบบ : </b>";
-					echo DateThai(Date::excelToDateTimeObject($result["sent_date"])->format('Y-m-d H:i:s'))."<br><br>";
+					echo DateThai(date_format(date_create($result["sent_date"]), "Y-m-d, H:i:s"))."<br><br>";
 					echo "<b>วันที่รับคำร้อง : </b>";
 					echo $strDate1."<br><br>";
 					echo "<b>จำนวนวัน : </b>";
